@@ -1,0 +1,273 @@
+/* src/app/pages/inventory/inventory.component.scss */
+
+:host {
+  display: block;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Animations                                  */
+/* -------------------------------------------------------------------------- */
+@keyframes flow-pulse {
+  0% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.3; }
+}
+
+@keyframes line-draw {
+  from { stroke-dashoffset: 400; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes stream-flow {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 0; }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Core Styles                                 */
+/* -------------------------------------------------------------------------- */
+.gradient-text {
+  background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 6rem 0 10rem;
+  
+  .eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+  
+  h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; }
+  p { font-size: 1.25rem; color: var(--text-light); max-width: 650px; margin: 0 auto 3rem; }
+  
+  .hero-visual {
+    margin-top: 4rem;
+    perspective: 1000px;
+    
+    .liquidity-matrix {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      text-align: left;
+      
+      .matrix-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      .matrix-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        
+        .matrix-cell {
+          background: rgba(0,0,0,0.02);
+          border: 1px solid rgba(0,0,0,0.05);
+          padding: 1.25rem;
+          border-radius: 12px;
+          display: flex;
+          flex-direction: column;
+          
+          span { font-size: 0.8rem; color: var(--text-light); margin-bottom: 0.5rem; }
+          small { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
+          
+          &.aging.active {
+            border-color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.05);
+            position: relative;
+            
+            .aging-indicator {
+              position: absolute;
+              top: -10px; right: 10px;
+              background: var(--primary-color);
+              color: white;
+              padding: 2px 8px;
+              border-radius: 4px;
+              font-size: 0.6rem;
+              font-weight: 700;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Metadata Schematic */
+.metadata-schematic {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+  border-radius: 16px;
+  
+  .schematic-node {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.05);
+    
+    .label { font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; margin-bottom: 0.25rem; }
+    .value { font-family: monospace; font-weight: 700; color: var(--text-dark); }
+    
+    &.parent { margin-bottom: 2rem; border-left: 4px solid var(--primary-color); }
+    &.highlight { border-color: #10b981; background: rgba(16, 185, 129, 0.05); .value { color: #10b981; } }
+  }
+  
+  .schematic-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1.5rem; left: 50%;
+      width: 2px; height: 1.5rem;
+      background: #e2e8f0;
+    }
+  }
+}
+
+/* Efficiency Chart */
+.efficiency-chart {
+  padding: 2rem;
+  
+  .chart-header {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+  
+  .chart-canvas {
+    height: 200px;
+    margin-bottom: 2rem;
+    
+    .tech-svg {
+      width: 100%; height: 100%;
+      
+      .line-sales { fill: none; stroke: var(--primary-color); stroke-width: 3; stroke-dasharray: 400; animation: line-draw 3s ease-out infinite; }
+      .line-stock { fill: none; stroke: #e2e8f0; stroke-width: 2; }
+      .point-optimization { fill: #10b981; animation: flow-pulse 2s infinite; }
+      .svg-label { font-size: 10px; fill: var(--text-light); font-weight: 600; }
+    }
+  }
+  
+  .chart-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 1.5rem;
+    
+    .metric {
+      span { font-size: 0.75rem; color: var(--text-light); display: block; margin-bottom: 0.25rem; }
+      strong { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
+      &.highlight strong { color: #10b981; }
+    }
+  }
+}
+
+/* Logistics Flow */
+.logistics-flow {
+  padding: 2.5rem;
+  text-align: center;
+  
+  .central-node {
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 5;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: inline-block;
+  }
+  
+  .flow-connections {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: -1.5rem; left: 0; right: 0;
+      height: 2px; background: #e2e8f0;
+      z-index: 1;
+    }
+  }
+
+  .flow-node.endpoint {
+    background: white;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 5;
+  }
+}
+
+/* Industry Specificity Presentation */
+.industry-closer.professional-presentation {
+  background: #1e1b4b;
+  color: white;
+  padding: 8rem 0;
+  
+  h2 { text-align: center; color: white; margin-bottom: 5rem; font-size: 2.5rem; letter-spacing: -0.02em; }
+  
+  .verticals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    
+    .vertical-item {
+      border-left: 2px solid rgba(255, 255, 255, 0.1);
+      padding-left: 2rem;
+      transition: all 0.3s ease;
+      
+      h4 { color: white; font-size: 1.25rem; margin-bottom: 1rem; font-weight: 700; }
+      p { color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; line-height: 1.6; font-weight: 500; }
+      
+      &:hover {
+        border-left-color: var(--primary-color);
+        background: rgba(255,255,255,0.02);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section h1 { font-size: 2.5rem; }
+  .hero-section .hero-visual .liquidity-matrix { max-width: 100%; }
+}

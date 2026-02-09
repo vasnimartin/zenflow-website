@@ -1,0 +1,660 @@
+/* src/app/pages/billing/billing.component.scss */
+
+:host {
+  display: block;
+  background: transparent;
+  color: #0f172a;
+  position: relative;
+  overflow-x: hidden; /* Prevent horizontal scroll from simulators */
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Subtler Environment                         */
+/* -------------------------------------------------------------------------- */
+.billing-room-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #020617; /* Deepest blue/black */
+  background-image: 
+    linear-gradient(rgba(99, 102, 241, 0.1) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1.5px, transparent 1.5px);
+  background-size: 80px 80px;
+  z-index: 0;
+  pointer-events: none;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 60% 40%, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            Refined Typography                              */
+/* -------------------------------------------------------------------------- */
+.eyebrow {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6366f1;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+h1 {
+  font-size: 3.8rem; /* Premium scale, no clipping */
+  line-height: 1.05;
+  font-weight: 850;
+  color: #0f172a;
+  letter-spacing: -0.04em;
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  font-size: 3.5rem; 
+  font-weight: 800; 
+  margin-bottom: 8rem; 
+  text-align: center; 
+  letter-spacing: -0.04em; 
+  color: #0f172a;
+}
+
+p { font-size: 1.15rem; color: #475569; line-height: 1.6; } /* Balanced weight */
+
+/* -------------------------------------------------------------------------- */
+/*                            The Command Center                              */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                            The ERP Command Surface                         */
+/* -------------------------------------------------------------------------- */
+.hero-command-center {
+  max-width: 2200px;
+  margin: 0 auto;
+  padding: 4vh 10vw 2vh; /* Drastic vertical reduction */
+  height: calc(100vh - 72px); /* Locked to viewport (assuming header height) */
+  min-height: 700px; /* Safety baseline for ultra-wide but short screens */
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; 
+  gap: 8vw; /* Tightened horizontal gap */
+  align-items: center;
+  position: relative;
+  z-index: 5;
+  background: transparent;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/images/billing-room-v2.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.28; /* Significantly boosted for environmental presence */
+    filter: saturate(0.7) brightness(0.6);
+    z-index: -1;
+    -webkit-mask-image: radial-gradient(circle at 60% 40%, black 50%, transparent 100%);
+    mask-image: radial-gradient(circle at 60% 40%, black 50%, transparent 100%);
+  }
+
+  .content-side {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    
+    .header-block {
+      margin-bottom: 2rem;
+      
+      h1 { 
+        font-size: clamp(2.5rem, 4.2vw, 4.2rem); 
+        line-height: 1.05; 
+        font-weight: 950; 
+        color: #f8fafc; 
+        text-transform: uppercase; 
+        margin-bottom: 1.25rem; 
+        letter-spacing: -0.04em; 
+      }
+      
+      p { 
+        color: #94a3b8; 
+        max-width: 600px; 
+        font-size: 1.15rem; 
+        line-height: 1.5;
+        font-weight: 500;
+        margin-bottom: 0;
+      }
+    }
+
+    .technical-grid-new {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .info-card {
+      background: rgba(15, 23, 42, 0.4);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 1.5rem 1.25rem;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      
+      &:hover { 
+        background: rgba(15, 23, 42, 0.6); 
+        transform: translateY(-5px); 
+        border-color: rgba(99, 102, 241, 0.4); 
+      }
+      
+      .ic-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; font-weight: 900; color: rgba(255, 255, 255, 0.3); letter-spacing: 0.15em; margin-bottom: 0.75rem; }
+      .ic-value { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 950; color: white; line-height: 1; margin-bottom: 0.5rem; }
+      .ic-desc { font-size: 0.7rem; font-weight: 700; color: #6366f1; opacity: 0.8; line-height: 1.1; }
+
+      &.neon-blue { border-left: 3px solid #60a5fa; }
+      &.neon-purple { border-left: 3px solid #c084fc; }
+      &.neon-indigo { border-left: 3px solid #818cf8; }
+    }
+
+    .cta-group-stable {
+      .btn-primary-billing {
+        display: inline-block;
+        background: #6366f1;
+        color: white;
+        padding: 1rem 3.5rem;
+        font-size: 1rem;
+        font-weight: 800;
+        border-radius: 100px;
+        text-decoration: none;
+        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        
+        &:hover { transform: scale(1.05); box-shadow: 0 25px 50px rgba(99, 102, 241, 0.5); }
+      }
+    }
+  }
+
+  .focal-viewport-command {
+    width: 100%;
+    max-width: 680px;
+    justify-self: stretch;
+    perspective: 2000px;
+    animation: float-viewport 6s ease-in-out infinite;
+    
+    .viewport-display {
+      background: #000;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16 / 10;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: -20px 30px 60px rgba(0,0,0,0.6);
+      transform: rotateY(-8deg); 
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      
+      .vp-asset-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0.95;
+        filter: saturate(1.1) brightness(1.1);
+        position: relative;
+        z-index: 1;
+      }
+
+      .vp-glare {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+        z-index: 2;
+        transform: translateX(-150%) skewX(-20deg);
+        animation: glare-sweep 8s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+        pointer-events: none;
+      }
+
+      .vp-scanline {
+        position: absolute;
+        inset: 0;
+        height: 10%;
+        background: linear-gradient(to bottom, transparent, rgba(99, 102, 241, 0.08), transparent);
+        z-index: 3;
+        animation: scanline-glide 12s linear infinite;
+        pointer-events: none;
+      }
+      
+      .vp-indicators {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-end;
+        z-index: 10;
+        
+        .indicator-tag {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.6rem;
+          font-weight: 800;
+          color: rgba(255, 255, 255, 0.4);
+          background: rgba(0, 0, 0, 0.5);
+          padding: 0.4rem 0.8rem;
+          border-radius: 4px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          
+          &.st-live { color: #10b981; &::before { content: "● "; animation: pulse 2s infinite; } }
+        }
+      }
+
+      &:hover {
+        transform: rotateY(-2deg) rotateX(1deg) scale(1.02);
+        box-shadow: -40px 60px 100px rgba(0,0,0,0.8);
+        border-color: rgba(99, 102, 241, 0.3);
+      }
+    }
+  }
+}
+
+@keyframes float-viewport {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes glare-sweep {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  30%, 100% { transform: translateX(150%) skewX(-20deg); }
+}
+
+@keyframes scanline-glide {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+@keyframes scan-vertical {
+  from { top: -10%; }
+  to { top: 110%; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            Interface Simulator                             */
+/* -------------------------------------------------------------------------- */
+.interface-simulator {
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  padding: 0;
+  overflow: hidden;
+  height: 600px;
+  width: 100%;
+  max-width: 100%; /* Flexible within grid */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 5;
+  
+  .sim-header {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+    background: #fdfdff;
+    
+    .label { font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; }
+    .st-badge { background: #eef2ff; color: #6366f1; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.7rem; font-weight: 800; }
+  }
+  
+  .sim-content {
+    flex: 1;
+    padding: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fdfdff;
+  }
+}
+
+.sim-search-bar {
+  width: 100%;
+  max-width: 440px;
+  background: white;
+  border: 1px solid #e1e7f0;
+  border-radius: 20px;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 6rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+  
+  .sim-mic { font-size: 1.5rem; opacity: 0.2; }
+  .sim-text {
+    font-size: 1.35rem; color: #64748b; font-weight: 600;
+    &::after { content: ""; animation: sim-typing 12s infinite; }
+  }
+}
+
+.sim-receipt {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border: 1px solid #f8fafc;
+  border-radius: 24px;
+  padding: 4rem;
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15);
+  opacity: 0; transform: translateY(40px);
+  animation: sim-receipt-reveal 12s infinite;
+  
+  .r-row { display: flex; justify-content: space-between; margin-bottom: 1.2rem; font-weight: 800; color: #0f172a; font-size: 1.15rem; }
+  .r-row.highlight-row { color: #6366f1; border-top: 1px solid #f1f5f9; padding-top: 2rem; margin-top: 1rem; }
+  .total-row { margin-top: 3rem; padding-top: 3rem; border-top: 2px dashed #f1f5f9; display: flex; justify-content: space-between; font-size: 2.2rem; font-weight: 950; color: #6366f1; }
+}
+
+@keyframes sim-typing {
+  0%, 10% { content: "Ask me anything."; opacity: 0.5; }
+  18%, 52% { content: "Bill 2x Nike Jordan"; opacity: 1; color: #6366f1; }
+  58%, 100% { content: "Bill 2x Nike Jordan"; opacity: 1; }
+}
+
+@keyframes sim-receipt-reveal {
+  0%, 48% { opacity: 0; transform: translateY(40px); }
+  55%, 95% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(300%) skewX(-15deg); }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            Social Proof Cards                              */
+/* -------------------------------------------------------------------------- */
+.social-proof-section {
+  padding: 16rem 10vw; 
+  max-width: 2200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%; right: 0; width: 60%; height: 80%;
+    transform: translateY(-50%);
+    background: url('/images/billing-vision.png') no-repeat right center;
+    background-size: contain;
+    opacity: 0.15; /* Increased from 0.05 for presence */
+    z-index: -1;
+    -webkit-mask-image: linear-gradient(to left, black 0%, transparent 80%);
+    mask-image: linear-gradient(to left, black 0%, transparent 80%);
+  }
+  
+  &.tech-closure { padding-top: 0; }
+  
+  h2 { font-size: 3.5rem; font-weight: 850; margin-bottom: 8rem; text-align: center; letter-spacing: -0.04em; color: #0f172a; }
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem; /* Balanced media gap */
+}
+
+.social-card {
+  background: white;
+  border: 1.5px solid #000; /* High-contrast borders from media asset */
+  border-radius: 64px; /* Accurate media curve */
+  padding: 6rem 4rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  
+  &.mini-card { padding: 3rem; min-height: 500px; border-radius: 40px; }
+  
+  &:hover { transform: translateY(-10px); box-shadow: 0 40px 80px rgba(99, 102, 241, 0.1); }
+  
+  h4 { 
+    font-size: 2.75rem; /* Media Parity */
+    font-weight: 800; 
+    line-height: 1.05; 
+    margin-bottom: 4rem; 
+    color: #0f172a; 
+    &.mini-title { font-size: 1.5rem; margin-bottom: 1.5rem; }
+  }
+  .mini-eyebrow { font-size: 0.7rem; margin-bottom: 1.5rem; }
+  p { font-size: 1rem; color: #000; line-height: 1.6; font-weight: 400; strong { color: #000; font-weight: 900; } }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            Persona Detail Modules                          */
+/* -------------------------------------------------------------------------- */
+.persona-section {
+  padding: 12rem 10vw; /* Fluid wide margins */
+  background: #fdfdff;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid #f1f5f9;
+  overflow: hidden;
+  max-width: 2200px;
+  margin: 0 auto;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('/images/billing-room-v2.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.03; /* Ultra subtle environmental texture */
+    filter: grayscale(1);
+    z-index: -1;
+  }
+  
+  .persona-title { text-align: left; margin-bottom: 2rem; font-size: 3rem; font-weight: 850; letter-spacing: -0.04em; color: #0f172a; }
+  .persona-subtitle { font-size: 1.25rem; color: #64748b; margin-bottom: 8rem; max-width: 600px; line-height: 1.6; }
+  
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+.persona-card {
+  padding: 4.5rem 3.5rem;
+  border: 1px solid #f1f5f9;
+  border-radius: 48px; /* Matching Hero Simulator vibe */
+  background: white;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+  
+  &:hover { border-color: #6366f1; transform: translateY(-12px); box-shadow: 0 40px 80px rgba(99, 102, 241, 0.08); }
+  
+  .icon { font-size: 2.2rem; margin-bottom: 3rem; display: block; opacity: 0.8; }
+  h5 { font-size: 1.75rem; font-weight: 850; margin-bottom: 3rem; color: #0f172a; letter-spacing: -0.02em; }
+  ul {
+    list-style: none; padding: 0;
+    li { 
+      position: relative; padding-left: 2rem; margin-bottom: 1.5rem; color: #475569; font-weight: 600; font-size: 1.05rem; 
+      &::before { content: "→"; position: absolute; left: 0; color: #6366f1; font-weight: 900; }
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Industry Hub                                */
+/* -------------------------------------------------------------------------- */
+.industry-section {
+  padding: 14rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  background: white;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10%; right: -5%; width: 500px; height: 500px;
+    background: url('/images/billing-mockup.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.05;
+    transform: rotate(-15deg);
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  h2 { font-size: 3.5rem; font-weight: 850; letter-spacing: -0.04em; color: #0f172a; margin: 2rem 0 3rem; }
+  .industry-subtitle { font-size: 1.25rem; color: #64748b; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+  .industry-blueprint-decor {
+    margin: 8rem auto 0;
+    max-width: 1200px; /* Scaled blueprint */
+    opacity: 0.4; 
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(190deg); /* Blueprint blue tint */
+    -webkit-mask-image: radial-gradient(circle, black 40%, transparent 100%);
+    mask-image: radial-gradient(circle, black 40%, transparent 100%);
+    
+    img { width: 100%; height: auto; border-radius: 40px; }
+  }
+  
+  .pill-wall {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 8rem auto 4rem;
+    
+    .industry-pill {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+      font-weight: 800;
+      color: #334155;
+      font-size: 1.1rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: default;
+      
+      &:hover { background: #6366f1; border-color: #6366f1; color: white; transform: scale(1.1) translateY(-5px); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2); }
+    }
+  }
+
+  .product-spotlight-wall {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 6rem auto 0;
+
+    .spotlight-card {
+      background: #fff;
+      border: 1px solid #f1f5f9;
+      border-radius: 32px;
+      padding: 1.5rem;
+      width: 300px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+      transition: all 0.4s ease;
+      
+      &:hover { transform: translateY(-10px); box-shadow: 0 40px 80px rgba(99, 102, 241, 0.1); border-color: #6366f1; }
+      
+      .spotlight-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20px;
+        margin-bottom: 1.5rem;
+      }
+
+      .spotlight-info {
+        text-align: left;
+        .label { font-size: 0.65rem; font-weight: 900; color: #94a3b8; letter-spacing: 0.1em; }
+        h5 { font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-top: 0.5rem; }
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                High Conversion Footer                      */
+/* -------------------------------------------------------------------------- */
+.footer-orchestrator {
+  padding: 16rem 10vw; /* Fluid wide margins */
+  text-align: center;
+  background: #020617; /* Deepest black alignment */
+  color: white;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 2400px;
+  margin: 0 auto;
+  
+  .eyebrow { color: rgba(255, 255, 255, 0.4); margin-bottom: 3rem; letter-spacing: 0.4em; }
+  h3 { 
+    font-size: clamp(3.5rem, 6.5vw, 6.5rem); /* Grand scale */
+    font-weight: 950; 
+    margin-bottom: 8rem; 
+    letter-spacing: -0.06em; 
+    line-height: 0.95; 
+    max-width: 1400px; /* Increased for breathing room */
+    margin-left: auto; 
+    margin-right: auto;
+    text-transform: uppercase;
+  }
+}
+
+.btn-command, .btn-conversion-footer {
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: pow-shimmer 4s infinite;
+  }
+}
+
+@keyframes pow-shimmer {
+  0% { left: -100%; }
+  20%, 100% { left: 100%; }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Responsive                                   */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  h1 { font-size: 3rem; }
+  .hero-command-center { 
+    grid-template-columns: 1fr; 
+    gap: 6rem; 
+    text-align: center; 
+    padding-top: 12rem;
+    
+    p { margin: 0 auto 3rem; }
+    .technical-grid { justify-content: center; }
+    .interface-simulator-command { margin: 0 auto; order: -1; } /* Simulator at top for mobile */
+  }
+  .social-grid, .persona-grid { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; }
+  .footer-orchestrator h3 { font-size: 3.5rem; }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  .hero-command-center { padding: 8rem 2rem 10rem; }
+  .technical-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
