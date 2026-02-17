@@ -5,39 +5,12 @@
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                Animations                                  */
+/*                          1. Hero Fleet Refined (V4)                        */
 /* -------------------------------------------------------------------------- */
-@keyframes flow-pulse {
-  0% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.3; }
-}
-
-@keyframes line-draw {
-  from { stroke-dashoffset: 400; }
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes stream-flow {
-  0% { background-position: 0 0; }
-  100% { background-position: 100% 0; }
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                Core Styles                                 */
-/* -------------------------------------------------------------------------- */
-.gradient-text {
-  background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
-}
-
 .hero-section {
   text-align: center;
   padding: 6rem 0 10rem;
-  
+
   .eyebrow {
     font-size: 0.85rem;
     font-weight: 700;
@@ -46,228 +19,461 @@
     margin-bottom: 1.5rem;
     text-transform: uppercase;
   }
-  
-  h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; }
-  p { font-size: 1.25rem; color: var(--text-light); max-width: 650px; margin: 0 auto 3rem; }
-  
-  .hero-visual {
-    margin-top: 4rem;
-    perspective: 1000px;
-    
-    .liquidity-matrix {
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 1.5rem;
-      text-align: left;
-      
-      .matrix-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1.5rem;
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: var(--text-light);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+
+  h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 950;
+    letter-spacing: -0.04em;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    max-width: 650px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 1.1rem 2.8rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
+    }
+  }
+}
+
+.hero-visual-fleet-v4 {
+  margin-top: 8rem;
+  display: flex;
+  justify-content: center;
+  perspective: 2000px;
+}
+
+.fleet-container {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+}
+
+.terminal-card-v4 {
+  position: absolute;
+  width: 440px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 50px 120px -20px rgba(15, 23, 42, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  text-align: left;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  .terminal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 1rem;
+  }
+
+  .t-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 1.1rem;
+
+    &.mini {
+      font-size: 1rem;
+      color: #94a3b8;
+    }
+  }
+
+  .t-total-row {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px dashed #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.2rem;
+    font-weight: 950;
+    color: var(--primary-color);
+  }
+
+  .status-live {
+    color: #10b981;
+  }
+
+  .status-sync {
+    color: #6366f1;
+  }
+
+  .status-idle {
+    color: #cbd5e1;
+  }
+}
+
+/* Fleet Stacking - Spaced For Quality */
+.terminal-main {
+  z-index: 10;
+  transform: translateZ(50px) translateY(0);
+}
+
+.terminal-middle {
+  z-index: 5;
+  transform: translateZ(-100px) translateY(-80px) translateX(120px) rotate(3deg);
+  opacity: 0.85;
+}
+
+.terminal-back {
+  z-index: 1;
+  transform: translateZ(-250px) translateY(-140px) translateX(-100px) rotate(-3deg);
+  opacity: 0.6;
+}
+
+@keyframes sync-progress {
+  0% {
+    width: 10%;
+  }
+
+  50% {
+    width: 90%;
+  }
+
+  100% {
+    width: 10%;
+  }
+}
+
+.t-progress-v4 {
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 99px;
+  margin-top: 0.75rem;
+  overflow: hidden;
+
+  .t-fill {
+    height: 100%;
+    background: #6366f1;
+    width: 60%;
+    animation: sync-progress 3s ease-in-out infinite;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                          2. Bento Grid (Sync Style)                        */
+/* -------------------------------------------------------------------------- */
+.bento-section {
+  padding: 10rem 0;
+  background: white;
+
+  .bento-header {
+    margin-bottom: 6rem;
+
+    h2 {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+  }
+
+  .inner-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .bento-card-inner {
+    background: #f8fafc;
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      border-color: rgba(99, 102, 241, 0.1);
+    }
+
+    .bento-icon-inner {
+      width: 48px;
+      height: 48px;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+
+      svg {
+        width: 100%;
+        height: 100%;
       }
-      
-      .matrix-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        
-        .matrix-cell {
-          background: rgba(0,0,0,0.02);
-          border: 1px solid rgba(0,0,0,0.05);
-          padding: 1.25rem;
-          border-radius: 12px;
-          display: flex;
-          flex-direction: column;
-          
-          span { font-size: 0.8rem; color: var(--text-light); margin-bottom: 0.5rem; }
-          small { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
-          
-          &.aging.active {
-            border-color: var(--primary-color);
-            background: rgba(99, 102, 241, 0.05);
-            position: relative;
-            
-            .aging-indicator {
-              position: absolute;
-              top: -10px; right: 10px;
-              background: var(--primary-color);
-              color: white;
-              padding: 2px 8px;
-              border-radius: 4px;
-              font-size: 0.6rem;
-              font-weight: 700;
-              text-transform: uppercase;
-            }
-          }
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #64748b;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    &.bento-large-inner {
+      grid-column: span 2;
+      background: white;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.03);
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                          3. Refined Operations Split                       */
+/* -------------------------------------------------------------------------- */
+.ops-walkthrough-v4 {
+  padding: 10rem 0;
+  background: #fcfcfc;
+
+  .section-title {
+    font-size: 3.5rem;
+    font-weight: 950;
+    letter-spacing: -0.04em;
+  }
+
+  .split-content-v4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 6rem auto 0;
+    padding: 0 2rem;
+  }
+
+  .ops-list-v4 {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .ops-card-v4 {
+    h3 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      color: #1e293b;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #64748b;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .ops-visual-v4 {
+    .dashboard-preview {
+      background: white;
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 60px 100px -20px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.02);
+
+      .dash-search-mock {
+        background: #f1f5f9;
+        border-radius: 12px;
+        padding: 1rem;
+        color: #94a3b8;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 3rem;
+      }
+
+      .main-stat {
+        label {
+          font-size: 1rem;
+          font-weight: 700;
+          color: #94a3b8;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          display: block;
+          margin-bottom: 1rem;
+        }
+
+        .val {
+          font-size: 4rem;
+          font-weight: 950;
+          color: #1e293b;
+        }
+
+        .trend.up {
+          color: #10b981;
+          font-weight: 800;
+          font-size: 1.2rem;
+          margin-left: 1rem;
         }
       }
     }
   }
 }
 
-/* Metadata Schematic */
-.metadata-schematic {
-  width: 100%;
-  max-width: 400px;
-  padding: 2rem;
+/* -------------------------------------------------------------------------- */
+/*                          4. Outcome (Sync Style)                           */
+/* -------------------------------------------------------------------------- */
+.outcome-section {
+  padding: 12rem 0;
   background: white;
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.03);
-  border-radius: 16px;
-  
-  .schematic-node {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    background: #f8fafc;
-    border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.05);
-    
-    .label { font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; margin-bottom: 0.25rem; }
-    .value { font-family: monospace; font-weight: 700; color: var(--text-dark); }
-    
-    &.parent { margin-bottom: 2rem; border-left: 4px solid var(--primary-color); }
-    &.highlight { border-color: #10b981; background: rgba(16, 185, 129, 0.05); .value { color: #10b981; } }
-  }
-  
-  .schematic-links {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    position: relative;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: -1.5rem; left: 50%;
-      width: 2px; height: 1.5rem;
-      background: #e2e8f0;
-    }
-  }
-}
-
-/* Efficiency Chart */
-.efficiency-chart {
-  padding: 2rem;
-  
-  .chart-header {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text-light);
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-  }
-  
-  .chart-canvas {
-    height: 200px;
-    margin-bottom: 2rem;
-    
-    .tech-svg {
-      width: 100%; height: 100%;
-      
-      .line-sales { fill: none; stroke: var(--primary-color); stroke-width: 3; stroke-dasharray: 400; animation: line-draw 3s ease-out infinite; }
-      .line-stock { fill: none; stroke: #e2e8f0; stroke-width: 2; }
-      .point-optimization { fill: #10b981; animation: flow-pulse 2s infinite; }
-      .svg-label { font-size: 10px; fill: var(--text-light); font-weight: 600; }
-    }
-  }
-  
-  .chart-metrics {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    padding-top: 1.5rem;
-    
-    .metric {
-      span { font-size: 0.75rem; color: var(--text-light); display: block; margin-bottom: 0.25rem; }
-      strong { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
-      &.highlight strong { color: #10b981; }
-    }
-  }
-}
-
-/* Logistics Flow */
-.logistics-flow {
-  padding: 2.5rem;
   text-align: center;
-  
-  .central-node {
-    margin-bottom: 3rem;
-    position: relative;
-    z-index: 5;
-    background: var(--primary-color);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    display: inline-block;
-  }
-  
-  .flow-connections {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    position: relative;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      top: -1.5rem; left: 0; right: 0;
-      height: 2px; background: #e2e8f0;
-      z-index: 1;
+
+  .outcome-container {
+    max-width: 800px;
+    margin: 0 auto;
+
+    h2 {
+      font-size: 4rem;
+      font-weight: 950;
+      color: #0f172a;
+      letter-spacing: -0.05em;
+      margin-bottom: 2rem;
     }
-  }
 
-  .flow-node.endpoint {
-    background: white;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    z-index: 5;
-  }
-}
+    .outcome-statement {
+      font-size: 1.5rem;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 5rem;
+    }
 
-/* Industry Specificity Presentation */
-.industry-closer.professional-presentation {
-  background: #1e1b4b;
-  color: white;
-  padding: 8rem 0;
-  
-  h2 { text-align: center; color: white; margin-bottom: 5rem; font-size: 2.5rem; letter-spacing: -0.02em; }
-  
-  .verticals-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 3rem;
-    
-    .vertical-item {
-      border-left: 2px solid rgba(255, 255, 255, 0.1);
-      padding-left: 2rem;
-      transition: all 0.3s ease;
-      
-      h4 { color: white; font-size: 1.25rem; margin-bottom: 1rem; font-weight: 700; }
-      p { color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; line-height: 1.6; font-weight: 500; }
-      
-      &:hover {
-        border-left-color: var(--primary-color);
-        background: rgba(255,255,255,0.02);
+    .outcome-points {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .outcome-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1e293b;
+
+      .outcome-check {
+        width: 32px;
+        height: 32px;
+        background: #10b981;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 18px;
+          height: 18px;
+        }
       }
     }
   }
 }
 
-@media (max-width: 768px) {
-  .hero-section h1 { font-size: 2.5rem; }
-  .hero-section .hero-visual .liquidity-matrix { max-width: 100%; }
+/* -------------------------------------------------------------------------- */
+/*                          5. Conversion CTA (Dark)                          */
+/* -------------------------------------------------------------------------- */
+.page-cta-dark {
+  padding: 10rem 0;
+  background: #000000;
+  color: white;
+  text-align: center;
+
+  .eyebrow {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #4b5563;
+    letter-spacing: 0.2em;
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-size: 5rem;
+    font-weight: 950;
+    letter-spacing: -0.05em;
+    color: #f8fafc;
+    margin-bottom: 4rem;
+  }
+
+  .btn-conversion {
+    padding: 1.5rem 4rem;
+    background: white;
+    color: black;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+  .hero-section h1 {
+    font-size: 3.5rem;
+  }
+
+  .inner-bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-card-inner.bento-large-inner {
+    grid-column: span 1;
+  }
+
+  .split-content-v4 {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .page-cta-dark h3 {
+    font-size: 3.5rem;
+  }
 }

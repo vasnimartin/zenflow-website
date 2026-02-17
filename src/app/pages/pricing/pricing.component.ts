@@ -50,6 +50,7 @@ import { RouterLink } from '@angular/router';
               <li>Unlimited Users</li>
               <li>Full Accounting Suite</li>
               <li>Multi-Store Sync</li>
+              <li>Omnichannel Fulfillment</li>
               <li>Priority 24/7 Support</li>
               <li>Custom Promotion Engine</li>
             </ul>
