@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
       <div class="container">
         <!-- Compact Header -->
         <div class="section-header">
-          <h2>Why Industry Leaders Choose Zenflow</h2>
+          <h2>Why our customers choose Zenflow</h2>
           <p class="subtitle">Reliability engineered for the 2026 enterprise scale.</p>
         </div>
 
@@ -19,8 +19,8 @@ import { Component } from '@angular/core';
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
             </div>
             <div>
-              <h4>24/7 Engineer Access</h4>
-              <p>Direct line to solutions architects. No chatbots, just answers.</p>
+              <h4>World Class Support</h4>
+              <p>Direct line to retail experts. No chatbots, just solutions.</p>
             </div>
           </div>
 
@@ -30,8 +30,8 @@ import { Component } from '@angular/core';
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
             </div>
             <div>
-              <h4>Usage-Based Scale</h4>
-              <p>Pay only for the API calls you use. Scale to millions instantly.</p>
+              <h4>Transparent Pricing</h4>
+              <p>Pay only for what you use. Scale your retail operations instantly.</p>
             </div>
           </div>
 
@@ -137,4 +137,4 @@ import { Component } from '@angular/core';
     }
   `]
 })
-export class TestimonialsComponent {}
+export class TestimonialsComponent { }

@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
       
       <div class="contact-card">
         <h3>Get in Touch</h3>
-        <p>Email: <strong>manoj@zenflow.ai</strong></p>
+        <p>Email: <strong>support@zenflow.ai</strong></p>
         <button class="btn btn-primary">Send Message</button>
       </div>
     </div>
@@ -28,4 +28,4 @@ import { Component } from '@angular/core';
     }
   `]
 })
-export class ContactComponent {}
+export class ContactComponent { }

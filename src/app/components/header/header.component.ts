@@ -194,17 +194,17 @@ export class HeaderComponent {
   onWindowScroll() {
     this.isScrolled = window.scrollY > 20;
   }
-  
+
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
-  
+
   closeMenu() {
     this.isMenuOpen = false;
   }
-  
+
   colorsMenu() {
-      // Just a helper to close if clicking logo
-      this.closeMenu();
+    // Just a helper to close if clicking logo
+    this.closeMenu();
   }
 }

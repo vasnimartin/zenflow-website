@@ -23,4 +23,4 @@ import { Component } from '@angular/core';
     .content-block { line-height: 1.8; }
   `]
 })
-export class AboutComponent {}
+export class AboutComponent { }
