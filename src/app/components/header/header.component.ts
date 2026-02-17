@@ -144,6 +144,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       border-radius: 99px;
       box-shadow: 0 4px 12px rgba(99,102,241,0.2);
     }
+
+    .desktop-only {
+      display: flex;
+    }
     
     /* Mobile Toggle */
     .menu-toggle {
@@ -176,35 +180,49 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       left: 0;
       width: 100%;
       height: 100vh;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
+      background: rgba(255, 255, 255, 0.98); /* Opaque for readability */
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1rem;
       transform: translateX(100%);
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 1001;
       opacity: 0;
       pointer-events: none;
+      padding: env(safe-area-inset-top) 2rem env(safe-area-inset-bottom);
       
       a {
-        font-size: 1.75rem;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.5rem;
         font-weight: 800;
         color: var(--text-dark);
         letter-spacing: -0.02em;
         opacity: 0;
         transform: translateY(20px);
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        border-radius: 12px;
         
-        &.active { color: var(--primary-color); }
+        &.active { 
+          color: var(--primary-color);
+          background: rgba(99, 102, 241, 0.05);
+        }
+        
+        &:active {
+          background: rgba(0, 0, 0, 0.05);
+        }
       }
 
       .btn {
-        margin-top: 1rem;
-        padding: 1rem 3rem;
+        margin-top: 2rem;
+        width: 80%;
+        max-width: 300px;
+        padding: 1.2rem;
         font-size: 1.1rem;
       }
       
@@ -224,31 +242,35 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .header-content {
         display: flex;
         justify-content: space-between;
         padding: 0 1.5rem;
       }
-      .desktop-nav { display: none; }
-      .menu-toggle { display: flex; }
+      .desktop-nav, .nav.desktop-nav, .desktop-only { display: none !important; }
+      .menu-toggle { display: flex !important; }
       
       .header.scrolled {
         width: calc(100% - 2rem);
         top: 1rem;
         margin: 0 1rem;
       }
+
+      .logo { font-size: 1.35rem; }
     }
 
-    @media (max-width: 480px) {
-       .header.scrolled {
-         width: 100%;
-         top: 0;
-         margin: 0;
-         border-radius: 0;
-         border-left: none;
-         border-right: none;
+    @media (max-width: 640px) {
+       .header {
+         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
        }
+       .header.scrolled {
+         width: 100% !important;
+         top: 0 !important;
+         margin: 0 !important;
+         border-radius: 0 !important;
+       }
+       .logo { font-size: 1.2rem; }
     }
     
     /* Menu Open State handling aka "Burger Animation" */
@@ -276,14 +298,29 @@ export class HeaderComponent {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+    this.updateScrollLock();
   }
 
   closeMenu() {
     this.isMenuOpen = false;
+    this.updateScrollLock();
+  }
+
+  private updateScrollLock() {
+    if (this.isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
 
   colorsMenu() {
     // Just a helper to close if clicking logo
     this.closeMenu();
+  }
+
+  ngOnDestroy() {
+    // Safety: ensure scrolling is restored if component destroyed while menu open
+    document.body.style.overflow = '';
   }
 }

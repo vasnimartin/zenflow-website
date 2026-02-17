@@ -208,13 +208,18 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
       background-clip: text;
     }
 
-    @media (max-width: 1140px) {
+    @media (max-width: 1200px) {
       .page-content { padding-top: 100px; }
-      .hero-section h1 { font-size: 3rem; }
-      .tiers-grid { grid-template-columns: 1fr; max-width: 500px; padding: 0 1.5rem; }
+      .hero-section h1 { font-size: 3.5rem; }
+      .tiers-grid { grid-template-columns: repeat(2, 1fr); max-width: 900px; padding: 0 1.5rem; }
       .tier-card.featured { transform: scale(1); &:hover { transform: translateY(-8px); } }
-      .faq-container { padding: 3rem 1.5rem !important; border-radius: 24px; }
+      .faq-container { padding: 4rem 3rem !important; border-radius: 24px; }
       .faq-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 992px) {
+      .tiers-grid { grid-template-columns: 1fr; max-width: 500px; }
+      .hero-section h1 { font-size: 3rem; }
     }
 
     @media (max-width: 640px) {
@@ -222,6 +227,7 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
       .hero-section p { font-size: 1.1rem; }
       .pricing-tiers { padding-bottom: 4rem; }
       .faq-section { padding: 6rem 0; }
+      .faq-container { padding: 3rem 1.5rem !important; }
       .faq-container h2 { font-size: 2rem; margin-bottom: 3rem; }
       .faq-item h4 { font-size: 1.15rem; }
     }

@@ -21,7 +21,7 @@
   }
 
   h1 {
-    font-size: 4.5rem;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     line-height: 1.1;
     margin-bottom: 1.5rem;
     font-weight: 950;
@@ -524,10 +524,6 @@
 
   .outcome-section { padding: 8rem 0; }
   .outcome-container h2 { font-size: 3rem; }
-
-  .page-cta-dark h3 {
-    font-size: 3.5rem;
-  }
 }
 
 @media (max-width: 768px) {
