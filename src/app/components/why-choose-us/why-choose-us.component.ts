@@ -72,6 +72,18 @@ import { CommonModule } from '@angular/common';
             <p>Direct access to a dedicated retail expert who understands your margins.</p>
           </div>
 
+          <!-- Pillar 5: Global Sync -->
+          <div class="bento-card">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>Global Sync Engine</h3>
+            <p>Every price update and inventory shift reflects across your stores in milliseconds.</p>
+          </div>
+
         </div>
       </div>
     </section>

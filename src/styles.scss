@@ -368,8 +368,18 @@ a {
 
 /* Global Page Spacing for Fixed Header */
 .page-content {
-  padding-top: 6rem;
+  padding-top: 12rem;
   padding-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    padding-top: 8rem;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
 }
 
 /* Zig-Zag Layout Styles */

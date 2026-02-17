@@ -22,12 +22,12 @@ import { RouterLink } from '@angular/router';
       <!-- SECTION 2: 3 Pricing Tiers -->
       <section class="pricing-tiers">
         <div class="tiers-grid">
-          <!-- Tier 1: Starter -->
+          <!-- Tier 1: Free Trial -->
           <div class="tier-card bento-card-inner">
             <div class="tier-header">
-              <h3>Starter</h3>
-              <div class="price">₹ 4,999<span>/mo</span></div>
-              <p>Perfect for solo stores starting their digitalization journey.</p>
+              <h3>Free Trial</h3>
+              <div class="price">₹ 0<span>/14 days</span></div>
+              <p>Explore all core features with no commitment.</p>
             </div>
             <ul class="tier-features">
               <li>Up to 2 Users</li>
@@ -35,26 +35,26 @@ import { RouterLink } from '@angular/router';
               <li>Basic GST Reporting</li>
               <li>Standard Support</li>
             </ul>
-            <a routerLink="/contact" class="btn-tier">Get Started</a>
+            <a routerLink="/contact" [queryParams]="{ plan: 'free-trial' }" class="btn-tier">Start Free Trial</a>
           </div>
 
-          <!-- Tier 2: Growth (Highlighted) -->
+          <!-- Tier 2: Transaction-Based Pricing (Highlighted) -->
           <div class="tier-card bento-card-inner featured">
             <div class="featured-badge">MOST POPULAR</div>
             <div class="tier-header">
-              <h3>Growth</h3>
-              <div class="price">₹ 14,999<span>/mo</span></div>
-              <p>Built for expanding multi-chain retail organizations.</p>
+              <h3>Pro</h3>
+              <div class="price">₹ 1.5<span>/trans</span></div>
+              <p>Transparent transaction-based pricing. Pay as you scale.</p>
             </div>
             <ul class="tier-features">
+              <li>Everything in Free Trial</li>
               <li>Unlimited Users</li>
               <li>Full Accounting Suite</li>
               <li>Multi-Store Sync</li>
               <li>Omnichannel Fulfillment</li>
               <li>Priority 24/7 Support</li>
-              <li>Custom Promotion Engine</li>
             </ul>
-            <a routerLink="/contact" class="btn-tier primary">Start Free Trial</a>
+            <a routerLink="/contact" [queryParams]="{ plan: 'pro' }" class="btn-tier primary">Get Started</a>
           </div>
 
           <!-- Tier 3: Enterprise -->
@@ -62,16 +62,17 @@ import { RouterLink } from '@angular/router';
             <div class="tier-header">
               <h3>Enterprise</h3>
               <div class="price">Custom</div>
-              <p>Tailored solutions for large-scale enterprise commerce.</p>
+              <p>Bespoke solutions with volume discounts for large networks.</p>
             </div>
             <ul class="tier-features">
-              <li>Everything in Growth</li>
+              <li>Everything in Pro</li>
               <li>Dedicated Success Manager</li>
               <li>Custom API Access</li>
               <li>White-label Capabilities</li>
               <li>SLA-backed Uptime</li>
+              <li>Volume Discounts</li>
             </ul>
-            <a routerLink="/contact" class="btn-tier">Contact Sales</a>
+            <a routerLink="/contact" [queryParams]="{ plan: 'enterprise' }" class="btn-tier">Contact Sales</a>
           </div>
         </div>
       </section>
@@ -111,7 +112,8 @@ import { RouterLink } from '@angular/router';
   `,
   styles: [`
     /* Pricing Page Specific Specifics */
-    .pricing-tiers { padding: 4rem 0 8rem; position: relative; z-index: 1; }
+    .page-content { padding: 12rem 1.5rem 4rem; }
+    .pricing-tiers { padding: 2rem 0 8rem; position: relative; z-index: 1; }
     .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
 
     .tier-card {
