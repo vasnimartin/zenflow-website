@@ -74,8 +74,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       height: 64px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.4);
       box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
     }
@@ -152,15 +152,20 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       border: none;
       cursor: pointer;
       flex-direction: column;
-      gap: 5px;
-      padding: 5px;
+      gap: 6px;
+      padding: 8px;
       z-index: 1002;
+      border-radius: 8px;
+      transition: background 0.2s;
+
+      &:active { background: rgba(0,0,0,0.05); }
       
       .bar {
         width: 24px;
         height: 2px;
         background-color: var(--text-dark);
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 2px;
       }
     }
     
@@ -171,31 +176,51 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       left: 0;
       width: 100%;
       height: 100vh;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
-      transform: translateY(-100%);
-      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      gap: 1.5rem;
+      transform: translateX(100%);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 1001;
       opacity: 0;
       pointer-events: none;
       
       a {
-        font-size: 1.5rem;
-        font-weight: 600;
+        font-size: 1.75rem;
+        font-weight: 800;
         color: var(--text-dark);
+        letter-spacing: -0.02em;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         
         &.active { color: var(--primary-color); }
       }
+
+      .btn {
+        margin-top: 1rem;
+        padding: 1rem 3rem;
+        font-size: 1.1rem;
+      }
       
       &.open {
-        transform: translateY(0);
+        transform: translateX(0);
         opacity: 1;
         pointer-events: all;
+
+        a {
+            opacity: 1;
+            transform: translateY(0);
+            
+            @for $i from 1 through 7 {
+                &:nth-child(#{$i}) { transition-delay: #{$i * 0.05}s; }
+            }
+        }
       }
     }
 
@@ -203,31 +228,50 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       .header-content {
         display: flex;
         justify-content: space-between;
+        padding: 0 1.5rem;
       }
       .desktop-nav { display: none; }
       .menu-toggle { display: flex; }
       
       .header.scrolled {
-        width: 100%;
-        top: 0;
-        border-radius: 0;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
+        width: calc(100% - 2rem);
+        top: 1rem;
+        margin: 0 1rem;
       }
+    }
+
+    @media (max-width: 480px) {
+       .header.scrolled {
+         width: 100%;
+         top: 0;
+         margin: 0;
+         border-radius: 0;
+         border-left: none;
+         border-right: none;
+       }
     }
     
     /* Menu Open State handling aka "Burger Animation" */
-    .header.menu-open .menu-toggle .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .header.menu-open .menu-toggle .bar:nth-child(2) { opacity: 0; }
-    .header.menu-open .menu-toggle .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .header.menu-open .menu-toggle .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); width: 28px; }
+    .header.menu-open .menu-toggle .bar:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+    .header.menu-open .menu-toggle .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); width: 28px; }
   `]
 })
 export class HeaderComponent {
   isScrolled = false;
   isMenuOpen = false;
 
+  private scrollTicking = false;
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isScrolled = window.scrollY > 20;
+    if (!this.scrollTicking) {
+      window.requestAnimationFrame(() => {
+        this.isScrolled = window.scrollY > 20;
+        this.scrollTicking = false;
+      });
+      this.scrollTicking = true;
+    }
   }
 
   toggleMenu() {

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FinalCtaComponent } from '../../components/final-cta/final-cta.component';
 
 @Component({
   selector: 'app-accounting',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FinalCtaComponent],
   template: `
     <div class="container page-content">
       <!-- SECTION 1: Centered Hero (Sync Parity + Ledger Visual) -->
@@ -216,12 +217,13 @@ import { RouterLink } from '@angular/router';
       </section>
     </div>
 
-    <!-- SECTION 5: Dark CTA -->
-    <section class="page-cta-dark">
-      <span class="eyebrow">READY FOR FINANCIAL CLARITY?</span>
-      <h3>Transform Your Accounting Today.</h3>
-      <a routerLink="/contact" class="btn-conversion">Get Audit Ready →</a>
-    </section>
+    <!-- Conversion CTA -->
+    <app-final-cta 
+      eyebrow="READY FOR FINANCIAL CLARITY?"
+      headline="Transform Your <br>Accounting Today."
+      subtext="See how Zenflow transforms billing, inventory, and accounting into one seamless retail system."
+      buttonText="Get Audit Ready →">
+    </app-final-cta>
   `,
   styleUrl: './accounting.component.scss'
 })

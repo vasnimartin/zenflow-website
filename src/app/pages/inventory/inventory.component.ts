@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FinalCtaComponent } from '../../components/final-cta/final-cta.component';
 
 @Component({
   selector: 'app-inventory',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FinalCtaComponent],
   template: `
     <div class="container page-content">
       <!-- SECTION 1: Centered Hero (Sync Parity + Capital Hub Visual) -->
@@ -201,12 +202,13 @@ import { RouterLink } from '@angular/router';
       </section>
     </div>
 
-    <!-- SECTION 5: Dark CTA -->
-    <section class="page-cta-dark">
-      <span class="eyebrow">READY TO OPTIMIZE YOUR STOCK?</span>
-      <h3>Transform Your Inventory Today.</h3>
-      <a routerLink="/contact" class="btn-conversion">Analyze My Efficiency →</a>
-    </section>
+    <!-- Conversion CTA -->
+    <app-final-cta 
+      eyebrow="READY TO OPTIMIZE YOUR STOCK?"
+      headline="Transform Your <br>Inventory Today."
+      subtext="See how Zenflow transforms billing, inventory, and accounting into one seamless retail system."
+      buttonText="Analyze My Efficiency →">
+    </app-final-cta>
   `,
   styleUrl: './inventory.component.scss'
 })

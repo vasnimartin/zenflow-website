@@ -413,68 +413,94 @@
   }
 }
 
-/* -------------------------------------------------------------------------- */
-/*                          5. Conversion CTA (Dark)                          */
-/* -------------------------------------------------------------------------- */
-.page-cta-dark {
-  padding: 10rem 0;
-  background: #000000;
-  color: white;
-  text-align: center;
-
-  .eyebrow {
-    font-size: 0.9rem;
-    font-weight: 800;
-    color: #4b5563;
-    letter-spacing: 0.2em;
-    display: block;
-    margin-bottom: 2rem;
-  }
-
-  h3 {
-    font-size: 5rem;
-    font-weight: 950;
-    letter-spacing: -0.05em;
-    color: #f8fafc;
-    margin-bottom: 4rem;
-  }
-
-  .btn-conversion {
-    padding: 1.5rem 4rem;
-    background: white;
-    color: black;
-    border-radius: 12px;
-    font-weight: 800;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 30px 60px rgba(255, 255, 255, 0.1);
-    }
-  }
-}
-
 /* Responsive Overrides */
 @media (max-width: 1024px) {
-  .hero-section h1 {
-    font-size: 3.5rem;
+  .hero-section {
+    padding: 6rem 0;
+    
+    h1 { font-size: 3.5rem; }
   }
 
+  .fleet-container {
+    height: 480px;
+    max-width: 100%;
+  }
+
+  .terminal-card-v4 {
+    width: clamp(300px, 80vw, 400px);
+    padding: 1.5rem;
+  }
+
+  .terminal-middle { transform: translateZ(-50px) translateY(-50px) translateX(60px) rotate(2deg); }
+  .terminal-back { transform: translateZ(-100px) translateY(-100px) translateX(-40px) rotate(-2deg); }
+
   .inner-bento-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 1.5rem;
   }
 
   .bento-card-inner.bento-large-inner {
-    grid-column: span 1;
+    grid-column: span 2;
   }
 
   .split-content-v4 {
     grid-template-columns: 1fr;
     gap: 4rem;
+    margin-top: 4rem;
   }
+
+  .ops-list-v4 { gap: 2rem; }
+  
+  .ops-visual-v4 .dashboard-preview { padding: 2rem; }
+
+  .outcome-section { padding: 8rem 0; }
+  .outcome-container h2 { font-size: 3rem; }
 
   .page-cta-dark h3 {
     font-size: 3.5rem;
   }
+}
+
+@media (max-width: 768px) {
+  .inner-bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-card-inner.bento-large-inner {
+    grid-column: span 1;
+  }
+  .terminal-card-v4 .t-total-row { font-size: 1.6rem; }
+}
+
+@media (max-width: 640px) {
+  .hero-section h1 { font-size: 2.25rem; }
+  .hero-section p { font-size: 1.1rem; margin-bottom: 2.5rem; }
+  
+  .hero-visual-fleet-v4 { margin-top: 4rem; perspective: 1000px; }
+  .fleet-container { height: 380px; }
+  
+  .terminal-card-v4 {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100%;
+    margin-bottom: -180px; /* Stacked look */
+    opacity: 1 !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+  
+  .terminal-back, .terminal-middle { display: none; } /* Only show main on small mobile for clarity */
+  .terminal-main { margin-bottom: 0; }
+
+  .ops-walkthrough-v4 { padding: 6rem 0; }
+  .ops-walkthrough-v4 .section-title { font-size: 2.25rem; }
+  
+  .ops-visual-v4 .dashboard-preview .main-stat .val { font-size: 2.5rem; }
+  
+  .outcome-container h2 { font-size: 2.25rem; }
+  .outcome-statement { font-size: 1.15rem; }
+  
+  .page-cta-dark { padding: 6rem 0; }
+  .page-cta-dark h3 { font-size: 2.25rem; }
+  .btn-conversion { width: calc(100% - 3rem); padding: 1.2rem 2rem; }
 }

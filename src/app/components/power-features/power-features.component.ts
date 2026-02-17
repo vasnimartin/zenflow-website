@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-power-features',
   standalone: true,
+  imports: [ScrollRevealDirective],
   template: `
     <section class="power-section">
       <div class="container wide-container">
-        <div class="section-header text-center mb-5">
+        <div class="section-header text-center mb-5" appScrollReveal>
           <h2 style="color:white; margin-bottom:1rem;">Powering the future of Retail</h2>
           <p style="color:rgba(255,255,255,0.7);">Everything you need to scale your business, built right in.</p>
         </div>
         
         <div class="grid feature-grid">
-          <div class="power-card">
+          <div class="power-card stagger-1" appScrollReveal>
             <h3>
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
               PoS Operations
@@ -20,7 +22,7 @@ import { Component } from '@angular/core';
             <p>Hybrid solution that works offline and instantly sync online for uninterrupted operations.</p>
           </div>
           
-          <div class="power-card">
+          <div class="power-card stagger-2" appScrollReveal>
             <h3>
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
               Automation
@@ -28,7 +30,7 @@ import { Component } from '@angular/core';
             <p>Auto generate POs, Indents, Store wise pick lists and store transfers automatically.</p>
           </div>
           
-          <div class="power-card">
+          <div class="power-card stagger-3" appScrollReveal>
             <h3>
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
               Access Control
@@ -36,7 +38,7 @@ import { Component } from '@angular/core';
             <p>Ensure users access only to the info and tools needed and absolutely nothing else.</p>
           </div>
           
-          <div class="power-card">
+          <div class="power-card stagger-4" appScrollReveal>
             <h3>
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
               Integrations
@@ -44,7 +46,7 @@ import { Component } from '@angular/core';
             <p>Integrate with any third party applications & Hardware via secure enterprise APIs.</p>
           </div>
 
-          <div class="power-card">
+          <div class="power-card stagger-5" appScrollReveal>
             <h3>
               <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.456-2.455l.259-1.036.259 1.036a3.375 3.375 0 002.455 2.456l1.036.259-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>
               Agentic AI
@@ -58,7 +60,8 @@ import { Component } from '@angular/core';
   styles: [`
     .power-section {
       padding: 10rem 0;
-      background: radial-gradient(circle at 50% 0%, #312e81 0%, #1e1b4b 60%, #0f172a 100%);
+      /* Restored background but with high-end translucency to show scan line */
+      background: radial-gradient(circle at 50% 0%, rgba(49, 46, 129, 0.9) 0%, rgba(30, 27, 75, 0.9) 60%, rgba(15, 23, 42, 0.9) 100%);
       color: white;
       position: relative;
       overflow: hidden;
@@ -67,6 +70,7 @@ import { Component } from '@angular/core';
          content: '';
          position: absolute;
          top: 0; left: 0; width: 100%; height: 100%;
+         /* Re-added section grid for extra depth in dark sections */
          background-image: 
            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -94,9 +98,10 @@ import { Component } from '@angular/core';
       padding: 3rem 2rem; /* Restore premium spacious padding */
       border-radius: 24px;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
       overflow: hidden;
       display: flex;
@@ -142,7 +147,7 @@ import { Component } from '@angular/core';
         background: rgba(255, 255, 255, 0.05); 
         border-color: rgba(var(--card-glow), 0.6);
         box-shadow: 
-          0 40px 80px -20px rgba(0,0,0,0.6),
+          0 40px 80px -20px rgba(0,0,0,0.4),
           0 0 30px -5px rgba(var(--card-glow), 0.3); 
           
         h3 { color: rgb(var(--card-glow)); }

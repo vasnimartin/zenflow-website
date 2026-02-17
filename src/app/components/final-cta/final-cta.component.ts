@@ -1,23 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-final-cta',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ScrollRevealDirective],
   template: `
     <section class="final-cta">
       <div class="container">
-        <div class="cta-card glass-card">
+        <div class="cta-card glass-card" appScrollReveal>
           <div class="cta-content">
-            <h2 class="cta-headline">Ready to Simplify <br>Retail Operations for Good?</h2>
-            <p class="cta-subtext">
-              See how Zenflow transforms billing, inventory, and accounting into one seamless retail system.
-            </p>
+            <span class="eyebrow" *ngIf="eyebrow">{{ eyebrow }}</span>
+            <h2 class="cta-headline" [innerHTML]="headline"></h2>
+            <p class="cta-subtext">{{ subtext }}</p>
             
             <div class="cta-actions">
-              <a routerLink="/contact" class="btn-primary">Get Started Now</a>
+              <a routerLink="/contact" class="btn-primary">{{ buttonText }}</a>
               <a href="#" class="btn-secondary">Schedule a Live Demo</a>
             </div>
           </div>
@@ -37,7 +37,7 @@ import { RouterModule } from '@angular/router';
   styles: [`
     .final-cta {
       padding: 6rem 0 10rem;
-      background: #ffffff;
+      background: transparent;
     }
 
     .cta-card {
@@ -61,6 +61,16 @@ import { RouterModule } from '@angular/router';
       background: url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
       opacity: 0.1;
       pointer-events: none;
+    }
+
+    .eyebrow {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.2em;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
     }
 
     .cta-headline {
@@ -158,19 +168,32 @@ import { RouterModule } from '@angular/router';
     }
 
     @media (max-width: 1200px) {
-      .cta-card { padding: 4rem; grid-template-columns: 1fr; text-align: center; }
+      .final-cta { padding: 4rem 0 6rem; }
+      .cta-card { padding: 4rem; grid-template-columns: 1fr; text-align: center; gap: 3rem; }
       .cta-headline { font-size: 3rem; }
-      .cta-subtext { max-width: 100%; margin: 0 auto 3rem; }
+      .cta-subtext { max-width: 100%; margin: 0 auto 3rem; font-size: 1.25rem; }
       .cta-actions { justify-content: center; }
-      .cta-visual { margin-top: 3rem; }
+      .cta-visual { margin-top: 1rem; }
     }
 
     @media (max-width: 640px) {
+      .final-cta { padding: 2rem 0 4rem; }
       .cta-card { border-radius: 30px; padding: 3rem 1.5rem; }
-      .cta-headline { font-size: 2.2rem; }
-      .cta-actions { flex-direction: column; width: 100%; }
-      .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+      .cta-headline { font-size: 2.2rem; margin-bottom: 1.5rem; }
+      .cta-subtext { font-size: 1.1rem; margin-bottom: 2.5rem; }
+      .cta-actions { flex-direction: column; width: 100%; gap: 1rem; }
+      .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 1rem 1.5rem; font-size: 1rem; }
+      .logo-circle { width: 100px; height: 100px; }
+      .logo-z { font-size: 3rem; }
+      .pr-1 { width: 140px; height: 140px; }
+      .pr-2 { width: 190px; height: 190px; }
+      .pr-3 { width: 240px; height: 240px; }
     }
   `]
 })
-export class FinalCtaComponent { }
+export class FinalCtaComponent {
+  @Input() eyebrow: string = '';
+  @Input() headline: string = 'Ready to Simplify <br>Retail Operations for Good?';
+  @Input() subtext: string = 'See how Zenflow transforms billing, inventory, and accounting into one seamless retail system.';
+  @Input() buttonText: string = 'Get Started Now';
+}

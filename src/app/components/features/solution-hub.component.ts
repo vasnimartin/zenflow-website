@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AccountingChartComponent } from './accounting-chart.component';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 interface HubTab {
   id: string;
@@ -16,19 +17,18 @@ interface HubTab {
 @Component({
   selector: 'app-solution-hub',
   standalone: true,
-  imports: [CommonModule, AccountingChartComponent, RouterLink],
+  imports: [CommonModule, AccountingChartComponent, RouterLink, ScrollRevealDirective],
   template: `
     <section class="solution-hub">
       <div class="container relative">
-        <!-- Zenflow Structural Dot Pattern -->
-        <div class="dot-pattern-matrix"></div>
-        
         <!-- Tab Grid (Zenflow Hybrid Style) -->
         <div class="tab-grid">
           <div 
-            *ngFor="let tab of tabs" 
+            *ngFor="let tab of tabs; let i = index" 
             class="tab-card glass-tab" 
             [class.active]="activeTab.id === tab.id"
+            [class]="'stagger-' + (i + 1)"
+            appScrollReveal
             (click)="onTabClick(tab)"
           >
             <div class="tab-info">
@@ -39,7 +39,7 @@ interface HubTab {
         </div>
 
         <!-- Integrated Feature Viewport -->
-        <div class="hub-viewport glass-card-main">
+        <div class="hub-viewport glass-card-main" appScrollReveal>
           <!-- Moving Gradient Background Element for Hub -->
           <div class="hub-visual-glow"></div>
           
@@ -169,7 +169,7 @@ interface HubTab {
 
     .glass-card-main { 
       min-height: 520px; padding: 4rem; position: relative;
-      background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+      background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.5);
       box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.08);
       z-index: 1; overflow: hidden;
@@ -259,9 +259,51 @@ interface HubTab {
     .pulse-center::after { content: ''; position: absolute; inset: -40px; border: 2px solid var(--primary-color); border-radius: 50%; opacity: 0.2; animation: pulseRing 2s infinite; }
     @keyframes pulseRing { 0% { transform: scale(0.8); opacity: 0.5; } 100% { transform: scale(1.5); opacity: 0; } }
     .channel-dot { position: absolute; padding: 0.8rem 1.4rem; background: white; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); font-weight: 800; font-size: 0.85rem; z-index: 3; border: 1px solid #f1f5f9; }
-    .web { top: 20%; left: 0%; transform: translateX(20px); }
-    .store { bottom: 15%; right: 0%; transform: translateX(-20px); }
-    .app { top: 40%; right: 0%; transform: translateX(-40px); }
+    @media (max-width: 1300px) {
+      .glass-card-main { padding: 3rem; }
+      .hub-content { gap: 3rem; }
+    }
+
+    @media (max-width: 1024px) {
+      .solution-hub { padding: 6rem 0; }
+      
+      .tab-grid {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        margin-right: -1.5rem;
+        margin-left: -1.5rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        &::-webkit-scrollbar { display: none; }
+      }
+
+      .glass-tab { flex-shrink: 0; white-space: nowrap; }
+
+      .hub-content { grid-template-columns: 1fr; gap: 3rem; }
+      
+      .text-side { order: 1; text-align: center; display: flex; flex-direction: column; align-items: center; }
+      .visual-side { order: 2; width: 100%; }
+
+      .text-side h2 { font-size: 2.25rem; }
+      .hub-subheading { margin-left: auto; margin-right: auto; }
+      .sophisticated-list { text-align: left; align-self: stretch; max-width: 450px; margin-left: auto; margin-right: auto; }
+    }
+
+    @media (max-width: 640px) {
+      .glass-card-main { padding: 2.5rem 1.5rem; border-radius: 20px; }
+      .text-side h2 { font-size: 1.85rem; }
+      .hub-subheading { font-size: 1rem; }
+      .glass-surface { padding: 1.5rem; min-height: 300px; }
+      
+      .pos-total { font-size: 1.4rem; }
+      .success-badge { width: 100%; }
+      .channel-dot { font-size: 0.7rem; padding: 0.5rem 1rem; }
+      .web { top: 15%; }
+      .app { top: 35%; }
+    }
   `]
 })
 export class SolutionHubComponent implements OnInit, OnDestroy {

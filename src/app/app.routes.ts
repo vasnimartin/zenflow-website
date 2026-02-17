@@ -9,13 +9,13 @@ import { AccountingComponent } from './pages/accounting/accounting.component';
 import { PricingComponent } from './pages/pricing/pricing.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, title: 'Zenflow.ai | Modern Retail ERP' },
-  { path: 'billing', component: BillingComponent, title: 'Billing Software | Zenflow.ai' },
-  { path: 'inventory', component: InventoryComponent, title: 'Inventory Management | Zenflow.ai' },
-  { path: 'omnichannel', component: OmnichannelComponent, title: 'Omnichannel Selling | Zenflow.ai' },
-  { path: 'accounting', component: AccountingComponent, title: 'Retail Accounting | Zenflow.ai' },
-  { path: 'pricing', component: PricingComponent, title: 'Pricing | Zenflow.ai' },
-  { path: 'about', component: AboutComponent, title: 'About Us | Zenflow.ai' },
-  { path: 'contact', component: ContactComponent, title: 'Contact | Zenflow.ai' },
+  { path: '', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), title: 'Zenflow.ai | Modern Retail ERP' },
+  { path: 'billing', loadComponent: () => import('./pages/billing/billing.component').then(m => m.BillingComponent), title: 'Billing Software | Zenflow.ai' },
+  { path: 'inventory', loadComponent: () => import('./pages/inventory/inventory.component').then(m => m.InventoryComponent), title: 'Inventory Management | Zenflow.ai' },
+  { path: 'omnichannel', loadComponent: () => import('./pages/omnichannel/omnichannel.component').then(m => m.OmnichannelComponent), title: 'Omnichannel Selling | Zenflow.ai' },
+  { path: 'accounting', loadComponent: () => import('./pages/accounting/accounting.component').then(m => m.AccountingComponent), title: 'Retail Accounting | Zenflow.ai' },
+  { path: 'pricing', loadComponent: () => import('./pages/pricing/pricing.component').then(m => m.PricingComponent), title: 'Pricing | Zenflow.ai' },
+  { path: 'about', loadComponent: () => import('./pages/about/about.component').then(m => m.AboutComponent), title: 'About Us | Zenflow.ai' },
+  { path: 'contact', loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent), title: 'Contact | Zenflow.ai' },
   { path: '**', redirectTo: '' }
 ];

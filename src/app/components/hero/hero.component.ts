@@ -9,609 +9,119 @@ import { CommonModule } from '@angular/common';
   imports: [RouterLink, CounterComponent, CommonModule],
   template: `
     <section class="hero">
-      <div class="container hero-container">
-        <!-- Floating Metric Cards (U-Shape) -->
-        <div class="metrics-wrapper">
-          
-          <!-- Column 1: Retail (Left) -->
-          <div class="metrics-column side-left">
-            <!-- 1. Live Sales (Numeric + HUD) -->
-            <div class="metric-card numeric-card reveal-left">
-              <div class="hud-corner top-left"></div>
-              <div class="hud-corner bottom-right"></div>
-              <span class="label">Live Sales <span class="sys-tag">SYS: POS-OK</span></span>
-              <div class="value">
-                <app-counter [target]="284500" prefix="₹"></app-counter>
+      <div class="hero-container">
+
+        <!-- LEFT: Narrative -->
+        <div class="hero-content">
+          <div class="eyebrow">AI ERP for Retail & E-Commerce</div>
+          <h1 class="headline">
+            Run Your Entire Retail Operation from One <span class="text-gradient">AI ERP</span>
+          </h1>
+          <p class="subtext">
+            Manage billing, inventory, accounting, and multi-warehouse operations in real time — from a single intelligent command center.
+          </p>
+          <div class="cta-group">
+            <a routerLink="/contact" class="btn btn-primary">Request Demo</a>
+            <a routerLink="/inventory" class="btn btn-outline">Explore Product</a>
+          </div>
+        </div>
+
+        <!-- RIGHT: All Metric Cards -->
+        <div class="hero-visual">
+
+          <!-- Row 1: Net Profit (wide) -->
+          <div class="metric-card card-profit reveal-card">
+            <div class="hud-corner top-left"></div>
+            <div class="hud-corner bottom-right"></div>
+            <span class="label">Net Profit</span>
+            <div class="mini-chart line-chart complex">
+              <svg viewBox="0 0 100 40" class="sparkline x-ray">
+                <path d="M0 30 L 100 20" stroke="rgba(0,0,0,0.05)" stroke-dasharray="2 2" fill="none" />
+                <path d="M0 35 Q 25 30, 40 10 T 80 5 T 100 15" fill="none" class="path-glow" stroke="url(#lineGradient)" stroke-width="3" />
+                <line x1="25" y1="0" x2="25" y2="40" stroke="rgba(99, 102, 241, 0.1)" stroke-width="0.5" />
+                <line x1="50" y1="0" x2="50" y2="40" stroke="rgba(99, 102, 241, 0.1)" stroke-width="0.5" />
+                <line x1="75" y1="0" x2="75" y2="40" stroke="rgba(99, 102, 241, 0.1)" stroke-width="0.5" />
+                <defs>
+                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#6366f1" />
+                    <stop offset="100%" style="stop-color:#a855f7" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="data-point-hud" style="left: 80%; top: 5px;"></div>
+            </div>
+            <span class="caption">Real-time P&L</span>
+          </div>
+
+          <!-- Row 2: Sales + CAC -->
+          <div class="metric-card card-sales reveal-card">
+            <div class="hud-corner top-left"></div>
+            <div class="hud-corner bottom-right"></div>
+            <span class="label">Live Sales <span class="sys-tag">SYS: POS-OK</span></span>
+            <div class="value">
+              <app-counter [target]="284500" prefix="₹"></app-counter>
+            </div>
+          </div>
+
+          <div class="metric-card card-cac reveal-card">
+            <div class="hud-corner bottom-left"></div>
+            <span class="label">CAC (Global) <span class="sys-tag">REF: ALPHA</span></span>
+            <div class="value small-label">
+              <span class="currency">₹</span><app-counter [target]="240"></app-counter>
+              <span class="detail-tag">TARGET: ₹300</span>
+            </div>
+          </div>
+
+          <!-- Row 3: Inventory (wide) -->
+          <div class="metric-card card-inventory reveal-card">
+            <div class="hud-corner top-right"></div>
+            <span class="label">Live Inventory <span class="sys-tag">Warehouse 1</span></span>
+            <div class="mini-chart bar-chart complex">
+              <div class="scan-line"></div>
+              <div class="bar-group">
+                <div class="bar-segment" style="height: 60%"></div>
+                <div class="bar-segment" style="height: 85%"></div>
+                <div class="bar-segment" style="height: 45%"></div>
+                <div class="bar-segment" style="height: 70%"></div>
+              </div>
+              <div class="chart-markers">
+                <span>100%</span>
+                <span>50%</span>
               </div>
             </div>
+            <span class="caption">Just-in-Time Inventory Planning</span>
+          </div>
 
-            <!-- 2. Live Inventory (Scanned Visual) -->
-            <div class="metric-card visual-card reveal-left">
-              <div class="hud-corner top-right"></div>
-              <span class="label">Live Inventory <span class="sys-tag">Warehouse 1</span></span>
-              <div class="mini-chart bar-chart complex">
-                <div class="scan-line"></div>
-                <div class="bar-group">
-                   <div class="bar-segment" style="height: 60%"></div>
-                   <div class="bar-segment" style="height: 85%"></div>
-                   <div class="bar-segment" style="height: 45%"></div>
-                   <div class="bar-segment" style="height: 70%"></div>
+          <!-- Row 4: AOV + ROAS -->
+          <div class="metric-card card-aov reveal-card">
+            <div class="metric-horizontal">
+              <span class="label">Avg Order Value</span>
+              <div class="value small">
+                <app-counter [target]="2450" prefix="₹"></app-counter>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-card card-roas reveal-card technical-radar">
+            <div class="metric-horizontal">
+              <span class="label">Return on Ad Spend</span>
+              <div class="roas-indicator-complex">
+                <div class="radar-rings">
+                  <div class="ring"></div>
+                  <div class="ring"></div>
+                  <div class="ring"></div>
                 </div>
-                <!-- Technical markers -->
-                <div class="chart-markers">
-                   <span>100%</span>
-                   <span>50%</span>
-                </div>
-              </div>
-              <span class="caption">Just-in-Time Inventory Planning</span>
-            </div>
-          </div>
-
-          <!-- Central Hero Content -->
-          <div class="hero-main">
-            <div class="eyebrow">AI ERP for Retail & E-Commerce</div>
-            <h1 class="headline">
-              Run Your Entire Retail Operation from One <span class="text-gradient">AI ERP</span>
-            </h1>
-            <p class="subtext">
-              Manage billing, inventory, accounting, and multi-warehouse operations in real time — from a single intelligent command center.
-            </p>
-          </div>
-
-          <!-- Column 2: E-commerce & Accounting (Right) -->
-          <div class="metrics-column side-right">
-            <!-- 3. Net Profit (Multi-line HUD Sparkline) -->
-            <div class="metric-card visual-card reveal-right">
-              <div class="hud-corner top-left"></div>
-              <span class="label">Net Profit</span>
-              <div class="mini-chart line-chart complex">
-                <svg viewBox="0 0 100 40" class="sparkline x-ray">
-                   <!-- Reference line -->
-                   <path d="M0 30 L 100 20" stroke="rgba(0,0,0,0.05)" stroke-dasharray="2 2" fill="none" />
-                   <!-- Main Growth line -->
-                   <path d="M0 35 Q 25 30, 40 10 T 80 5 T 100 15" fill="none" class="path-glow" stroke="url(#lineGradient)" stroke-width="3" />
-                   <!-- Vertical Markers -->
-                   <line x1="25" y1="0" x2="25" y2="40" stroke="rgba(99, 102, 241, 0.1)" stroke-width="0.5" />
-                   <line x1="50" y1="0" x2="50" y2="40" stroke="rgba(99, 102, 241, 0.1)" stroke-width="0.5" />
-                   <line x1="75" y1="0" x2="75" y2="40" stroke="rgba(99, 102, 241, 0.1)" stroke-width="0.5" />
-                   
-                   <defs>
-                     <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                       <stop offset="0%" style="stop-color:#6366f1" />
-                       <stop offset="100%" style="stop-color:#a855f7" />
-                     </linearGradient>
-                   </defs>
-                </svg>
-                <div class="data-point-hud" style="left: 80%; top: 5px;"></div>
-              </div>
-              <span class="caption">Real-time P&L</span>
-            </div>
-
-            <!-- 4. Customer Acquisition (Numeric + Technical Detail) -->
-            <div class="metric-card numeric-card reveal-right">
-              <div class="hud-corner bottom-left"></div>
-              <span class="label">CAC (Global) <span class="sys-tag">REF: ALPHA</span></span>
-              <div class="value small-label">
-                <span class="currency">₹</span><app-counter [target]="240"></app-counter>
-                <span class="detail-tag">TARGET: ₹300</span>
+                <div class="radar-scanner"></div>
+                <div class="target-center"></div>
+                <span class="radar-value">4.2x</span>
               </div>
             </div>
           </div>
 
-          <!-- Bottom Row: Efficiency Hub -->
-          <div class="metrics-bottom">
-            <!-- 5. Average Order Value (Numeric) -->
-            <div class="metric-card numeric-card reveal-bottom">
-              <div class="metric-horizontal">
-                <span class="label">Avg Order Value</span>
-                <div class="value small">
-                  <app-counter [target]="2450" prefix="₹"></app-counter>
-                </div>
-              </div>
-            </div>
-            
-            <!-- 6. Return on Ad Spend (Technical Target Radar) -->
-            <div class="metric-card visual-card reveal-bottom technical-radar">
-              <div class="metric-horizontal">
-                 <span class="label">Return on Ad Spend</span>
-                 <div class="roas-indicator-complex">
-                    <div class="radar-rings">
-                       <div class="ring"></div>
-                       <div class="ring"></div>
-                       <div class="ring"></div>
-                    </div>
-                    <div class="radar-scanner"></div>
-                    <div class="target-center"></div>
-                    <span class="radar-value">4.2x</span>
-                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom CTA -->
-          <div class="hero-cta-bottom reveal-bottom">
-            <div class="cta-group">
-              <a routerLink="/contact" class="btn btn-primary">Request Demo</a>
-              <a routerLink="/inventory" class="btn btn-outline">Explore Product</a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
   `,
-  styles: [`
-    .hero {
-      padding: 10rem 0 8rem;
-      position: relative;
-      overflow: visible;
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      background: transparent;
-    }
-
-    .hero-container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      position: relative;
-      z-index: 10;
-    }
-
-    .metrics-wrapper {
-      display: grid;
-      grid-template-columns: 300px 1fr 300px;
-      grid-template-areas: 
-        "left main right"
-        "bottom bottom bottom"
-        "cta cta cta";
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .hero-main {
-      grid-area: main;
-      text-align: center;
-      z-index: 5;
-      padding: 0 1.5rem;
-    }
-
-    .metrics-column {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-    }
-
-    .side-left { grid-area: left; }
-    .side-right { grid-area: right; }
-
-    .metrics-bottom {
-      grid-area: bottom;
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      margin-top: 1rem;
-    }
-
-    .hero-cta-bottom {
-      grid-area: cta;
-      display: flex;
-      justify-content: center;
-      margin-top: 3.5rem;
-    }
-
-    .headline {
-      font-size: 5.2rem;
-      line-height: 1.05;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      margin-bottom: 2rem;
-      color: var(--text-dark);
-    }
-
-    .text-gradient {
-      background: var(--gradient-text);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .subtext {
-      font-size: 1.3rem;
-      color: var(--text-medium);
-      max-width: 550px;
-      margin: 0 auto 3rem;
-      line-height: 1.6;
-    }
-
-    .eyebrow {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      color: var(--primary-color);
-      margin-bottom: 2rem;
-      background: rgba(99, 102, 241, 0.1);
-      padding: 0.5rem 1.4rem;
-      border-radius: 99px;
-      display: inline-block;
-      border: 1px solid rgba(99, 102, 241, 0.2);
-    }
-
-    .micro-label {
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      color: #6366f1;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      opacity: 0.8;
-    }
-
-    .metric-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 24px;
-      padding: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 
-        0 10px 40px -10px rgba(99, 102, 241, 0.1),
-        0 4px 12px -2px rgba(0, 0, 0, 0.05);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-    }
-
-    .metric-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      background: #ffffff;
-      box-shadow: 
-        0 25px 50px -15px rgba(99, 102, 241, 0.2),
-        0 0 0 1px var(--primary-light);
-    }
-
-    .metric-card::after {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      background: linear-gradient(135deg, var(--primary-color), #a855f7, var(--primary-color));
-      background-size: 400% 400%;
-      z-index: -1;
-      border-radius: 25px;
-      opacity: 0;
-      transition: 0.4s;
-    }
-
-    .metric-card:hover::after {
-      opacity: 0.5;
-      animation: movingGradient 4s ease infinite;
-    }
-
-    @keyframes movingGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .hud-corner {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border: 2px solid var(--primary-color);
-      opacity: 0.6;
-      pointer-events: none;
-    }
-    .top-left { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
-    .bottom-right { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
-    .top-right { top: 12px; right: 12px; border-left: 0; border-bottom: 0; }
-    .bottom-left { bottom: 12px; left: 12px; border-right: 0; border-top: 0; }
-
-    .sys-tag {
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 0.65rem;
-      font-weight: 800;
-      color: var(--primary-color);
-      letter-spacing: 0.05em;
-      margin-left: 0.8rem;
-      opacity: 0.9;
-      background: rgba(99, 102, 241, 0.08);
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    .label {
-      display: flex;
-      align-items: center;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      font-weight: 900;
-      color: var(--text-dark);
-      margin-bottom: 1rem;
-      letter-spacing: 0.08em;
-    }
-
-    .value {
-      font-size: 2.4rem;
-      font-weight: 900;
-      color: var(--text-dark);
-      line-height: 1;
-      display: flex;
-      align-items: baseline;
-      gap: 0.2rem;
-    }
-
-    .value.small { font-size: 1.8rem; }
-    .value.small-label { font-size: 2.2rem; }
-    .currency { font-size: 1.4rem; margin-right: 2px; opacity: 0.7; }
-    .detail-tag {
-      font-size: 0.7rem;
-      font-weight: 800;
-      color: var(--primary-color);
-      margin-left: 0.8rem;
-      background: rgba(99, 102, 241, 0.05);
-      border: 1px solid rgba(99, 102, 241, 0.1);
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-
-    .trend {
-      font-size: 0.9rem;
-      font-weight: 800;
-      margin-top: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: #10b981;
-    }
-
-    .mini-chart.complex {
-      position: relative;
-      height: 75px;
-      background: rgba(0,0,0,0.015);
-      border-radius: 14px;
-      padding: 12px;
-      margin: 0.5rem 0;
-      overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-
-    .bar-group {
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      height: 100%;
-      width: 100%;
-    }
-
-    .bar-segment {
-      flex: 1;
-      background: linear-gradient(to top, var(--primary-color) 0%, var(--primary-light) 100%);
-      border-radius: 3px;
-      opacity: 0.9;
-      position: relative;
-    }
-
-    .bar-segment::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: repeating-linear-gradient(transparent, transparent 2px, rgba(255,255,255,0.15) 2px, rgba(255,255,255,0.15) 4px);
-    }
-
-    .scan-line {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--primary-color);
-      box-shadow: 0 0 15px var(--primary-color);
-      z-index: 2;
-      animation: scanMove 4s ease-in-out infinite;
-    }
-
-    @keyframes scanMove {
-      0%, 100% { transform: translateY(-5px); opacity: 0; }
-      15%, 85% { opacity: 0.6; }
-      50% { transform: translateY(80px); opacity: 0.6; }
-    }
-
-    .chart-markers {
-      position: absolute;
-      right: 6px;
-      top: 4px;
-      bottom: 4px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      font-size: 0.6rem;
-      color: var(--text-light);
-      font-family: 'JetBrains Mono', monospace;
-      opacity: 0.6;
-    }
-
-    .x-ray { overflow: visible; padding: 5px 0; }
-    .data-point-hud {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border: 2px solid var(--primary-color);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      background: #ffffff;
-      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
-      z-index: 5;
-    }
-    
-    .path-glow {
-      stroke-dasharray: 200;
-      stroke-dashoffset: 200;
-      animation: lineDraw 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.5s;
-      stroke-width: 2.5;
-      filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.25));
-    }
-
-    @keyframes lineDraw { to { stroke-dashoffset: 0; } }
-
-    .technical-radar .metric-horizontal {
-      gap: 1.5rem;
-    }
-
-    .roas-indicator-complex {
-      position: relative;
-      width: 65px;
-      height: 65px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .radar-rings {
-      position: absolute;
-      inset: 0;
-    }
-    .ring {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      border: 1.5px solid rgba(168, 85, 247, 0.15);
-      border-radius: 50%;
-    }
-    .ring:nth-child(1) { width: 100%; height: 100%; }
-    .ring:nth-child(2) { width: 66%; height: 66%; }
-    .ring:nth-child(3) { width: 33%; height: 33%; }
-
-    .radar-scanner {
-      position: absolute;
-      width: 50%;
-      height: 3px;
-      background: linear-gradient(to right, transparent, rgba(168, 85, 247, 0.8));
-      left: 50%;
-      top: 50%;
-      transform-origin: left center;
-      animation: radarRotate 3s linear infinite;
-    }
-
-    @keyframes radarRotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .target-center {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: #a855f7;
-      border-radius: 50%;
-      box-shadow: 0 0 12px #a855f7;
-    }
-
-    .radar-value {
-      position: absolute;
-      bottom: -18px;
-      font-size: 0.8rem;
-      font-weight: 900;
-      color: #a855f7;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .caption {
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-top: 1rem;
-      display: block;
-    }
-
-    .roas-indicator {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .roas-value {
-      font-size: 1.6rem;
-      font-weight: 900;
-      color: #a855f7;
-    }
-
-    .dot-radar {
-      width: 10px;
-      height: 10px;
-      background: #a855f7;
-      border-radius: 50%;
-      position: relative;
-    }
-
-    .dot-radar::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 100%; height: 100%;
-      border: 2px solid #a855f7;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      animation: radar 2.5s infinite;
-    }
-
-    @keyframes radar {
-      0% { width: 100%; height: 100%; opacity: 1; }
-      100% { width: 400%; height: 400%; opacity: 0; }
-    }
-
-    .metric-horizontal {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .reveal-left { animation: revealLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
-    .reveal-right { animation: revealRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
-    .reveal-bottom { animation: revealBottom 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
-
-    @keyframes revealLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes revealRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes revealBottom { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-
-    .cta-group {
-      display: flex;
-      justify-content: center;
-      gap: 1.8rem;
-    }
-
-    .btn {
-       padding: 1.1rem 2.4rem;
-       border-radius: 12px;
-       font-weight: 700;
-       text-decoration: none;
-       transition: all 0.3s;
-       font-size: 1.05rem;
-    }
-
-    .btn-primary {
-       background: var(--text-dark);
-       color: white;
-       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
-       &:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(15, 23, 42, 0.3); }
-    }
-
-    .btn-outline {
-       border: 1px solid var(--border-color);
-       color: var(--text-dark);
-       background: rgba(255, 255, 255, 0.6);
-       backdrop-filter: blur(8px);
-       &:hover { background: #ffffff; border-color: var(--primary-color); transform: translateY(-4px); }
-    }
-
-    @media (max-width: 1250px) {
-      .hero { padding: 6rem 0; height: auto; }
-      .metrics-wrapper {
-        grid-template-columns: 1fr;
-        grid-template-areas: "main" "left" "right" "bottom";
-        gap: 3rem;
-      }
-      .headline { font-size: 3.8rem; }
-      .metrics-column { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-      .metrics-bottom { flex-wrap: wrap; gap: 2rem; }
-    }
-  `]
+  styleUrls: ['./hero.component.scss']
 })
 export class HeroComponent { }

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FinalCtaComponent } from '../../components/final-cta/final-cta.component';
 
 @Component({
   selector: 'app-billing',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FinalCtaComponent],
   template: `
     <div class="container page-content">
       <!-- SECTION 1: Centered Hero (Fleet Visual Refined) -->
@@ -200,12 +201,13 @@ import { RouterLink } from '@angular/router';
       </section>
     </div>
 
-    <!-- SECTION 5: Dark CTA -->
-    <section class="page-cta-dark">
-      <span class="eyebrow">READY TO SCALE YOUR STORE?</span>
-      <h3>Transform Your Billing Today.</h3>
-      <a routerLink="/contact" class="btn-conversion">Book a Live Demo →</a>
-    </section>
+    <!-- Conversion CTA -->
+    <app-final-cta 
+      eyebrow="READY TO SCALE YOUR STORE?"
+      headline="Transform Your <br>Billing Today."
+      subtext="See how Zenflow transforms billing, inventory, and accounting into one seamless retail system."
+      buttonText="Book a Live Demo →">
+    </app-final-cta>
   `,
   styleUrl: './billing.component.scss'
 })

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FinalCtaComponent } from '../../components/final-cta/final-cta.component';
 
 @Component({
   selector: 'app-pricing',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FinalCtaComponent],
   template: `
     <div class="container page-content">
       <!-- SECTION 1: Centered Header (Same Hero Pattern) -->
@@ -103,29 +104,45 @@ import { RouterLink } from '@angular/router';
       </section>
     </div>
 
-    <!-- Dark Conversion CTA -->
-    <section class="page-cta-dark">
-      <span class="eyebrow">STILL HAVE QUESTIONS?</span>
-      <h3>Build Your Custom Retail OS Today.</h3>
-      <a routerLink="/contact" class="btn-conversion">Talk to an Expert →</a>
-    </section>
+    <!-- Conversion CTA -->
+    <app-final-cta 
+      eyebrow="STILL HAVE QUESTIONS?"
+      headline="Build Your Custom <br>Retail OS Today."
+      subtext="See how Zenflow transforms billing, inventory, and accounting into one seamless retail system."
+      buttonText="Talk to an Expert →">
+    </app-final-cta>
   `,
   styles: [`
     /* Pricing Page Specific Specifics */
-    .page-content { padding: 12rem 1.5rem 4rem; }
-    .pricing-tiers { padding: 2rem 0 8rem; position: relative; z-index: 1; }
+    .page-content { padding: 12rem 1.5rem 4rem; position: relative; z-index: 10; }
+    .pricing-tiers { padding: 2rem 0 8rem; position: relative; z-index: 1; background: transparent; }
     .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
 
     .tier-card {
       display: flex; flex-direction: column;
-      border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.6) !important;
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       
       &.featured {
+        background: rgba(255, 255, 255, 0.6);
         border-color: var(--primary-color) !important;
         transform: scale(1.05);
         z-index: 2;
-        &::after { opacity: 0.15; }
+        box-shadow: 0 30px 60px -10px rgba(15, 23, 42, 0.1);
+        
         &:hover { transform: scale(1.05) translateY(-8px); }
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.8);
+        transform: translateY(-8px);
+        box-shadow: 0 30px 60px -10px rgba(15, 23, 42, 0.1);
+        border-color: var(--primary-color) !important;
       }
     }
 
@@ -137,48 +154,76 @@ import { RouterLink } from '@angular/router';
 
     .tier-header {
       text-align: center; margin-bottom: 2.5rem;
-      h3 { font-size: 1.5rem; font-weight: 850; color: var(--text-dark); margin-bottom: 1rem; }
-      .price { font-size: 2.8rem; font-weight: 900; color: var(--text-dark); margin-bottom: 0.5rem; letter-spacing: -0.04em; }
-      .price span { font-size: 1rem; color: var(--text-light); font-weight: 500; }
-      p { font-size: 0.95rem; color: var(--text-medium); line-height: 1.5; }
+      h3 { font-size: 1.5rem; font-weight: 850; color: #0f172a; margin-bottom: 1rem; }
+      .price { font-size: 2.8rem; font-weight: 900; color: #0f172a; margin-bottom: 0.5rem; letter-spacing: -0.04em; }
+      .price span { font-size: 1rem; color: #64748b; font-weight: 500; }
+      p { font-size: 0.95rem; color: #475569; line-height: 1.5; font-weight: 500; }
     }
 
     .tier-features {
       list-style: none; padding: 0; margin: 0 0 3rem; flex: 1;
       li {
-        padding: 0.8rem 0; font-size: 0.95rem; color: var(--text-medium); font-weight: 600;
+        padding: 0.8rem 0; font-size: 0.95rem; color: #475569; font-weight: 600;
         display: flex; align-items: center; gap: 0.75rem;
         &::before { content: '✓'; color: var(--primary-color); font-weight: 900; }
       }
     }
 
     .btn-tier {
-      display: block; padding: 1.1rem; text-align: center; border: 1px solid #e2e8f0;
-      border-radius: 12px; font-weight: 700; text-decoration: none; color: var(--text-dark);
+      display: block; padding: 1.1rem; text-align: center; border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 12px; font-weight: 700; text-decoration: none; color: #0f172a;
       transition: all 0.3s ease;
-      &:hover { border-color: var(--primary-color); color: var(--primary-color); }
+      &:hover { border-color: var(--primary-color); color: var(--primary-color); background: rgba(99, 102, 241, 0.05); }
       &.primary {
-        background: var(--text-dark); color: white; border-color: var(--text-dark);
+        background: #0f172a; color: white; border-color: #0f172a;
         &:hover { background: var(--primary-color); border-color: var(--primary-color); color: white; }
       }
     }
 
     .faq-section { padding: 10rem 0; background: transparent; position: relative; }
-    .faq-container { max-width: 1000px; margin: 0 auto; padding: 4.5rem !important; }
-    .faq-container h2 { font-size: 3rem; font-weight: 950; margin-bottom: 5rem; color: var(--text-dark); letter-spacing: -0.03em; }
+    .faq-container { 
+      max-width: 1000px; margin: 0 auto; 
+      padding: 5rem !important;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 32px;
+    }
+    .faq-container h2 { font-size: 3rem; font-weight: 950; margin-bottom: 5rem; color: #0f172a; letter-spacing: -0.04em; }
     .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-    .faq-item h4 { font-size: 1.2rem; font-weight: 850; color: var(--text-dark); margin-bottom: 1.25rem; letter-spacing: -0.01em; }
-    .faq-item p { font-size: 1.05rem; color: var(--text-medium); line-height: 1.7; font-weight: 500; }
+    .faq-item h4 { font-size: 1.25rem; font-weight: 900; color: #0f172a; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
+    .faq-item p { font-size: 1.05rem; color: #475569; line-height: 1.7; font-weight: 500; }
 
     .trust-badge-mini {
       display: inline-block; padding: 0.6rem 1.5rem !important; border-radius: 100px !important;
       font-size: 0.85rem; font-weight: 800; color: var(--primary-color);
+      background: rgba(99, 102, 241, 0.1) !important;
+    }
+
+    .hero-section .gradient-text {
+      background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     @media (max-width: 1140px) {
-      .tiers-grid { grid-template-columns: 1fr; max-width: 500px; }
+      .page-content { padding-top: 100px; }
+      .hero-section h1 { font-size: 3rem; }
+      .tiers-grid { grid-template-columns: 1fr; max-width: 500px; padding: 0 1.5rem; }
       .tier-card.featured { transform: scale(1); &:hover { transform: translateY(-8px); } }
-      .faq-grid { grid-template-columns: 1fr; }
+      .faq-container { padding: 3rem 1.5rem !important; border-radius: 24px; }
+      .faq-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-section h1 { font-size: 2.25rem; }
+      .hero-section p { font-size: 1.1rem; }
+      .pricing-tiers { padding-bottom: 4rem; }
+      .faq-section { padding: 6rem 0; }
+      .faq-container h2 { font-size: 2rem; margin-bottom: 3rem; }
+      .faq-item h4 { font-size: 1.15rem; }
     }
   `]
 })

@@ -97,10 +97,12 @@ import { CommonModule } from '@angular/common';
     .privacy-section {
       padding: 10rem 0;
       position: relative;
-      background: radial-gradient(circle at center, hsl(230, 100%, 98%) 0%, hsl(260, 100%, 98%) 100%);
+      /* Restored background for section separation */
+      background: radial-gradient(circle at center, hsla(230, 100%, 98%, 0.85) 0%, hsla(260, 100%, 98%, 0.85) 100%);
       overflow: hidden;
     }
 
+    /* Re-added local grid for extra detail in light sections */
     .ghost-grid {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       background-image: radial-gradient(var(--primary-color) 1.2px, transparent 1.2px);
@@ -122,55 +124,66 @@ import { CommonModule } from '@angular/common';
     }
 
     .trust-headline {
-      font-size: 2.75rem; font-weight: 900; color: #0f172a;
-      line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.03em;
+      font-size: 3.2rem; font-weight: 950; color: #0f172a;
+      line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.04em;
     }
 
     .trust-subtext {
-      font-size: 1.15rem; color: #475569; line-height: 1.6;
+      font-size: 1.25rem; color: #475569; line-height: 1.6;
       margin-bottom: 3rem; font-weight: 500;
     }
 
     .badge-item {
       display: inline-flex; align-items: center; gap: 0.75rem;
-      padding: 0.6rem 1.2rem; background: #ffffff;
-      border-radius: 99px; border: 1px solid rgba(0,0,0,0.05);
-      font-size: 0.9rem; font-weight: 700; color: #1e293b;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      padding: 0.7rem 1.4rem; background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 99px; border: 1px solid rgba(255,255,255,0.8);
+      font-size: 0.95rem; font-weight: 800; color: #1e293b;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
     }
-    .badge-icon { width: 18px; height: 18px; }
+    .badge-icon { width: 20px; height: 20px; }
 
     .pillars-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
     }
 
+    /* Zenflow Pillars: Premium Glass Cards */
     .pillar-glass-card {
-      background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 20px;
-      padding: 1.75rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 24px;
+      padding: 2rem; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
     }
 
     .pillar-glass-card:hover {
-      background: #ffffff; transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
-      border-color: var(--primary-light);
+      background: rgba(255, 255, 255, 0.8); transform: translateY(-8px);
+      box-shadow: 0 30px 60px -10px rgba(15, 23, 42, 0.1);
+      border-color: var(--primary-color);
     }
 
-    .pillar-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .pillar-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
 
     .pillar-icon-box {
-      width: 38px; height: 38px; background: rgba(99, 102, 241, 0.08);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; background: rgba(99, 102, 241, 0.1);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
       color: var(--primary-color); flex-shrink: 0;
+      transition: all 0.3s ease;
     }
-    .pillar-icon-box svg { width: 20px; height: 20px; }
+    .pillar-icon-box svg { width: 22px; height: 22px; }
 
-    .pillar-title { font-weight: 800; color: #1e293b; font-size: 1rem; margin: 0; }
-    .pillar-desc { font-size: 0.9rem; color: #64748b; line-height: 1.5; font-weight: 500; margin: 0; }
+    .pillar-glass-card:hover .pillar-icon-box {
+      background: var(--primary-color);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .pillar-title { font-weight: 900; color: #0f172a; font-size: 1.1rem; margin: 0; letter-spacing: -0.01em; }
+    .pillar-desc { font-size: 1rem; color: #475569; line-height: 1.5; font-weight: 500; margin: 0; opacity: 0.8; }
 
     @media (max-width: 1024px) {
       .privacy-layout { grid-template-columns: 1fr; gap: 4rem; text-align: center; justify-items: center; }
-      .trust-headline { font-size: 2.25rem; }
+      .trust-headline { font-size: 2.75rem; }
       .trust-subtext { margin: 0 auto 3rem; }
     }
 

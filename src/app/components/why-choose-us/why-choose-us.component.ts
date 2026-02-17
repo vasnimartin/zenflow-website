@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-why-choose-us',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollRevealDirective],
   template: `
     <section class="why-us-section">
       <div class="container">
         <!-- Human-Centric Header -->
-        <div class="section-header">
+        <div class="section-header" appScrollReveal>
           <div class="section-label">WHY OUR CUSTOMERS CHOOSE ZENFLOW</div>
           <h2 class="headline">Designed for Those Who <br>Refuse to Outgrow Their Software.</h2>
           <p class="subtext">
@@ -22,7 +23,7 @@ import { CommonModule } from '@angular/common';
           
           <!-- Featured Pillar 1: UX (Smartphone Simplicity) -->
           <!-- Spans 2 columns to highlight Emotional Hook -->
-          <div class="bento-card featured-card">
+          <div class="bento-card featured-card stagger-1" appScrollReveal>
             <div class="card-content">
               <div class="icon-box featured-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -39,7 +40,7 @@ import { CommonModule } from '@angular/common';
           </div>
 
           <!-- Pillar 2: Pricing -->
-          <div class="bento-card">
+          <div class="bento-card stagger-2" appScrollReveal>
             <div class="icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -50,7 +51,7 @@ import { CommonModule } from '@angular/common';
           </div>
 
           <!-- Pillar 3: Control -->
-          <div class="bento-card">
+          <div class="bento-card stagger-3" appScrollReveal>
             <div class="icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke-width="2"/>
@@ -62,7 +63,7 @@ import { CommonModule } from '@angular/common';
           </div>
 
           <!-- Pillar 4: Human Support -->
-          <div class="bento-card">
+          <div class="bento-card stagger-4" appScrollReveal>
             <div class="icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M20 21v-2a4 4 0 00-3-3.87M4 21v-2a4 4 0 013-3.87M12 11a4 4 0 100-8 4 4 0 000 8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -73,7 +74,7 @@ import { CommonModule } from '@angular/common';
           </div>
 
           <!-- Pillar 5: Global Sync -->
-          <div class="bento-card">
+          <div class="bento-card stagger-5" appScrollReveal>
             <div class="icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <circle cx="12" cy="12" r="10" stroke-width="2"/>
@@ -91,7 +92,8 @@ import { CommonModule } from '@angular/common';
   styles: [`
     .why-us-section {
       padding: 10rem 0;
-      background: #ffffff;
+      /* Restored white background for separation */
+      background: rgba(255, 255, 255, 0.9);
       position: relative;
     }
 
@@ -141,25 +143,27 @@ import { CommonModule } from '@angular/common';
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background: #ffffff !important;
     }
 
     .bento-card {
       padding: 2.5rem;
-      background: #ffffff;
-      border: 1px solid #e2e8f0; /* Soft border */
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
       border-radius: 24px;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02); /* Subtle functional shadow */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
     }
 
     .bento-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.08); /* Lift on hover */
-      border-color: var(--primary-light);
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 30px 60px -10px rgba(15, 23, 42, 0.1);
+      border-color: var(--primary-color);
     }
 
     /* Featured Card Styling */
@@ -195,21 +199,19 @@ import { CommonModule } from '@angular/common';
     .icon-box {
       width: 48px;
       height: 48px;
-      background: #f1f5f9; /* Very subtle grey for icon bg */
+      background: rgba(99, 102, 241, 0.08);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #334155;
+      color: var(--primary-color);
       margin-bottom: 0.5rem;
       transition: all 0.3s ease;
     }
 
     .featured-icon {
       width: 64px; height: 64px;
-      background: #eff6ff;
-      color: var(--primary-color);
-      margin-bottom: 1.5rem;
+      background: rgba(99, 102, 241, 0.1);
     }
 
     .icon-box svg { width: 24px; height: 24px; }
@@ -218,22 +220,29 @@ import { CommonModule } from '@angular/common';
     .bento-card:hover .icon-box {
       background: var(--primary-color);
       color: white;
+      transform: scale(1.1);
     }
 
     @media (max-width: 1024px) {
+      .why-us-section { padding: 6rem 0; }
       .bento-grid {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto; 
+        gap: 1.5rem;
       }
       .featured-card { grid-column: span 2; grid-row: span 1; flex-direction: row; align-items: center; gap: 2rem; }
       .featured-card .card-content { display: block; }
+      .headline { font-size: 3rem; }
     }
 
     @media (max-width: 768px) {
       .bento-grid { grid-template-columns: 1fr; }
-      .featured-card { grid-column: span 1; flex-direction: column; align-items: flex-start; }
-      .headline { font-size: 2.5rem; }
+      .featured-card { grid-column: span 1; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+      .headline { font-size: 2.25rem; }
       .section-header { margin-bottom: 3rem; }
+      .subtext { font-size: 1.1rem; }
+      .bento-card { padding: 2rem; }
+      .featured-card h3 { font-size: 1.75rem; }
     }
   `]
 })

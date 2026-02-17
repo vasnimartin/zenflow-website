@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CounterComponent } from './counter.component';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-social-stats',
   standalone: true,
-  imports: [CommonModule, CounterComponent],
+  imports: [CommonModule, CounterComponent, ScrollRevealDirective],
   template: `
-    <div class="stats-container reveal-bottom">
+    <div class="stats-container reveal-bottom" appScrollReveal>
       <div class="stats-row">
         <div class="stat-block">
           <div class="stat-value">
@@ -38,21 +39,8 @@ import { CounterComponent } from './counter.component';
       display: flex;
       justify-content: center;
       position: relative;
-      background: radial-gradient(circle at center, rgba(99, 102, 241, 0.03) 0%, transparent 70%);
+      background: transparent;
       z-index: 5;
-    }
-
-    /* Grid Overlay for Section 2 */
-    .stats-container::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-      z-index: -1;
     }
 
     .stats-row {
@@ -60,12 +48,14 @@ import { CounterComponent } from './counter.component';
       align-items: center;
       gap: 4rem;
       padding: 3rem 6rem;
-      background: white;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 100px; /* Pill shape */
-      border: 1px solid rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       box-shadow: 
-        0 40px 100px -20px rgba(0, 0, 0, 0.08),
-        0 4px 20px rgba(0, 0, 0, 0.02);
+        0 40px 100px -20px rgba(0, 0, 0, 0.04),
+        0 4px 20px rgba(0, 0, 0, 0.01);
     }
 
     .stat-block {
@@ -94,20 +84,30 @@ import { CounterComponent } from './counter.component';
     .stat-divider {
       width: 1px;
       height: 60px;
-      background: rgba(0, 0, 0, 0.05); /* Faint divider from image */
+      background: rgba(99, 102, 241, 0.1);
     }
 
     @media (max-width: 1100px) {
+      .stats-container { padding: 6rem 0; }
       .stats-row {
         flex-direction: column;
         gap: 4rem;
         padding: 4rem;
         border-radius: 40px;
+        width: calc(100% - 3rem);
       }
       .stat-divider {
         width: 100px;
         height: 1px;
       }
+    }
+
+    @media (max-width: 640px) {
+      .stats-container { padding: 4rem 0; }
+      .stats-row { padding: 3rem 1.5rem; gap: 3rem; }
+      .stat-value { font-size: 3rem; }
+      .stat-block { min-width: auto; }
+      .stat-label { font-size: 0.65rem; }
     }
   `]
 })

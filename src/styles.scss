@@ -55,17 +55,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scroll Reveal Animations */
+/* Scroll Reveal Animations - Premium Standardized Slomo */
 .reveal-hidden {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translate3d(0, 30px, 0);
+  transition: 
+    opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: opacity, transform;
 }
 
 .reveal-active {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* Stagger Utilities for smoother grid reveals */
+@for $i from 1 through 12 {
+  .stagger-#{$i} {
+    transition-delay: #{$i * 0.1}s;
+  }
 }
 
 h1,
@@ -137,8 +146,8 @@ a {
 /* Mixins */
 @mixin glass-morphism {
   background: rgba(255, 255, 255, 0.65);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.1);
   /* Purple tint */
@@ -166,6 +175,10 @@ a {
   margin: 0 auto;
   padding: 0 2rem;
   position: relative;
+
+  @media (max-width: 768px) {
+    padding: 0 1.5rem;
+  }
 
   &.wide {
     max-width: 95vw;
@@ -266,28 +279,27 @@ a {
 
 @keyframes scan {
   0% {
-    transform: translateY(-100%);
+    transform: translate3d(0, -100%, 0);
   }
 
   100% {
-    transform: translateY(100%);
+    transform: translate3d(0, 100%, 0);
   }
 }
 
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
   }
 
   50% {
-    transform: translateY(-10px);
+    transform: translate3d(0, -10px, 0);
   }
 }
 
 .antigravity {
   animation: float 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .hero-glow {
@@ -300,11 +312,12 @@ a {
   height: 80vh;
   /* Significantly boosted opacity for visibility */
   background: radial-gradient(circle, rgba(99, 102, 241, 0.7) 0%, transparent 70%);
-  filter: blur(80px);
+  filter: blur(60px);
   animation: breathe 10s infinite ease-in-out;
   z-index: 0;
   /* Sit on top of body bg, behind transparent content */
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 .scanning-grid {
@@ -335,6 +348,8 @@ a {
     /* Very visible scanning beam */
     background: linear-gradient(to bottom, transparent, rgba(99, 102, 241, 0.35), transparent);
     animation: scan 10s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
   }
 }
 
@@ -419,6 +434,15 @@ a {
       .visual-content {
         order: 1;
       }
+    }
+  }
+
+  @media (max-width: 991px) {
+    gap: 3rem;
+    
+    &.swap-desktop {
+      .text-content { order: 1; }
+      .visual-content { order: 2; }
     }
   }
 }
@@ -822,8 +846,8 @@ a {
    ============================================= */
 .glass-card {
   background: rgba(255, 255, 255, 0.7);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 24px;
   box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.08);

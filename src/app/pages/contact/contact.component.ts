@@ -121,7 +121,17 @@ import { Component } from '@angular/core';
     }
 
     @media (max-width: 1024px) {
-      .contact-grid { grid-template-columns: 1fr; max-width: 500px; }
+      .page-content { padding-top: 100px; }
+      .contact-hero h1 { font-size: 3rem; }
+      .contact-grid { grid-template-columns: 1fr; max-width: 500px; padding: 0 1.5rem; }
+    }
+
+    @media (max-width: 640px) {
+      .contact-hero h1 { font-size: 2.25rem; }
+      .contact-hero p { font-size: 1.1rem; }
+      .contact-card { padding: 2.5rem 1.5rem !important; }
+      .card-icon { width: 56px; height: 56px; }
+      .card-icon .icon { width: 28px; height: 28px; }
     }
   `]
 })

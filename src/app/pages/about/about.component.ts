@@ -33,6 +33,20 @@ import { Component } from '@angular/core';
     .about-card h3 { font-size: 2rem; font-weight: 900; margin-bottom: 1.5rem; color: var(--text-dark); }
     .about-card p { font-size: 1.2rem; color: var(--text-medium); line-height: 1.8; font-weight: 500; }
     .about-card strong { color: var(--primary-color); font-weight: 800; }
+    @media (max-width: 1024px) {
+      .page-content { padding: 6rem 1.5rem; }
+      .about-hero { margin-bottom: 4rem; }
+      h1 { font-size: 2.75rem; }
+      .about-card { padding: 2.5rem !important; }
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2.25rem; }
+      .lead { font-size: 1.15rem; }
+      .about-card { padding: 2rem 1.5rem !important; }
+      .about-card h3 { font-size: 1.6rem; }
+      .about-card p { font-size: 1.1rem; }
+    }
   `]
 })
 export class AboutComponent { }

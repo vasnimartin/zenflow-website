@@ -22,13 +22,13 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
   ],
   template: `
     <main>
-      <app-hero />
-      <app-social-stats />
-      <app-power-features />
-      <app-solution-hub />
-      <app-privacy-section />
-      <app-why-choose-us />
-      <app-final-cta />
+      <app-hero appScrollReveal />
+      <app-social-stats appScrollReveal />
+      <app-power-features appScrollReveal />
+      <app-solution-hub appScrollReveal />
+      <app-privacy-section appScrollReveal />
+      <app-why-choose-us appScrollReveal />
+      <app-final-cta appScrollReveal />
     </main>
   `
 })
