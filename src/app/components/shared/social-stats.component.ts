@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { CounterComponent } from './counter.component';
 
 @Component({
-    selector: 'app-social-stats',
-    standalone: true,
-    imports: [CommonModule, CounterComponent],
-    template: `
+  selector: 'app-social-stats',
+  standalone: true,
+  imports: [CommonModule, CounterComponent],
+  template: `
     <div class="stats-container reveal-bottom">
       <div class="stats-row">
         <div class="stat-block">
@@ -32,67 +32,81 @@ import { CounterComponent } from './counter.component';
       </div>
     </div>
   `,
-    styles: [`
+  styles: [`
     .stats-container {
-      padding: 6rem 0;
+      padding: 10rem 0;
       display: flex;
       justify-content: center;
       position: relative;
+      background: radial-gradient(circle at center, rgba(99, 102, 241, 0.03) 0%, transparent 70%);
       z-index: 5;
+    }
+
+    /* Grid Overlay for Section 2 */
+    .stats-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+      z-index: -1;
     }
 
     .stats-row {
       display: flex;
       align-items: center;
       gap: 4rem;
-      padding: 2.5rem 5rem;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(12px);
-      border-radius: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 3rem 6rem;
+      background: white;
+      border-radius: 100px; /* Pill shape */
+      border: 1px solid rgba(0, 0, 0, 0.03);
       box-shadow: 
-        0 20px 50px -10px rgba(99, 102, 241, 0.1),
-        0 4px 12px rgba(0,0,0,0.03);
+        0 40px 100px -20px rgba(0, 0, 0, 0.08),
+        0 4px 20px rgba(0, 0, 0, 0.02);
     }
 
     .stat-block {
       text-align: center;
+      min-width: 200px;
     }
 
     .stat-value {
-      font-size: 3rem;
-      font-weight: 900;
-      color: var(--primary-color);
+      font-size: 4rem;
+      font-weight: 950;
+      color: #5b5ff7; /* High-impact blue/indigo from reference */
       line-height: 1;
       margin-bottom: 0.75rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.04em;
     }
 
     .stat-label {
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: var(--text-light);
+      font-size: 0.75rem;
+      font-weight: 900;
+      color: #94a3b8; /* Slate gray labels */
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
       white-space: nowrap;
     }
 
     .stat-divider {
       width: 1px;
       height: 60px;
-      background: linear-gradient(to bottom, transparent, var(--border-color), transparent);
+      background: rgba(0, 0, 0, 0.05); /* Faint divider from image */
     }
 
-    @media (max-width: 992px) {
+    @media (max-width: 1100px) {
       .stats-row {
         flex-direction: column;
-        gap: 3rem;
-        padding: 3rem;
+        gap: 4rem;
+        padding: 4rem;
+        border-radius: 40px;
       }
       .stat-divider {
-        width: 60px;
+        width: 100px;
         height: 1px;
-        background: linear-gradient(to right, transparent, var(--border-color), transparent);
       }
     }
   `]

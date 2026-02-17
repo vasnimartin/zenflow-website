@@ -81,7 +81,7 @@ import { Component } from '@angular/core';
       gap: 1.5rem;
       padding-bottom: 4rem; /* Bottom spacing moved here */
     }
-
+ 
     .trust-card { 
       display: flex;
       gap: 1.25rem;
@@ -91,7 +91,7 @@ import { Component } from '@angular/core';
       transition: all 0.3s ease;
       background: rgba(255, 255, 255, 0.01); /* Barely there */
       border: 1px solid rgba(255, 255, 255, 0.03);
-
+ 
       &:hover {
         background: rgba(255, 255, 255, 0.03);
         transform: translateY(-2px);
@@ -120,7 +120,7 @@ import { Component } from '@angular/core';
       background: rgba(99, 102, 241, 0.2);
       color: white;
     }
-
+ 
     h4 { 
       margin: 0 0 0.5rem; 
       color: white;
@@ -128,7 +128,7 @@ import { Component } from '@angular/core';
       font-weight: 500; /* Less heavy */
       letter-spacing: -0.01em;
     }
-
+ 
     p { 
       color: #64748b; 
       font-size: 0.95rem; /* Larger for readability */

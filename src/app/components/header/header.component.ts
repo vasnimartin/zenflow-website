@@ -8,9 +8,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   template: `
     <header class="header" [class.scrolled]="isScrolled" [class.menu-open]="isMenuOpen">
       <div class="container header-content">
-        <a routerLink="/" class="logo" (click)="colorsMenu()">
-          Zenflow<span class="highlight">.ai</span>
-        </a>
+        <div class="header-left">
+          <a routerLink="/" class="logo" (click)="colorsMenu()">
+            Zenflow<span class="highlight">.ai</span>
+          </a>
+        </div>
         
         <!-- Desktop Nav -->
         <nav class="nav desktop-nav">
@@ -20,8 +22,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
           <a routerLink="/accounting" routerLinkActive="active">Accounting</a>
           <a routerLink="/omnichannel" routerLinkActive="active">Omnichannel</a>
           <a routerLink="/pricing" routerLinkActive="active">Pricing</a>
-          <a routerLink="/contact" routerLinkActive="active" class="btn btn-primary btn-sm">Get Started</a>
         </nav>
+
+        <div class="header-right desktop-only">
+          <a routerLink="/contact" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
 
         <!-- Mobile Toggle -->
         <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle Menu">
@@ -54,66 +59,90 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       display: flex;
       align-items: center;
       transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-      background: transparent;
+      background: rgba(255, 255, 255, 0.01);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       width: 100%;
     }
 
     .header.scrolled {
-      top: 1rem;
-      width: 90%;
-      max-width: 1000px;
+      top: 1.5rem;
+      width: 95%;
+      max-width: 1100px;
       margin: 0 auto;
-      height: 60px;
+      height: 64px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
     }
 
     .header-content {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 200px 1fr 200px;
       align-items: center;
       width: 100%;
     }
 
+    .header-left { display: flex; align-items: center; }
+    .header-right { display: flex; align-items: center; justify-content: flex-end; }
+
     .logo {
       font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      transition: font-size 0.3s ease;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      transition: all 0.3s ease;
       position: relative;
-      z-index: 1002; /* Above mobile menu */
+      z-index: 1002;
       
       .highlight { color: var(--primary-color); }
     }
     
-    .header.scrolled .logo { font-size: 1.25rem; }
+    .header.scrolled .logo { font-size: 1.35rem; }
 
     .nav.desktop-nav {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      justify-content: center;
+      gap: 2.5rem;
 
-      a:not(.btn) {
-        font-weight: 500;
-        font-size: 0.95rem;
-        color: var(--text-medium);
-        position: relative;
-        transition: color 0.2s;
-        cursor: pointer;
-
-        &:hover, &.active { color: var(--primary-color); }
-      }
-      
-      .btn-sm {
-        padding: 0.5rem 1.25rem;
+      a {
+        font-weight: 600;
         font-size: 0.9rem;
-        border-radius: 50px;
+        color: var(--text-dark);
+        opacity: 0.7;
+        position: relative;
+        transition: all 0.2s;
         cursor: pointer;
+        letter-spacing: 0.01em;
+
+        &:hover, &.active { 
+          opacity: 1;
+          color: var(--primary-color);
+        }
+        
+        &.active::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: var(--primary-color);
+          border-radius: 2px;
+        }
       }
+    }
+
+    .btn-sm {
+      padding: 0.6rem 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 99px;
+      box-shadow: 0 4px 12px rgba(99,102,241,0.2);
     }
     
     /* Mobile Toggle */
@@ -171,6 +200,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     }
 
     @media (max-width: 768px) {
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+      }
       .desktop-nav { display: none; }
       .menu-toggle { display: flex; }
       

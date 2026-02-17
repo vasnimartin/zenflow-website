@@ -270,7 +270,7 @@ export class SolutionHubComponent implements OnInit, OnDestroy {
       id: 'billing',
       title: 'Billing',
       benefit: 'Lightning Fast POS',
-      headline: 'Lightning Fast, AI-Powered Billing',
+      headline: 'Lightning Fast Billing',
       subtext: 'The core of your retail operations, optimized for speed and accuracy.',
       features: [
         { title: 'Zero-Training Checkout', desc: 'Faster billing that handles multiple GST rates.' },
