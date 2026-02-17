@@ -18,6 +18,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
           <a routerLink="/billing" routerLinkActive="active">Billing</a>
           <a routerLink="/inventory" routerLinkActive="active">Inventory</a>
           <a routerLink="/accounting" routerLinkActive="active">Accounting</a>
+          <a routerLink="/omnichannel" routerLinkActive="active">Omnichannel</a>
           <a routerLink="/pricing" routerLinkActive="active">Pricing</a>
           <a routerLink="/contact" routerLinkActive="active" class="btn btn-primary btn-sm">Get Started</a>
         </nav>
@@ -36,6 +37,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         <a routerLink="/billing" routerLinkActive="active" (click)="closeMenu()">Billing</a>
         <a routerLink="/inventory" routerLinkActive="active" (click)="closeMenu()">Inventory</a>
         <a routerLink="/accounting" routerLinkActive="active" (click)="closeMenu()">Accounting</a>
+        <a routerLink="/omnichannel" routerLinkActive="active" (click)="closeMenu()">Omnichannel</a>
         <a routerLink="/pricing" routerLinkActive="active" (click)="closeMenu()">Pricing</a>
         <a routerLink="/contact" routerLinkActive="active" class="btn btn-primary" (click)="closeMenu()">Get Started</a>
       </nav>
