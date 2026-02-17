@@ -21,15 +21,14 @@ import { CommonModule } from '@angular/common';
               <div class="hud-corner bottom-right"></div>
               <span class="label">Live Sales <span class="sys-tag">SYS: POS-OK</span></span>
               <div class="value">
-                <app-counter [target]="28450" prefix="₹"></app-counter>
+                <app-counter [target]="284500" prefix="₹"></app-counter>
               </div>
-              <span class="trend up">Peak Performance</span>
             </div>
 
             <!-- 2. Live Inventory (Scanned Visual) -->
             <div class="metric-card visual-card reveal-left">
               <div class="hud-corner top-right"></div>
-              <span class="label">Live Inventory <span class="sys-tag">SCAN: HQ-1</span></span>
+              <span class="label">Live Inventory <span class="sys-tag">Warehouse 1</span></span>
               <div class="mini-chart bar-chart complex">
                 <div class="scan-line"></div>
                 <div class="bar-group">
@@ -44,24 +43,19 @@ import { CommonModule } from '@angular/common';
                    <span>50%</span>
                 </div>
               </div>
-              <span class="caption">94.2% Optimization Index</span>
+              <span class="caption">Just-in-Time Inventory Planning</span>
             </div>
           </div>
 
           <!-- Central Hero Content -->
           <div class="hero-main">
-            <div class="eyebrow">COMMAND CENTER OS</div>
+            <div class="eyebrow">AI ERP for Retail & E-Commerce</div>
             <h1 class="headline">
-              Powering the future of <span class="text-gradient">Commerce</span>
+              Run Your Entire Retail Operation from One <span class="text-gradient">AI ERP</span>
             </h1>
             <p class="subtext">
-              Unified Billing, Inventory, and Accounting designed for the next generation of retailers. 
-              Built to scale your business with precision.
+              Manage billing, inventory, accounting, and multi-warehouse operations in real time — from a single intelligent command center.
             </p>
-            <div class="cta-group">
-              <a routerLink="/contact" class="btn btn-primary">Request Demo</a>
-              <a routerLink="/inventory" class="btn btn-outline">Explore Product</a>
-            </div>
           </div>
 
           <!-- Column 2: E-commerce & Accounting (Right) -->
@@ -69,7 +63,7 @@ import { CommonModule } from '@angular/common';
             <!-- 3. Net Profit (Multi-line HUD Sparkline) -->
             <div class="metric-card visual-card reveal-right">
               <div class="hud-corner top-left"></div>
-              <span class="label">Net Profit <span class="sys-tag">EST: CALC</span></span>
+              <span class="label">Net Profit</span>
               <div class="mini-chart line-chart complex">
                 <svg viewBox="0 0 100 40" class="sparkline x-ray">
                    <!-- Reference line -->
@@ -90,7 +84,7 @@ import { CommonModule } from '@angular/common';
                 </svg>
                 <div class="data-point-hud" style="left: 80%; top: 5px;"></div>
               </div>
-              <span class="caption">Real-time Reconciliation</span>
+              <span class="caption">Real-time P&L</span>
             </div>
 
             <!-- 4. Customer Acquisition (Numeric + Technical Detail) -->
@@ -101,7 +95,6 @@ import { CommonModule } from '@angular/common';
                 <span class="currency">₹</span><app-counter [target]="240"></app-counter>
                 <span class="detail-tag">TARGET: ₹300</span>
               </div>
-              <span class="trend up">Peak Efficiency</span>
             </div>
           </div>
 
@@ -120,7 +113,7 @@ import { CommonModule } from '@angular/common';
             <!-- 6. Return on Ad Spend (Technical Target Radar) -->
             <div class="metric-card visual-card reveal-bottom technical-radar">
               <div class="metric-horizontal">
-                 <span class="label">Return on Ad Spend <span class="sys-tag">LOCK: 4.2x</span></span>
+                 <span class="label">Return on Ad Spend</span>
                  <div class="roas-indicator-complex">
                     <div class="radar-rings">
                        <div class="ring"></div>
@@ -132,6 +125,14 @@ import { CommonModule } from '@angular/common';
                     <span class="radar-value">4.2x</span>
                  </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Bottom CTA -->
+          <div class="hero-cta-bottom reveal-bottom">
+            <div class="cta-group">
+              <a routerLink="/contact" class="btn btn-primary">Request Demo</a>
+              <a routerLink="/inventory" class="btn btn-outline">Explore Product</a>
             </div>
           </div>
         </div>
@@ -162,7 +163,8 @@ import { CommonModule } from '@angular/common';
       grid-template-columns: 300px 1fr 300px;
       grid-template-areas: 
         "left main right"
-        "bottom bottom bottom";
+        "bottom bottom bottom"
+        "cta cta cta";
       align-items: center;
       gap: 1.5rem;
     }
@@ -188,6 +190,13 @@ import { CommonModule } from '@angular/common';
       display: flex;
       justify-content: center;
       gap: 3rem;
+      margin-top: 1rem;
+    }
+
+    .hero-cta-bottom {
+      grid-area: cta;
+      display: flex;
+      justify-content: center;
       margin-top: 3.5rem;
     }
 
@@ -226,6 +235,16 @@ import { CommonModule } from '@angular/common';
       border-radius: 99px;
       display: inline-block;
       border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .micro-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #6366f1;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      opacity: 0.8;
     }
 
     .metric-card {
