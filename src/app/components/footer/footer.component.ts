@@ -7,115 +7,190 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   template: `
     <footer class="footer">
-      <div class="container glass">
-        <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          
+          <!-- Brand Column -->
           <div class="footer-brand">
-            <span class="logo">Zenflow<span class="highlight">.ai</span></span>
-            <p>Empowering retail businesses with AI-driven intelligence.</p>
-          </div>
-          <div class="footer-links">
-            <div class="link-group">
-              <h4>Product</h4>
-              <a routerLink="/services">Features</a>
-              <a routerLink="/pricing">Pricing</a> <!-- Placeholder route -->
+            <div class="brand-logo">
+              <span class="logo-text">Zenflow<span class="highlight">.ai</span></span>
             </div>
-            <div class="link-group">
-              <h4>Company</h4>
-              <a routerLink="/about">About Us</a>
-              <a routerLink="/contact">Contact</a>
-              <a href="mailto:manoj@zenflow.ai" style="color:var(--primary-color); font-weight:600; margin-top:0.5rem">manoj@zenflow.ai</a>
+            <p class="brand-subtext">The operating system for modern retail.</p>
+            <div class="brand-socials">
+              <!-- Placeholder Social Icons -->
+              <a href="#" class="social-link" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="none" class="icon"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-12.7 15.8-2.6-1.2-4.8-4-4.8-4s6.4-.3 8-3c0 0-3.6.3-5.2-1.6 0 0 1.2.3 2 0C6 13 4 8 4 8s1 1 2.5 1c0 0-3-2-1-5 0 0 4 5 10.5 5 0 0-1-6 5.5-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#" class="social-link" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" class="icon"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
             </div>
           </div>
+
+          <!-- Links Column: Product -->
+          <div class="footer-col">
+            <h4 class="col-header">PRODUCT</h4>
+            <ul class="link-list">
+              <li><a routerLink="/features">Features</a></li>
+              <li><a routerLink="/pricing">Pricing</a></li>
+              <li><a routerLink="/integrations">Integrations</a></li>
+              <li><a routerLink="/changelog">Changelog</a></li>
+            </ul>
+          </div>
+
+          <!-- Links Column: Company -->
+          <div class="footer-col">
+            <h4 class="col-header">COMPANY</h4>
+            <ul class="link-list">
+              <li><a routerLink="/about">About</a></li>
+              <li><a routerLink="/careers">Careers</a></li>
+              <li><a routerLink="/blog">Blog</a></li>
+              <li><a routerLink="/contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Links Column: Legal -->
+          <div class="footer-col">
+            <h4 class="col-header">LEGAL</h4>
+            <ul class="link-list">
+              <li><a routerLink="/privacy">Privacy</a></li>
+              <li><a routerLink="/terms">Terms</a></li>
+              <li><a routerLink="/security">Security</a></li>
+            </ul>
+          </div>
+
         </div>
+
         <div class="footer-bottom">
-          <p>&copy; {{ currentYear }} Zenflow.ai. All rights reserved.</p>
+          <p class="copyright">&copy; {{ currentYear }} Zenflow Inc. All rights reserved.</p>
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span>All Systems Operational</span>
+          </div>
         </div>
       </div>
     </footer>
   `,
   styles: [`
     .footer {
-      background: linear-gradient(to top, rgba(99, 102, 241, 0.1) 0%, transparent 100%); /* Purple Fog */
-      padding: 6rem 0 3rem;
-      margin-top: 5rem;
+      background: #020617; /* Midnight Slate */
+      color: #79a1f0; /* Default Text Color */
+      padding: 5rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       position: relative;
+      overflow: hidden;
     }
 
+    /* Subtle Top Glow */
     .footer::before {
-      /* Glass Overlay backing for readability if needed, or we rely on the gradient */
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-    
-    .container {
-      /* Usage of global .glass class in template provides the mixin styles */
-      padding: 3rem;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.4) !important; /* Lighter glass for footer, override global glass */
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
+      opacity: 0.5;
     }
 
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 3rem;
-      margin-bottom: 4rem;
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 5rem;
     }
 
-    .logo {
+    /* Brand Column */
+    .brand-logo { margin-bottom: 1rem; }
+    .logo-text {
       font-size: 1.5rem;
       font-weight: 800;
+      color: #ffffff;
       letter-spacing: -0.02em;
-      color: var(--text-dark);
-      .highlight { color: var(--primary-color); }
     }
+    .highlight { color: #818cf8; }
 
-    .footer-brand p {
-      color: var(--text-medium);
-      margin-top: 1rem;
-      max-width: 320px;
-      line-height: 1.6;
+    .brand-subtext {
+      color: #94a3b8;
       font-size: 0.95rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 5rem;
-    }
-
-    .link-group h4 {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
       margin-bottom: 1.5rem;
-      color: var(--text-light);
-      font-weight: 700;
+      max-width: 250px;
+      line-height: 1.6;
     }
 
-    .link-group a {
-      display: block;
-      color: var(--text-medium);
-      margin-bottom: 0.85rem;
+    .brand-socials { display: flex; gap: 1rem; }
+    .social-link {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      transition: all 0.2s;
+    }
+    .social-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+    .icon { width: 18px; height: 18px; }
+
+    /* Links Columns */
+    .col-header {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      opacity: 0.4;
+    }
+
+    .link-list { list-style: none; padding: 0; margin: 0; }
+    .link-list li { margin-bottom: 0.75rem; }
+    .link-list a {
+      color: #94a3b8;
+      text-decoration: none;
       font-size: 0.95rem;
       transition: color 0.2s;
-      
-      &:hover { 
-        color: var(--primary-color); 
-        transform: translateX(4px); 
-        display: inline-block;
-      }
+    }
+    .link-list a:hover { color: #ffffff; }
+
+    /* Bottom Bar */
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .footer-bottom {
-      border-top: 1px solid var(--border-color);
-      padding-top: 2rem;
-      text-align: center;
-      color: var(--text-light);
-      font-size: 0.875rem;
+    .copyright {
+      color: #475569;
+      font-size: 0.85rem;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: #10b981; /* Success Green */
+      font-weight: 500;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 0.4rem 0.8rem;
+      border-radius: 99px;
+    }
+
+    .status-dot {
+      width: 8px; height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+    }
+
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 640px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; gap: 1.5rem; }
     }
   `]
 })

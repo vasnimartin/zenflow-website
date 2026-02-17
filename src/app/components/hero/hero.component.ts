@@ -15,31 +15,42 @@ import { CommonModule } from '@angular/common';
           
           <!-- Column 1: Retail (Left) -->
           <div class="metrics-column side-left">
-            <!-- 1. Live Sales (Numeric) -->
+            <!-- 1. Live Sales (Numeric + HUD) -->
             <div class="metric-card numeric-card reveal-left">
-              <span class="label">Live Sales</span>
+              <div class="hud-corner top-left"></div>
+              <div class="hud-corner bottom-right"></div>
+              <span class="label">Live Sales <span class="sys-tag">SYS: POS-OK</span></span>
               <div class="value">
                 <app-counter [target]="28450" prefix="₹"></app-counter>
               </div>
-              <span class="trend up">Live Now</span>
+              <span class="trend up">Peak Performance</span>
             </div>
 
-            <!-- 2. Live Inventory Count (Visual Bar Chart) -->
+            <!-- 2. Live Inventory (Scanned Visual) -->
             <div class="metric-card visual-card reveal-left">
-              <span class="label">Live Inventory</span>
-              <div class="mini-chart bar-chart">
-                <div class="bar" style="height: 60%"></div>
-                <div class="bar" style="height: 85%"></div>
-                <div class="bar" style="height: 45%"></div>
-                <div class="bar" style="height: 70%"></div>
+              <div class="hud-corner top-right"></div>
+              <span class="label">Live Inventory <span class="sys-tag">SCAN: HQ-1</span></span>
+              <div class="mini-chart bar-chart complex">
+                <div class="scan-line"></div>
+                <div class="bar-group">
+                   <div class="bar-segment" style="height: 60%"></div>
+                   <div class="bar-segment" style="height: 85%"></div>
+                   <div class="bar-segment" style="height: 45%"></div>
+                   <div class="bar-segment" style="height: 70%"></div>
+                </div>
+                <!-- Technical markers -->
+                <div class="chart-markers">
+                   <span>100%</span>
+                   <span>50%</span>
+                </div>
               </div>
-              <span class="caption">94.2% In-Stock</span>
+              <span class="caption">94.2% Optimization Index</span>
             </div>
           </div>
 
           <!-- Central Hero Content -->
           <div class="hero-main">
-            <div class="eyebrow">MODERN RETAIL OS</div>
+            <div class="eyebrow">COMMAND CENTER OS</div>
             <h1 class="headline">
               Powering the future of <span class="text-gradient">Commerce</span>
             </h1>
@@ -53,14 +64,23 @@ import { CommonModule } from '@angular/common';
             </div>
           </div>
 
-          <!-- Column 2: E-commerce (Right) -->
+          <!-- Column 2: E-commerce & Accounting (Right) -->
           <div class="metrics-column side-right">
-            <!-- 3. Marketing Cost (Visual Sparkline) -->
+            <!-- 3. Net Profit (Multi-line HUD Sparkline) -->
             <div class="metric-card visual-card reveal-right">
-              <span class="label">Marketing Cost</span>
-              <div class="mini-chart line-chart">
-                <svg viewBox="0 0 100 40" class="sparkline">
-                   <path d="M0 35 Q 25 30, 40 10 T 80 5 T 100 20" fill="none" class="path-glow" stroke="url(#lineGradient)" stroke-width="3" />
+              <div class="hud-corner top-left"></div>
+              <span class="label">Net Profit <span class="sys-tag">EST: CALC</span></span>
+              <div class="mini-chart line-chart complex">
+                <svg viewBox="0 0 100 40" class="sparkline x-ray">
+                   <!-- Reference line -->
+                   <path d="M0 30 L 100 20" stroke="rgba(0,0,0,0.05)" stroke-dasharray="2 2" fill="none" />
+                   <!-- Main Growth line -->
+                   <path d="M0 35 Q 25 30, 40 10 T 80 5 T 100 15" fill="none" class="path-glow" stroke="url(#lineGradient)" stroke-width="3" />
+                   <!-- Vertical Markers -->
+                   <line x1="25" y1="0" x2="25" y2="40" stroke="rgba(99, 102, 241, 0.1)" stroke-width="0.5" />
+                   <line x1="50" y1="0" x2="50" y2="40" stroke="rgba(99, 102, 241, 0.1)" stroke-width="0.5" />
+                   <line x1="75" y1="0" x2="75" y2="40" stroke="rgba(99, 102, 241, 0.1)" stroke-width="0.5" />
+                   
                    <defs>
                      <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                        <stop offset="0%" style="stop-color:#6366f1" />
@@ -68,21 +88,24 @@ import { CommonModule } from '@angular/common';
                      </linearGradient>
                    </defs>
                 </svg>
+                <div class="data-point-hud" style="left: 80%; top: 5px;"></div>
               </div>
-              <span class="caption">Optimization: Active</span>
+              <span class="caption">Real-time Reconciliation</span>
             </div>
 
-            <!-- 4. Customer Acquisition (Numeric) -->
+            <!-- 4. Customer Acquisition (Numeric + Technical Detail) -->
             <div class="metric-card numeric-card reveal-right">
-              <span class="label">CAC (Global)</span>
-              <div class="value">
-                <app-counter [target]="240" prefix="₹"></app-counter>
+              <div class="hud-corner bottom-left"></div>
+              <span class="label">CAC (Global) <span class="sys-tag">REF: ALPHA</span></span>
+              <div class="value small-label">
+                <span class="currency">₹</span><app-counter [target]="240"></app-counter>
+                <span class="detail-tag">TARGET: ₹300</span>
               </div>
               <span class="trend up">Peak Efficiency</span>
             </div>
           </div>
 
-          <!-- Bottom Row: Efficiency Hub (Completing the U) -->
+          <!-- Bottom Row: Efficiency Hub -->
           <div class="metrics-bottom">
             <!-- 5. Average Order Value (Numeric) -->
             <div class="metric-card numeric-card reveal-bottom">
@@ -94,41 +117,21 @@ import { CommonModule } from '@angular/common';
               </div>
             </div>
             
-            <!-- 6. Return on Ad Spend (Radar Indicator) - Visual -->
-            <div class="metric-card visual-card reveal-bottom">
+            <!-- 6. Return on Ad Spend (Technical Target Radar) -->
+            <div class="metric-card visual-card reveal-bottom technical-radar">
               <div class="metric-horizontal">
-                 <span class="label">Return on Ad Spend</span>
-                 <div class="roas-indicator">
-                    <span class="roas-value">4.2x</span>
-                    <div class="dot-radar"></div>
+                 <span class="label">Return on Ad Spend <span class="sys-tag">LOCK: 4.2x</span></span>
+                 <div class="roas-indicator-complex">
+                    <div class="radar-rings">
+                       <div class="ring"></div>
+                       <div class="ring"></div>
+                       <div class="ring"></div>
+                    </div>
+                    <div class="radar-scanner"></div>
+                    <div class="target-center"></div>
+                    <span class="radar-value">4.2x</span>
                  </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Social Proof Stats (Restored) -->
-        <div class="stats-container reveal-bottom">
-          <div class="stats-row">
-            <div class="stat-block">
-              <div class="stat-value">
-                <app-counter [target]="200" suffix="K"></app-counter>
-              </div>
-              <div class="stat-label">Monthly Bills Generated</div>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-block">
-              <div class="stat-value">
-                <app-counter [target]="30000" suffix="+"></app-counter>
-              </div>
-              <div class="stat-label">SKUs Tracked</div>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-block">
-              <div class="stat-value">
-                <app-counter [target]="10" prefix="₹" suffix="Cr"></app-counter>
-              </div>
-              <div class="stat-label">Revenue Reconciled</div>
             </div>
           </div>
         </div>
@@ -137,7 +140,7 @@ import { CommonModule } from '@angular/common';
   `,
   styles: [`
     .hero {
-      padding: 10rem 0 8rem; /* Added bottom padding for space to stats */
+      padding: 10rem 0 8rem;
       position: relative;
       overflow: visible;
       min-height: 90vh;
@@ -147,7 +150,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .hero-container {
-      max-width: 1300px; /* Tightened from 1400px for better U-shape feel */
+      max-width: 1300px;
       margin: 0 auto;
       padding: 0 2rem;
       position: relative;
@@ -156,12 +159,12 @@ import { CommonModule } from '@angular/common';
 
     .metrics-wrapper {
       display: grid;
-      grid-template-columns: 300px 1fr 300px; /* Slightly narrower columns */
+      grid-template-columns: 300px 1fr 300px;
       grid-template-areas: 
         "left main right"
         "bottom bottom bottom";
       align-items: center;
-      gap: 1.5rem; /* Tightened gap */
+      gap: 1.5rem;
     }
 
     .hero-main {
@@ -174,7 +177,7 @@ import { CommonModule } from '@angular/common';
     .metrics-column {
       display: flex;
       flex-direction: column;
-      gap: 2.5rem; /* Balanced gap between stacked cards */
+      gap: 2.5rem;
     }
 
     .side-left { grid-area: left; }
@@ -188,9 +191,8 @@ import { CommonModule } from '@angular/common';
       margin-top: 3.5rem;
     }
 
-    /* Headline & Typography */
     .headline {
-      font-size: 5.2rem; /* Adjusted for better fit */
+      font-size: 5.2rem;
       line-height: 1.05;
       font-weight: 900;
       letter-spacing: -0.04em;
@@ -226,15 +228,13 @@ import { CommonModule } from '@angular/common';
       border: 1px solid rgba(99, 102, 241, 0.2);
     }
 
-    /* Metric Cards - Enhanced Contrast & Popping */
     .metric-card {
-      background: rgba(255, 255, 255, 0.85); /* Slightly more opaque */
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 24px;
       padding: 1.5rem;
       border: 1px solid rgba(255, 255, 255, 0.6);
-      /* Stronger shadow for 3D depth */
       box-shadow: 
         0 10px 40px -10px rgba(99, 102, 241, 0.1),
         0 4px 12px -2px rgba(0, 0, 0, 0.05);
@@ -250,7 +250,6 @@ import { CommonModule } from '@angular/common';
         0 0 0 1px var(--primary-light);
     }
 
-    /* Moving Purple Gradient Border - Visible but subtle */
     .metric-card::after {
       content: '';
       position: absolute;
@@ -274,78 +273,231 @@ import { CommonModule } from '@angular/common';
       100% { background-position: 0% 50%; }
     }
 
-    .label {
-      display: block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
+    .hud-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--primary-color);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .top-left { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
+    .bottom-right { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
+    .top-right { top: 12px; right: 12px; border-left: 0; border-bottom: 0; }
+    .bottom-left { bottom: 12px; left: 12px; border-right: 0; border-top: 0; }
+
+    .sys-tag {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.65rem;
       font-weight: 800;
-      color: var(--text-light);
-      margin-bottom: 0.75rem;
+      color: var(--primary-color);
+      letter-spacing: 0.05em;
+      margin-left: 0.8rem;
+      opacity: 0.9;
+      background: rgba(99, 102, 241, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .label {
+      display: flex;
+      align-items: center;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
       letter-spacing: 0.08em;
     }
 
     .value {
-      font-size: 2.25rem;
+      font-size: 2.4rem;
       font-weight: 900;
       color: var(--text-dark);
       line-height: 1;
+      display: flex;
+      align-items: baseline;
+      gap: 0.2rem;
     }
 
-    .value.small { font-size: 1.6rem; }
+    .value.small { font-size: 1.8rem; }
+    .value.small-label { font-size: 2.2rem; }
+    .currency { font-size: 1.4rem; margin-right: 2px; opacity: 0.7; }
+    .detail-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-left: 0.8rem;
+      background: rgba(99, 102, 241, 0.05);
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
 
     .trend {
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 800;
+      margin-top: 0.8rem;
       display: flex;
       align-items: center;
       gap: 0.4rem;
       color: #10b981;
     }
 
-    /* Mini Charts - Now Vibrant and Brand-Aligned */
-    .mini-chart {
-      height: 55px;
+    .mini-chart.complex {
+      position: relative;
+      height: 75px;
+      background: rgba(0,0,0,0.015);
+      border-radius: 14px;
+      padding: 12px;
+      margin: 0.5rem 0;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .bar-group {
       display: flex;
       align-items: flex-end;
       gap: 8px;
-      padding: 5px 0;
+      height: 100%;
+      width: 100%;
     }
 
-    .bar {
+    .bar-segment {
       flex: 1;
-      background: rgba(99, 102, 241, 0.15); /* Light Indigo base */
-      border-radius: 4px;
-      min-height: 15%;
-      transition: all 0.3s ease;
+      background: linear-gradient(to top, var(--primary-color) 0%, var(--primary-light) 100%);
+      border-radius: 3px;
+      opacity: 0.9;
+      position: relative;
     }
 
-    /* Gradient bars for "understandable" metrics */
-    .bar:nth-child(even) { background: rgba(168, 85, 247, 0.15); }
+    .bar-segment::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(transparent, transparent 2px, rgba(255,255,255,0.15) 2px, rgba(255,255,255,0.15) 4px);
+    }
 
-    .metric-card:hover .bar {
+    .scan-line {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
       background: var(--primary-color);
-      box-shadow: 0 0 8px rgba(99, 102, 241, 0.2);
+      box-shadow: 0 0 15px var(--primary-color);
+      z-index: 2;
+      animation: scanMove 4s ease-in-out infinite;
     }
-    .metric-card:hover .bar:nth-child(even) { background: #a855f7; }
 
-    .sparkline { width: 100%; height: 100%; overflow: visible; }
+    @keyframes scanMove {
+      0%, 100% { transform: translateY(-5px); opacity: 0; }
+      15%, 85% { opacity: 0.6; }
+      50% { transform: translateY(80px); opacity: 0.6; }
+    }
+
+    .chart-markers {
+      position: absolute;
+      right: 6px;
+      top: 4px;
+      bottom: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 0.6rem;
+      color: var(--text-light);
+      font-family: 'JetBrains Mono', monospace;
+      opacity: 0.6;
+    }
+
+    .x-ray { overflow: visible; padding: 5px 0; }
+    .data-point-hud {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--primary-color);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      background: #ffffff;
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+      z-index: 5;
+    }
     
     .path-glow {
       stroke-dasharray: 200;
       stroke-dashoffset: 200;
       animation: lineDraw 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.5s;
-      stroke: var(--primary-color); /* Explicit brand color */
-      filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.3));
+      stroke-width: 2.5;
+      filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.25));
     }
 
     @keyframes lineDraw { to { stroke-dashoffset: 0; } }
 
+    .technical-radar .metric-horizontal {
+      gap: 1.5rem;
+    }
+
+    .roas-indicator-complex {
+      position: relative;
+      width: 65px;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radar-rings {
+      position: absolute;
+      inset: 0;
+    }
+    .ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1.5px solid rgba(168, 85, 247, 0.15);
+      border-radius: 50%;
+    }
+    .ring:nth-child(1) { width: 100%; height: 100%; }
+    .ring:nth-child(2) { width: 66%; height: 66%; }
+    .ring:nth-child(3) { width: 33%; height: 33%; }
+
+    .radar-scanner {
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(to right, transparent, rgba(168, 85, 247, 0.8));
+      left: 50%;
+      top: 50%;
+      transform-origin: left center;
+      animation: radarRotate 3s linear infinite;
+    }
+
+    @keyframes radarRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .target-center {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #a855f7;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #a855f7;
+    }
+
+    .radar-value {
+      position: absolute;
+      bottom: -18px;
+      font-size: 0.8rem;
+      font-weight: 900;
+      color: #a855f7;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
     .caption {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-medium);
-      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-top: 1rem;
       display: block;
     }
 
@@ -385,7 +537,6 @@ import { CommonModule } from '@angular/common';
       100% { width: 400%; height: 400%; opacity: 0; }
     }
 
-    /* Horizontal Metric card style */
     .metric-horizontal {
       display: flex;
       justify-content: space-between;
@@ -393,7 +544,6 @@ import { CommonModule } from '@angular/common';
       gap: 2rem;
     }
 
-    /* animations for entrance */
     .reveal-left { animation: revealLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
     .reveal-right { animation: revealRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
     .reveal-bottom { animation: revealBottom 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
@@ -432,7 +582,6 @@ import { CommonModule } from '@angular/common';
        &:hover { background: #ffffff; border-color: var(--primary-color); transform: translateY(-4px); }
     }
 
-    /* Mobile handling */
     @media (max-width: 1250px) {
       .hero { padding: 6rem 0; height: auto; }
       .metrics-wrapper {
