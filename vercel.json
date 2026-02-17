@@ -1,0 +1,6 @@
+{
+    "framework": "angular",
+    "outputDirectory": "dist/zenflow.ai",
+    "installCommand": "npm install",
+    "buildCommand": "npm run build"
+}
