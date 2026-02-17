@@ -23,11 +23,11 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
   template: `
     <main>
       <app-hero />
+      <app-social-stats />
       <app-power-features />
       <app-solution-hub />
       <app-privacy-section />
       <app-why-choose-us />
-      <app-social-stats />
       <app-final-cta />
     </main>
   `
