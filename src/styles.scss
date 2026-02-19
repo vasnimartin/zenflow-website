@@ -42,6 +42,7 @@
 /* Reset & Base Styles */
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -54,6 +55,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  touch-action: manipulation;
 }
 
 /* Scroll Reveal Animations - Premium Standardized Slomo */
@@ -181,9 +183,13 @@ a {
     padding: 0 1.5rem;
   }
 
+  /* standardized mobile safe areas */
+  @media (max-width: 480px) {
+    padding: 0 1.25rem;
+  }
+
   &.wide {
     max-width: 95vw;
-    /* Breaking the 1400px barrier for immersion */
   }
 }
 
@@ -207,16 +213,23 @@ a {
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid transparent;
+  
+  @media (max-width: 1024px) {
+    min-height: 48px; /* Mobile accessibility standard */
+    padding: 0.8rem 2rem;
+  }
 }
 
 .btn-primary {
   background-color: var(--primary-color);
   color: var(--bg-white);
 
-  &:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
   }
 }
 
@@ -225,9 +238,11 @@ a {
   border-color: var(--border-color);
   color: var(--text-dark);
 
-  &:hover {
-    border-color: var(--text-medium);
-    background-color: var(--bg-light);
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--text-medium);
+      background-color: var(--bg-light);
+    }
   }
 }
 
@@ -260,6 +275,10 @@ a {
     .bento-large {
       grid-column: span 2;
     }
+  }
+  
+  @media (max-width: 768px) {
+    gap: 1.25rem;
   }
 }
 
@@ -395,6 +414,12 @@ a {
 
   .desktop-only {
     display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content {
+    padding-top: 7rem;
   }
 }
 

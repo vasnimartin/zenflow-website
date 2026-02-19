@@ -49,9 +49,11 @@
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
+    @media (hover: hover) {
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
+      }
     }
   }
 }
@@ -103,11 +105,6 @@
     font-weight: 600;
     color: #1e293b;
     font-size: 1.1rem;
-
-    &.mini {
-      font-size: 1rem;
-      color: #94a3b8;
-    }
   }
 
   .t-total-row {
@@ -121,45 +118,17 @@
     color: var(--primary-color);
   }
 
-  .status-live {
-    color: #10b981;
-  }
-
-  .status-sync {
-    color: #6366f1;
-  }
+  .status-live { color: #10b981; }
+  .status-sync { color: #6366f1; }
 }
 
-/* Fleet Stacking - Spaced For Quality */
-.terminal-main {
-  z-index: 10;
-  transform: translateZ(50px) translateY(0);
-}
-
-.terminal-middle {
-  z-index: 5;
-  transform: translateZ(-100px) translateY(-80px) translateX(120px) rotate(3deg);
-  opacity: 0.85;
-}
-
-.terminal-back {
-  z-index: 1;
-  transform: translateZ(-250px) translateY(-140px) translateX(-100px) rotate(-3deg);
-  opacity: 0.6;
-}
+.terminal-main { z-index: 10; transform: translateZ(50px) translateY(0); }
+.terminal-middle { z-index: 5; transform: translateZ(-100px) translateY(-80px) translateX(120px) rotate(3deg); opacity: 0.85; }
+.terminal-back { z-index: 1; transform: translateZ(-250px) translateY(-140px) translateX(-100px) rotate(-3deg); opacity: 0.6; }
 
 @keyframes sync-progress {
-  0% {
-    width: 10%;
-  }
-
-  50% {
-    width: 90%;
-  }
-
-  100% {
-    width: 10%;
-  }
+  0%, 100% { width: 10%; }
+  50% { width: 90%; }
 }
 
 .t-progress-v4 {
@@ -242,17 +211,12 @@
 }
 
 @keyframes lineDraw {
-  from {
-    stroke-dashoffset: 400;
-  }
-
-  to {
-    stroke-dashoffset: 0;
-  }
+  from { stroke-dashoffset: 400; }
+  to { stroke-dashoffset: 0; }
 }
 
 /* -------------------------------------------------------------------------- */
-/*                          2. Bento Grid (Sync Style)                        */
+/*                          2. Bento Grid                                     */
 /* -------------------------------------------------------------------------- */
 .bento-section {
   padding: 10rem 0;
@@ -260,12 +224,7 @@
 
   .bento-header {
     margin-bottom: 6rem;
-
-    h2 {
-      font-size: 3rem;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-    }
+    h2 { font-size: 3rem; font-weight: 900; letter-spacing: -0.04em; }
   }
 
   .inner-bento-grid {
@@ -284,9 +243,11 @@
     border: 1px solid rgba(0, 0, 0, 0.02);
     transition: all 0.3s ease;
 
-    &:hover {
-      transform: translateY(-5px);
-      border-color: rgba(99, 102, 241, 0.1);
+    @media (hover: hover) {
+      &:hover {
+        transform: translateY(-5px);
+        border-color: rgba(99, 102, 241, 0.1);
+      }
     }
 
     .bento-icon-inner {
@@ -294,25 +255,11 @@
       height: 48px;
       color: var(--primary-color);
       margin-bottom: 1.5rem;
-
-      svg {
-        width: 100%;
-        height: 100%;
-      }
+      svg { width: 100%; height: 100%; }
     }
 
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1rem;
-      color: #64748b;
-      line-height: 1.6;
-      font-weight: 500;
-    }
+    h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; }
+    p { font-size: 1rem; color: #64748b; line-height: 1.6; font-weight: 500; }
 
     &.bento-large-inner {
       grid-column: span 2;
@@ -330,11 +277,7 @@
   padding: 10rem 0;
   background: #fcfcfc;
 
-  .section-title {
-    font-size: 3.5rem;
-    font-weight: 950;
-    letter-spacing: -0.04em;
-  }
+  .section-title { font-size: 3.5rem; font-weight: 950; letter-spacing: -0.04em; }
 
   .split-content-v4 {
     display: grid;
@@ -346,229 +289,74 @@
     padding: 0 2rem;
   }
 
-  .ops-list-v4 {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
+  .ops-list-v4 { display: flex; flex-direction: column; gap: 3rem; }
 
   .ops-card-v4 {
-    h3 {
-      font-size: 1.6rem;
-      font-weight: 900;
-      margin-bottom: 1rem;
-      color: #1e293b;
-    }
-
-    p {
-      font-size: 1.1rem;
-      color: #64748b;
-      font-weight: 500;
-      line-height: 1.6;
-    }
-
+    h3 { font-size: 1.6rem; font-weight: 900; margin-bottom: 1rem; color: #1e293b; }
+    p { font-size: 1.1rem; color: #64748b; font-weight: 500; line-height: 1.6; }
     opacity: 0.5;
     transition: opacity 0.3s ease;
-
-    &.active {
-      opacity: 1;
-    }
+    &.active { opacity: 1; }
   }
 
   .ops-visual-v4 {
     .dashboard-preview {
-      background: white;
-      border-radius: 24px;
-      padding: 3rem;
+      background: white; border-radius: 24px; padding: 3rem;
       box-shadow: 0 60px 100px -20px rgba(15, 23, 42, 0.08);
       border: 1px solid rgba(0, 0, 0, 0.02);
-
-      .dash-search-mock {
-        background: #f1f5f9;
-        border-radius: 12px;
-        padding: 1rem;
-        color: #94a3b8;
-        font-weight: 600;
-        font-size: 0.9rem;
-        margin-bottom: 3rem;
-      }
-
-      .main-stat {
-        label {
-          font-size: 1rem;
-          font-weight: 700;
-          color: #94a3b8;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          display: block;
-          margin-bottom: 1rem;
-        }
-
-        .val {
-          font-size: 4rem;
-          font-weight: 950;
-          color: #1e293b;
-        }
-
-        .trend.up {
-          color: #10b981;
-          font-weight: 800;
-          font-size: 1.2rem;
-          margin-left: 1rem;
-        }
-      }
+      .dash-search-mock { background: #f1f5f9; border-radius: 12px; padding: 1rem; color: #94a3b8; font-weight: 600; font-size: 0.9rem; margin-bottom: 3rem; }
+      .main-stat .val { font-size: 4rem; font-weight: 950; color: #1e293b; }
     }
   }
 }
 
 /* -------------------------------------------------------------------------- */
-/*                          4. Outcome (Sync Style)                           */
+/*                          4. Outcome                                        */
 /* -------------------------------------------------------------------------- */
 .outcome-section {
-  padding: 12rem 0;
-  background: white;
-  text-align: center;
-
+  padding: 12rem 0; background: white; text-align: center;
   .outcome-container {
-    max-width: 800px;
-    margin: 0 auto;
-
-    h2 {
-      font-size: 4rem;
-      font-weight: 950;
-      color: #0f172a;
-      letter-spacing: -0.05em;
-      margin-bottom: 2rem;
-    }
-
-    .outcome-statement {
-      font-size: 1.5rem;
-      color: #64748b;
-      font-weight: 500;
-      margin-bottom: 5rem;
-    }
-
-    .outcome-points {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .outcome-item {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #1e293b;
-
-      .outcome-check {
-        width: 32px;
-        height: 32px;
-        background: #10b981;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        svg {
-          width: 18px;
-          height: 18px;
-        }
-      }
+    max-width: 800px; margin: 0 auto;
+    h2 { font-size: 4rem; font-weight: 950; color: #0f172a; margin-bottom: 2rem; }
+    .outcome-statement { font-size: 1.5rem; color: #64748b; margin-bottom: 5rem; }
+  }
+  .outcome-points { display: flex; flex-direction: column; gap: 2rem; align-items: center; }
+  .outcome-item { display: flex; align-items: center; gap: 1.5rem; font-size: 1.3rem; font-weight: 700;
+    .outcome-check { width: 32px; height: 32px; background: #10b981; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      svg { width: 18px; height: 18px; }
     }
   }
 }
 
 /* Responsive Overrides */
 @media (max-width: 1024px) {
-  .hero-section {
-    padding: 6rem 0;
-    
-    h1 { font-size: 3.5rem; }
-  }
-
-  .fleet-container {
-    height: 480px;
-    max-width: 100%;
-  }
-
-  .terminal-card-v4 {
-    width: clamp(300px, 80vw, 400px);
-    padding: 1.5rem;
-  }
-
-  .terminal-middle { transform: translateZ(-50px) translateY(-50px) translateX(60px) rotate(2deg); }
-  .terminal-back { transform: translateZ(-100px) translateY(-100px) translateX(-40px) rotate(-2deg); }
-
-  .inner-bento-grid {
-    grid-template-columns: 1fr 1fr;
-    padding: 0 1.5rem;
-  }
-
-  .bento-card-inner.bento-large-inner {
-    grid-column: span 2;
-  }
-
-  .split-content-v4 {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    margin-top: 4rem;
-  }
-
-  .ops-list-v4 { gap: 2rem; }
-  
-  .ops-visual-v4 .dashboard-preview { padding: 2rem; }
-
-  .outcome-section { padding: 8rem 0; }
-  .outcome-container h2 { font-size: 3rem; }
+  .hero-section { padding: 4rem 0 6rem; h1 { font-size: clamp(2.25rem, 8vw, 3.5rem); } }
+  .fleet-container { height: 480px; max-width: 100%; }
+  .terminal-card-v4 { width: clamp(300px, 80vw, 400px); padding: 1.5rem; }
+  .inner-bento-grid { grid-template-columns: 1fr 1fr; padding: 0 1.5rem; }
+  .split-content-v4 { grid-template-columns: 1fr; gap: 4rem; margin-top: 4rem; }
+  .outcome-section { padding: 8rem 0; .outcome-container h2 { font-size: 3rem; } }
 }
 
 @media (max-width: 768px) {
-  .inner-bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .bento-card-inner.bento-large-inner {
-    grid-column: span 1;
-  }
-  .terminal-card-v4 .t-total-row { font-size: 1.6rem; }
+  .inner-bento-grid { grid-template-columns: 1fr; }
+  .bento-card-inner.bento-large-inner { grid-column: span 1; }
+  .ops-walkthrough-v4 .section-title { font-size: 2.75rem; }
 }
 
 @media (max-width: 640px) {
-  .hero-section h1 { font-size: 2.25rem; }
-  .hero-section p { font-size: 1.1rem; margin-bottom: 2.5rem; }
-  
-  .hero-visual-fleet-v4 { margin-top: 4rem; perspective: 1000px; }
-  .fleet-container { height: 380px; }
-  
-  .terminal-card-v4 {
-    position: relative;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
-    width: 100%;
-    margin-bottom: -180px; /* Stacked look */
-    opacity: 1 !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  }
-  
-  .terminal-back, .terminal-middle { display: none; } /* Only show main on small mobile for clarity */
-  .terminal-main { margin-bottom: 0; }
-
-  .v4-chart-integration { margin: 1rem 0; }
-  .v4-chart-integration .v4-cashflow-svg { height: 80px; }
-
-  .ops-walkthrough-v4 { padding: 6rem 0; }
-  .ops-walkthrough-v4 .section-title { font-size: 2.25rem; }
-  
-  .ops-visual-v4 .dashboard-preview .main-stat .val { font-size: 2.5rem; }
-  
-  .outcome-container h2 { font-size: 2.25rem; }
-  .outcome-statement { font-size: 1.15rem; }
-  
-  .page-cta-dark { padding: 6rem 0; }
-  .page-cta-dark h3 { font-size: 2.25rem; }
-  .btn-conversion { width: calc(100% - 3rem); padding: 1.2rem 2rem; }
+  .hero-section { padding-top: 2rem; h1 { font-size: 2.5rem; margin-bottom: 1.25rem; } p { font-size: 1.1rem; margin-bottom: 2.5rem; } }
+  .hero-visual-fleet-v4 { margin-top: 3rem; perspective: 1000px; }
+  .fleet-container { height: auto; display: flex; flex-direction: column; align-items: center; }
+  .terminal-card-v4 { position: relative; top: auto !important; left: auto !important; transform: none !important; width: 100%; margin-bottom: -160px; box-shadow: 0 20px 60px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.06); &:last-child { margin-bottom: 0; } }
+  .terminal-back, .terminal-middle { display: none; }
+  .terminal-main { z-index: 10; box-shadow: 0 40px 100px rgba(99, 102, 241, 0.15); }
+  .v4-chart-integration { margin: 1rem 0; .v4-cashflow-svg { height: 80px; } }
+  .bento-section { padding: 6rem 0; .bento-header { margin-bottom: 4rem; h2 { font-size: 2.25rem; } } }
+  .bento-card-inner { padding: 2rem; h3 { font-size: 1.25rem; } }
+  .ops-walkthrough-v4 { padding: 6rem 0; .ops-header { margin-bottom: 3rem; } .section-title { font-size: 2.25rem; } }
+  .split-content-v4 { margin-top: 2rem; gap: 3rem; }
+  .ops-visual-v4 .dashboard-preview { padding: 1.5rem; .main-stat .val { font-size: 2.5rem; } .dash-search-mock { margin-bottom: 2rem; } }
+  .outcome-section { padding: 6rem 0; }
+  .outcome-container { h2 { font-size: 2.25rem; } .outcome-statement { font-size: 1.1rem; margin-bottom: 3rem; } .outcome-item { font-size: 1.1rem; gap: 1rem; text-align: left; } }
 }

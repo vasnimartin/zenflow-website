@@ -116,30 +116,30 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
     /* Pricing Page Specific Specifics */
     .page-content { padding: 12rem 1.5rem 4rem; position: relative; z-index: 10; }
     .pricing-tiers { padding: 2rem 0 8rem; position: relative; z-index: 1; background: transparent; }
-    .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+    .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
 
     .tier-card {
       display: flex; flex-direction: column;
       background: rgba(255, 255, 255, 0.4);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.6) !important;
+      border: 1px solid rgba(0, 0, 0, 0.04) !important;
       border-radius: 24px;
       padding: 3rem 2rem;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       
       &.featured {
-        background: rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.7);
         border-color: var(--primary-color) !important;
         transform: scale(1.05);
         z-index: 2;
-        box-shadow: 0 30px 60px -10px rgba(15, 23, 42, 0.1);
+        box-shadow: 0 30px 80px -20px rgba(99, 102, 241, 0.15);
         
         &:hover { transform: scale(1.05) translateY(-8px); }
       }
 
       &:hover {
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.85);
         transform: translateY(-8px);
         box-shadow: 0 30px 60px -10px rgba(15, 23, 42, 0.1);
         border-color: var(--primary-color) !important;
@@ -150,33 +150,40 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
       position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
       background: var(--primary-color); color: white; padding: 0.5rem 1.2rem;
       border-radius: 100px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em;
+      box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
     }
 
     .tier-header {
       text-align: center; margin-bottom: 2.5rem;
       h3 { font-size: 1.5rem; font-weight: 850; color: #0f172a; margin-bottom: 1rem; }
-      .price { font-size: 2.8rem; font-weight: 900; color: #0f172a; margin-bottom: 0.5rem; letter-spacing: -0.04em; }
-      .price span { font-size: 1rem; color: #64748b; font-weight: 500; }
-      p { font-size: 0.95rem; color: #475569; line-height: 1.5; font-weight: 500; }
+      .price { font-size: 3.2rem; font-weight: 950; color: #0f172a; margin-bottom: 0.5rem; letter-spacing: -0.04em; }
+      .price span { font-size: 1.1rem; color: #64748b; font-weight: 500; }
+      p { font-size: 1rem; color: #475569; line-height: 1.5; font-weight: 500; }
     }
 
     .tier-features {
-      list-style: none; padding: 0; margin: 0 0 3rem; flex: 1;
+      list-style: none; padding: 0; margin: 0 0 3.5rem; flex: 1;
       li {
         padding: 0.8rem 0; font-size: 0.95rem; color: #475569; font-weight: 600;
         display: flex; align-items: center; gap: 0.75rem;
-        &::before { content: '✓'; color: var(--primary-color); font-weight: 900; }
+        &::before { 
+          content: '✓'; color: var(--primary-color); font-weight: 950;
+          width: 20px; height: 20px; background: rgba(99, 102, 241, 0.1);
+          border-radius: 50%; display: flex; align-items: center; justify-content: center;
+          font-size: 0.65rem;
+        }
       }
     }
 
     .btn-tier {
-      display: block; padding: 1.1rem; text-align: center; border: 1px solid rgba(0,0,0,0.1);
-      border-radius: 12px; font-weight: 700; text-decoration: none; color: #0f172a;
+      display: block; padding: 1.15rem; text-align: center; border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px; font-weight: 800; text-decoration: none; color: #0f172a;
       transition: all 0.3s ease;
-      &:hover { border-color: var(--primary-color); color: var(--primary-color); background: rgba(99, 102, 241, 0.05); }
+      &:hover { border-color: var(--primary-color); color: var(--primary-color); background: rgba(99, 102, 241, 0.03); }
       &.primary {
         background: #0f172a; color: white; border-color: #0f172a;
-        &:hover { background: var(--primary-color); border-color: var(--primary-color); color: white; }
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+        &:hover { background: var(--primary-color); border-color: var(--primary-color); color: white; transform: translateY(-2px); }
       }
     }
 
@@ -190,7 +197,7 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
       border: 1px solid rgba(255, 255, 255, 0.6);
       border-radius: 32px;
     }
-    .faq-container h2 { font-size: 3rem; font-weight: 950; margin-bottom: 5rem; color: #0f172a; letter-spacing: -0.04em; }
+    .faq-container h2 { font-size: 3.5rem; font-weight: 950; margin-bottom: 5rem; color: #0f172a; letter-spacing: -0.05em; }
     .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
     .faq-item h4 { font-size: 1.25rem; font-weight: 900; color: #0f172a; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
     .faq-item p { font-size: 1.05rem; color: #475569; line-height: 1.7; font-weight: 500; }
@@ -199,10 +206,11 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
       display: inline-block; padding: 0.6rem 1.5rem !important; border-radius: 100px !important;
       font-size: 0.85rem; font-weight: 800; color: var(--primary-color);
       background: rgba(99, 102, 241, 0.1) !important;
+      border: 1px solid rgba(99, 102, 241, 0.1) !important;
     }
 
     .hero-section .gradient-text {
-      background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%);
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -210,27 +218,30 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
 
     @media (max-width: 1200px) {
       .page-content { padding-top: 100px; }
-      .hero-section h1 { font-size: 3.5rem; }
       .tiers-grid { grid-template-columns: repeat(2, 1fr); max-width: 900px; padding: 0 1.5rem; }
-      .tier-card.featured { transform: scale(1); &:hover { transform: translateY(-8px); } }
       .faq-container { padding: 4rem 3rem !important; border-radius: 24px; }
       .faq-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     }
 
     @media (max-width: 992px) {
       .tiers-grid { grid-template-columns: 1fr; max-width: 500px; }
-      .hero-section h1 { font-size: 3rem; }
+      .faq-container h2 { font-size: 2.75rem; }
     }
 
     @media (max-width: 640px) {
-      .hero-section h1 { font-size: 2.25rem; }
+      .page-content { padding-top: 6rem; }
+      .hero-section h1 { font-size: 2.5rem; }
       .hero-section p { font-size: 1.1rem; }
-      .pricing-tiers { padding-bottom: 4rem; }
+      .pricing-tiers { padding-bottom: 4rem; .tiers-grid { padding: 0; } }
+      .tier-card { padding: 2.5rem 1.5rem; border-radius: 20px; &.featured { transform: none; &:hover { transform: translateY(-5px); } } }
+      .tier-header .price { font-size: 2.75rem; }
       .faq-section { padding: 6rem 0; }
       .faq-container { padding: 3rem 1.5rem !important; }
-      .faq-container h2 { font-size: 2rem; margin-bottom: 3rem; }
-      .faq-item h4 { font-size: 1.15rem; }
+      .faq-container h2 { font-size: 2.25rem; margin-bottom: 3.5rem; }
+      .faq-item h4 { font-size: 1.2rem; }
+      .btn-tier { padding: 1rem; }
     }
+
   `]
 })
 export class PricingComponent { }

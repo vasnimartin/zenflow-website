@@ -1,5 +1,7 @@
-import { Component, HostListener } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
+import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -38,13 +40,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
       <!-- Mobile Nav Overlay -->
       <nav class="mobile-nav" [class.open]="isMenuOpen">
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Home</a>
-        <a routerLink="/billing" routerLinkActive="active" (click)="closeMenu()">Billing</a>
-        <a routerLink="/inventory" routerLinkActive="active" (click)="closeMenu()">Inventory</a>
-        <a routerLink="/accounting" routerLinkActive="active" (click)="closeMenu()">Accounting</a>
-        <a routerLink="/omnichannel" routerLinkActive="active" (click)="closeMenu()">Omnichannel</a>
-        <a routerLink="/pricing" routerLinkActive="active" (click)="closeMenu()">Pricing</a>
-        <a routerLink="/contact" routerLinkActive="active" class="btn btn-primary" (click)="closeMenu()">Get Started</a>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a routerLink="/billing" routerLinkActive="active">Billing</a>
+        <a routerLink="/inventory" routerLinkActive="active">Inventory</a>
+        <a routerLink="/accounting" routerLinkActive="active">Accounting</a>
+        <a routerLink="/omnichannel" routerLinkActive="active">Omnichannel</a>
+        <a routerLink="/pricing" routerLinkActive="active">Pricing</a>
+        <a routerLink="/contact" routerLinkActive="active" class="btn btn-primary">Get Started</a>
       </nav>
     </header>
   `,
@@ -180,50 +182,57 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       left: 0;
       width: 100%;
       height: 100vh;
-      background: rgba(255, 255, 255, 0.98); /* Opaque for readability */
+      height: 100dvh; /* Dynamic Viewport for Safari */
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 1rem;
+      gap: 1.25rem;
       transform: translateX(100%);
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 1001;
       opacity: 0;
       pointer-events: none;
-      padding: env(safe-area-inset-top) 2rem env(safe-area-inset-bottom);
+      padding: clamp(2rem, env(safe-area-inset-top), 5rem) 2rem clamp(2rem, env(safe-area-inset-bottom), 5rem);
       
       a {
-        width: 100%;
+        width: calc(100% - 4rem);
         text-align: center;
-        padding: 1rem;
-        font-size: 1.5rem;
+        padding: 1.1rem;
+        font-size: 1.4rem;
         font-weight: 800;
         color: var(--text-dark);
         letter-spacing: -0.02em;
         opacity: 0;
         transform: translateY(20px);
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        border-radius: 12px;
+        border-radius: 16px;
         
         &.active { 
           color: var(--primary-color);
           background: rgba(99, 102, 241, 0.05);
         }
         
+        @media (hover: hover) {
+          &:hover { background: rgba(0, 0, 0, 0.03); }
+        }
+        
         &:active {
           background: rgba(0, 0, 0, 0.05);
+          transform: scale(0.98);
         }
       }
 
       .btn {
-        margin-top: 2rem;
-        width: 80%;
-        max-width: 300px;
+        margin-top: 1.5rem;
+        width: calc(100% - 4rem);
+        max-width: 320px;
         padding: 1.2rem;
         font-size: 1.1rem;
+        border-radius: 14px;
       }
       
       &.open {
@@ -279,11 +288,21 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     .header.menu-open .menu-toggle .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); width: 28px; }
   `]
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   isScrolled = false;
   isMenuOpen = false;
-
   private scrollTicking = false;
+  private routerSub?: Subscription;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.routerSub = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.closeMenu();
+    });
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -320,7 +339,7 @@ export class HeaderComponent {
   }
 
   ngOnDestroy() {
-    // Safety: ensure scrolling is restored if component destroyed while menu open
+    this.routerSub?.unsubscribe();
     document.body.style.overflow = '';
   }
 }
