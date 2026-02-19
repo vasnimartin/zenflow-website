@@ -120,7 +120,9 @@
   background: var(--text-dark);
   color: white;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
-  &:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(15, 23, 42, 0.3); }
+  @media (hover: hover) {
+    &:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(15, 23, 42, 0.3); }
+  }
 }
 
 .btn-outline {
@@ -129,7 +131,9 @@
   background: rgba(255, 255, 255, 0.6);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  &:hover { background: #ffffff; border-color: var(--primary-color); transform: translateY(-4px); }
+  @media (hover: hover) {
+    &:hover { background: #ffffff; border-color: var(--primary-color); transform: translateY(-4px); }
+  }
 }
 
 /* --- Right Side: Cards Grid (staggered 2-col) --- */
@@ -166,15 +170,17 @@
   filter: saturate(0.85);
 }
 
-.metric-card:hover {
-  background: #ffffff;
-  box-shadow: 
-    0 20px 40px -10px rgba(99, 102, 241, 0.15),
-    0 0 0 1px rgba(99, 102, 241, 0.15);
-  /* Technique 2: Hover activation — snap to full prominence */
-  opacity: 1;
-  filter: saturate(1);
-}
+  @media (hover: hover) {
+    &:hover {
+      background: #ffffff;
+      box-shadow: 
+        0 20px 40px -10px rgba(99, 102, 241, 0.15),
+        0 0 0 1px rgba(99, 102, 241, 0.15);
+      /* Technique 2: Hover activation — snap to full prominence */
+      opacity: 1;
+      filter: saturate(1);
+    }
+  }
 
 /* Subtle border glow on hover (static, no animation) */
 .metric-card::after {
@@ -188,9 +194,11 @@
   transition: opacity 0.4s ease;
 }
 
-.metric-card:hover::after {
-  opacity: 1;
-}
+  @media (hover: hover) {
+    &:hover::after {
+      opacity: 1;
+    }
+  }
 
 /* --- HUD Corners --- */
 .hud-corner {

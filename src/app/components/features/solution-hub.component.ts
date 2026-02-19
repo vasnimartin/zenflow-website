@@ -156,7 +156,10 @@ interface HubTab {
       user-select: none;
     }
 
-    .glass-tab:hover { background: rgba(255, 255, 255, 0.85); border-color: var(--primary-light); transform: translateY(-2px); }
+    @media (hover: hover) {
+      .glass-tab:hover { background: rgba(255, 255, 255, 0.85); border-color: var(--primary-light); transform: translateY(-2px); }
+    }
+    
     .glass-tab.active { 
       background: #ffffff; border-color: var(--primary-color);
       box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);

@@ -94,34 +94,17 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive'
       background: rgba(255, 255, 255, 0.01); /* Barely there */
       border: 1px solid rgba(255, 255, 255, 0.03);
  
-      &:hover {
-        background: rgba(255, 255, 255, 0.03);
-        transform: translateY(-2px);
-        border-color: rgba(99, 102, 241, 0.2); /* Subtle indigo border on hover */
+      @media (hover: hover) {
+        &:hover {
+          background: rgba(255, 255, 255, 0.03);
+          transform: translateY(-2px);
+          border-color: rgba(99, 102, 241, 0.2); /* Subtle indigo border on hover */
+        }
+        &:hover .icon-wrap {
+          background: rgba(99, 102, 241, 0.2);
+          color: white;
+        }
       }
-    }
-    
-    .icon-wrap {
-      width: 44px; /* Slightly bigger */ 
-      height: 44px; 
-      min-width: 44px;
-      /* Darker, more premium pill background */
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #a5b4fc; /* Soft indigo */
-      transition: all 0.3s ease;
-      
-      svg { width: 22px; height: 22px; }
-    }
-    
-    /* Interactive Icon Glow */
-    .trust-card:hover .icon-wrap {
-      background: rgba(99, 102, 241, 0.2);
-      color: white;
-    }
  
     h4 { 
       margin: 0 0 0.5rem; 

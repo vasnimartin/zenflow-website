@@ -104,9 +104,11 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive'
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    @media (hover: hover) {
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
     }
 
     .btn-secondary {
@@ -121,8 +123,10 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive'
       transition: all 0.3s;
     }
 
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.2);
+    @media (hover: hover) {
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
     }
 
     /* Pulse Visual */
