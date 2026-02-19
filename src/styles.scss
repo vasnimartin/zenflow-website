@@ -43,6 +43,7 @@
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  max-width: 100vw;
 }
 
 html, body {
@@ -53,8 +54,10 @@ html, body {
   color: var(--text-dark);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
   touch-action: manipulation;
 }
 

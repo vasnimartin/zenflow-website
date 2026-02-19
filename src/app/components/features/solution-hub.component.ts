@@ -194,7 +194,16 @@ interface HubTab {
       filter: blur(50px); pointer-events: none; z-index: 0;
     }
 
-    .hub-content { display: grid; grid-template-columns: 1fr 1.15fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+    .hub-content { 
+      display: grid; 
+      grid-template-columns: 1fr 1.15fr; 
+      gap: 4rem; 
+      align-items: center; 
+      position: relative; 
+      z-index: 1;
+      width: 100%;
+      min-width: 0; /* Enable shrinking */
+    }
     .hub-content.fade-in { animation: contentFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
     @keyframes contentFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -224,6 +233,9 @@ interface HubTab {
       border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 24px;
       padding: 2.5rem 3rem; min-height: 380px; position: relative;
       box-shadow: 0 20px 40px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: center;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden; /* Contain specialized visuals */
     }
 
     .hud-corner {
@@ -306,6 +318,7 @@ interface HubTab {
       .channel-dot { font-size: 0.7rem; padding: 0.5rem 1rem; }
       .web { top: 15%; }
       .app { top: 35%; }
+      .channel-dot { white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
     }
   `]
 })

@@ -299,7 +299,13 @@
   .terminal-back, .terminal-middle { display: none; }
   .terminal-main { z-index: 10; box-shadow: 0 40px 100px rgba(99, 102, 241, 0.15); }
   .bento-section { padding: 6rem 0; .bento-header { margin-bottom: 4rem; h2 { font-size: 2.25rem; } } }
-  .bento-card-inner { padding: 2rem; h3 { font-size: 1.25rem; } }
+  .bento-card-inner { 
+    padding: 1.5rem; 
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    h3 { font-size: 1.25rem; } 
+  }
   .ops-walkthrough-v4 { padding: 6rem 0; .ops-header { margin-bottom: 3rem; } .section-title { font-size: 2.25rem; } }
   .split-content-v4 { margin-top: 2rem; gap: 3rem; }
   .ops-visual-v4 .dashboard-preview { padding: 1.5rem; .main-stat .val { font-size: 2.5rem; } .dash-search-mock { margin-bottom: 2rem; } }
