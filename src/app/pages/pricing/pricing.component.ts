@@ -12,7 +12,7 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
       <!-- SECTION 1: Centered Header (Same Hero Pattern) -->
       <section class="hero-section reveal-active">
         <div class="eyebrow">PRICING</div>
-        <h1 class="gradient-text">Transparent Pricing Built<br>for Modern Retail Scale.</h1>
+        <h1 class="gradient-text"><span class="text-highlight-pink">Transparent Pricing</span> Built<br>for Modern Retail Scale.</h1>
         <p>Simple, usage-based plans that grow with your business. No hidden fees, no complex contracts.</p>
         
         <div class="trust-badge-mini glass-card">
@@ -30,13 +30,13 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
               <div class="price">₹ 0<span>/14 days</span></div>
               <p>Explore all core features with no commitment.</p>
             </div>
+            <a routerLink="/contact" [queryParams]="{ plan: 'free-trial' }" class="btn-tier">Start Free Trial</a>
             <ul class="tier-features">
               <li>Up to 2 Users</li>
               <li>Core Billing & Inventory</li>
               <li>Basic GST Reporting</li>
               <li>Standard Support</li>
             </ul>
-            <a routerLink="/contact" [queryParams]="{ plan: 'free-trial' }" class="btn-tier">Start Free Trial</a>
           </div>
 
           <!-- Tier 2: Transaction-Based Pricing (Highlighted) -->
@@ -47,6 +47,7 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
               <div class="price">₹ 1.5<span>/trans</span></div>
               <p>Transparent transaction-based pricing. Pay as you scale.</p>
             </div>
+            <a routerLink="/contact" [queryParams]="{ plan: 'pro' }" class="btn-tier primary">Get Started</a>
             <ul class="tier-features">
               <li>Everything in Free Trial</li>
               <li>Unlimited Users</li>
@@ -55,7 +56,6 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
               <li>Omnichannel Fulfillment</li>
               <li>Priority 24/7 Support</li>
             </ul>
-            <a routerLink="/contact" [queryParams]="{ plan: 'pro' }" class="btn-tier primary">Get Started</a>
           </div>
 
           <!-- Tier 3: Enterprise -->
@@ -65,6 +65,7 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
               <div class="price">Custom</div>
               <p>Bespoke solutions with volume discounts for large networks.</p>
             </div>
+            <a routerLink="/contact" [queryParams]="{ plan: 'enterprise' }" class="btn-tier">Contact Sales</a>
             <ul class="tier-features">
               <li>Everything in Pro</li>
               <li>Dedicated Success Manager</li>
@@ -73,7 +74,6 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
               <li>SLA-backed Uptime</li>
               <li>Volume Discounts</li>
             </ul>
-            <a routerLink="/contact" [queryParams]="{ plan: 'enterprise' }" class="btn-tier">Contact Sales</a>
           </div>
         </div>
       </section>
@@ -113,10 +113,43 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
     </app-final-cta>
   `,
   styles: [`
-    /* Pricing Page Specific Specifics */
-    .page-content { padding: 12rem 1.5rem 4rem; position: relative; z-index: 10; }
-    .pricing-tiers { padding: 2rem 0 8rem; position: relative; z-index: 1; background: transparent; }
-    .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    /* Pricing Page Specifics */
+    .page-content { 
+      padding: 6rem 1.5rem 3rem; 
+      position: relative; 
+      z-index: 10; 
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-top: 0.5rem;
+      
+      h1 { 
+        font-size: 2.8rem; 
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.04em;
+      }
+      p { 
+        font-size: 1.1rem; 
+        max-width: 600px; 
+        margin: 0 auto 1.25rem; 
+        color: #475569;
+      }
+    }
+
+    .pricing-tiers { padding: 0 0 4rem; position: relative; z-index: 1; background: transparent; }
+    .tiers-grid { 
+      display: grid; 
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 2.5rem; 
+      max-width: 1050px; 
+      margin: 0 auto; 
+      padding: 0 1rem; 
+      align-items: stretch;
+    }
 
     .tier-card {
       display: flex; flex-direction: column;
@@ -125,121 +158,114 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(0, 0, 0, 0.04) !important;
       border-radius: 24px;
-      padding: 3rem 2rem;
+      padding: 2rem 1.5rem;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      max-width: 330px;
+      margin: 0 auto;
+      width: 100%;
       
       &.featured {
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.8);
         border-color: var(--primary-color) !important;
-        transform: scale(1.05);
+        transform: scale(1.02);
         z-index: 2;
-        box-shadow: 0 30px 80px -20px rgba(99, 102, 241, 0.15);
+        box-shadow: 0 30px 70px -15px rgba(99, 102, 241, 0.12);
         
-        &:hover { transform: scale(1.05) translateY(-8px); }
+        &:hover { transform: scale(1.02) translateY(-8px); }
       }
 
       &:hover {
-        background: rgba(255, 255, 255, 0.85);
-        transform: translateY(-8px);
-        box-shadow: 0 30px 60px -10px rgba(15, 23, 42, 0.1);
+        background: rgba(255, 255, 255, 0.95);
+        transform: translateY(-6px);
+        box-shadow: 0 25px 50px -10px rgba(15, 23, 42, 0.1);
         border-color: var(--primary-color) !important;
       }
     }
 
     .featured-badge {
       position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
-      background: var(--primary-color); color: white; padding: 0.5rem 1.2rem;
-      border-radius: 100px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em;
-      box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+      background: var(--primary-color); color: white; padding: 0.45rem 1.1rem;
+      border-radius: 100px; font-size: 0.65rem; font-weight: 900; letter-spacing: 0.08em;
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
     }
 
     .tier-header {
-      text-align: center; margin-bottom: 2.5rem;
-      h3 { font-size: 1.5rem; font-weight: 850; color: #0f172a; margin-bottom: 1rem; }
-      .price { font-size: 3.2rem; font-weight: 950; color: #0f172a; margin-bottom: 0.5rem; letter-spacing: -0.04em; }
-      .price span { font-size: 1.1rem; color: #64748b; font-weight: 500; }
-      p { font-size: 1rem; color: #475569; line-height: 1.5; font-weight: 500; }
-    }
-
-    .tier-features {
-      list-style: none; padding: 0; margin: 0 0 3.5rem; flex: 1;
-      li {
-        padding: 0.8rem 0; font-size: 0.95rem; color: #475569; font-weight: 600;
-        display: flex; align-items: center; gap: 0.75rem;
-        &::before { 
-          content: '✓'; color: var(--primary-color); font-weight: 950;
-          width: 20px; height: 20px; background: rgba(99, 102, 241, 0.1);
-          border-radius: 50%; display: flex; align-items: center; justify-content: center;
-          font-size: 0.65rem;
-        }
-      }
+      text-align: center; margin-bottom: 1.25rem;
+      h3 { font-size: 1.35rem; font-weight: 900; color: #0f172a; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+      .price { font-size: 2.8rem; font-weight: 950; color: #0f172a; margin-bottom: 0.2rem; letter-spacing: -0.05em; }
+      .price span { font-size: 0.85rem; color: #64748b; font-weight: 600; }
+      p { font-size: 0.85rem; color: #475569; line-height: 1.3; font-weight: 500; height: 2.6rem; display: flex; align-items: center; justify-content: center; }
     }
 
     .btn-tier {
-      display: block; padding: 1.15rem; text-align: center; border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 14px; font-weight: 800; text-decoration: none; color: #0f172a;
-      transition: all 0.3s ease;
-      &:hover { border-color: var(--primary-color); color: var(--primary-color); background: rgba(99, 102, 241, 0.03); }
+      display: block; padding: 0.9rem; text-align: center; border: 1.5px solid rgba(0,0,0,0.06);
+      border-radius: 12px; font-weight: 800; text-decoration: none; color: #0f172a;
+      transition: all 0.3s ease; font-size: 0.9rem; margin-bottom: 1.5rem;
+      &:hover { border-color: var(--primary-color); color: var(--primary-color); background: rgba(99, 102, 241, 0.04); }
       &.primary {
         background: #0f172a; color: white; border-color: #0f172a;
-        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
         &:hover { background: var(--primary-color); border-color: var(--primary-color); color: white; transform: translateY(-2px); }
       }
     }
 
-    .faq-section { padding: 10rem 0; background: transparent; position: relative; }
+    .tier-features {
+      list-style: none; padding: 0; margin: 0; flex: 1;
+      li {
+        padding: 0.5rem 0; font-size: 0.85rem; color: #475569; font-weight: 500;
+        display: flex; align-items: center; gap: 0.6rem;
+        &::before { 
+          content: '✓'; color: var(--primary-color); font-weight: 950;
+          width: 16px; height: 16px; background: rgba(99, 102, 241, 0.1);
+          border-radius: 50%; display: flex; align-items: center; justify-content: center;
+          font-size: 0.55rem; flex-shrink: 0;
+        }
+      }
+    }
+
+    .faq-section { padding: 4rem 0; background: transparent; position: relative; }
     .faq-container { 
-      max-width: 1000px; margin: 0 auto; 
-      padding: 5rem !important;
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      max-width: 850px; margin: 0 auto; 
+      padding: 3.5rem !important;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
       border-radius: 32px;
     }
-    .faq-container h2 { font-size: 3.5rem; font-weight: 950; margin-bottom: 5rem; color: #0f172a; letter-spacing: -0.05em; }
-    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-    .faq-item h4 { font-size: 1.25rem; font-weight: 900; color: #0f172a; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
-    .faq-item p { font-size: 1.05rem; color: #475569; line-height: 1.7; font-weight: 500; }
+    .faq-container h2 { font-size: 2.5rem; font-weight: 950; margin-bottom: 3rem; color: #0f172a; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .faq-item h4 { font-size: 1.1rem; font-weight: 900; color: #0f172a; margin-bottom: 0.6rem; }
+    .faq-item p { font-size: 0.95rem; color: #475569; line-height: 1.5; }
 
     .trust-badge-mini {
-      display: inline-block; padding: 0.6rem 1.5rem !important; border-radius: 100px !important;
-      font-size: 0.85rem; font-weight: 800; color: var(--primary-color);
+      display: inline-block; padding: 0.45rem 1.1rem !important; border-radius: 100px !important;
+      font-size: 0.75rem; font-weight: 800; color: var(--primary-color);
       background: rgba(99, 102, 241, 0.1) !important;
-      border: 1px solid rgba(99, 102, 241, 0.1) !important;
-    }
-
-    .hero-section .gradient-text {
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      border: 1px solid rgba(99, 102, 241, 0.12) !important;
     }
 
     @media (max-width: 1200px) {
-      .page-content { padding-top: 100px; }
-      .tiers-grid { grid-template-columns: repeat(2, 1fr); max-width: 900px; padding: 0 1.5rem; }
-      .faq-container { padding: 4rem 3rem !important; border-radius: 24px; }
-      .faq-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .page-content { padding-top: 6rem; }
+      .tiers-grid { gap: 1.5rem; padding: 0 0.5rem; }
+      .tier-header .price { font-size: 2.5rem; }
+    }
+
+    @media (max-width: 1024px) {
+      .tiers-grid { grid-template-columns: repeat(2, 1fr); max-width: 700px; }
+      .tier-card { max-width: 310px; }
     }
 
     @media (max-width: 992px) {
-      .tiers-grid { grid-template-columns: 1fr; max-width: 500px; }
-      .faq-container h2 { font-size: 2.75rem; }
+      .tiers-grid { grid-template-columns: 1fr; max-width: 360px; gap: 2rem; }
+      .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
     }
 
     @media (max-width: 640px) {
-      .page-content { padding-top: 6rem; }
-      .hero-section h1 { font-size: 2.5rem; }
-      .hero-section p { font-size: 1.1rem; }
-      .pricing-tiers { padding-bottom: 4rem; .tiers-grid { padding: 0; } }
-      .tier-card { padding: 2.5rem 1.5rem; border-radius: 20px; &.featured { transform: none; &:hover { transform: translateY(-5px); } } }
-      .tier-header .price { font-size: 2.75rem; }
-      .faq-section { padding: 6rem 0; }
-      .faq-container { padding: 3rem 1.5rem !important; }
-      .faq-container h2 { font-size: 2.25rem; margin-bottom: 3.5rem; }
-      .faq-item h4 { font-size: 1.2rem; }
-      .btn-tier { padding: 1rem; }
+      .page-content { padding-top: 5.5rem; }
+      .hero-section h1 { font-size: 2rem; }
+      .faq-container h2 { font-size: 1.8rem; }
     }
 
   `]

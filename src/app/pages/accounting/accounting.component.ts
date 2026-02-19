@@ -12,7 +12,7 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
       <!-- SECTION 1: Centered Hero (Sync Parity + Ledger Visual) -->
       <section class="hero-section reveal-active">
         <div class="eyebrow">INTELLIGENT FINANCIAL OPS</div>
-        <h1 class="gradient-text">Retail Accounting<br>Without the Manual Work.</h1>
+        <h1 class="gradient-text"><span class="text-highlight-pink">Retail Accounting</span><br>Without the Manual Work.</h1>
         <p>Auto-reconcile transactions, manage GST filings, and close books faster. Real-time financial intelligence at your fingertips.</p>
 
         <div class="hero-cta">

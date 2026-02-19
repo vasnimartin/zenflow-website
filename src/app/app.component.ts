@@ -13,7 +13,9 @@ import { filter } from 'rxjs/operators';
     <!-- Global Living Background -->
     <div class="scanning-grid fixed-bg"></div>
     <div class="hero-glow fixed-bg"></div>
-    <div class="brand-watermark fixed-bg">ZENFLOW</div>
+    <div class="brand-watermark fixed-bg" [class.page-mode]="currentWatermark !== 'ZENFLOW'">
+      {{ currentWatermark }}
+    </div>
     
     <app-header />
     <main>
@@ -35,22 +37,43 @@ import { filter } from 'rxjs/operators';
       position: relative;
       z-index: 2;
     }
+    .brand-watermark {
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      &.page-mode {
+        opacity: 0.015;
+        letter-spacing: 0.05em;
+      }
+    }
   `]
 })
 export class AppComponent implements OnInit {
   title = 'Zenflow - Modern Retail OS';
+  currentWatermark = 'ZENFLOW';
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
+    ).subscribe((event: any) => {
+      const url = event.urlAfterRedirects || event.url;
+      this.updateWatermark(url);
+      
       setTimeout(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' as any });
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
       }, 100);
     });
+  }
+
+  private updateWatermark(url: string) {
+    if (url.includes('billing')) this.currentWatermark = 'BILLING';
+    else if (url.includes('inventory')) this.currentWatermark = 'INVENTORY';
+    else if (url.includes('accounting')) this.currentWatermark = 'ACCOUNTING';
+    else if (url.includes('omnichannel')) this.currentWatermark = 'OMNICHANNEL';
+    else if (url.includes('pricing')) this.currentWatermark = 'PRICING';
+    else if (url.includes('contact')) this.currentWatermark = 'CONTACT';
+    else this.currentWatermark = 'ZENFLOW';
   }
 }

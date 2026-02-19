@@ -12,7 +12,7 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
       <!-- SECTION 1: Centered Hero (Sync Parity + Capital Hub Visual) -->
       <section class="hero-section reveal-active">
         <div class="eyebrow">INVENTORY ORCHESTRATION</div>
-        <h1 class="gradient-text">Unlock Capital Trapped<br>in Your Warehouse.</h1>
+        <h1 class="gradient-text"><span class="text-highlight-pink">Inventory Orchestration.</span><br>Unlock Capital Trapped in Your Warehouse.</h1>
         <p>Reduce inventory holding costs by 20% through automated capital optimization. Achieving real-time liquidity across complex supply chains.</p>
 
         <div class="hero-cta">

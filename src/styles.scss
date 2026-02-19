@@ -171,6 +171,14 @@ a {
   background-clip: text;
 }
 
+.text-highlight-pink {
+  background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
 ::selection {
   background: var(--primary-light);
   color: white;

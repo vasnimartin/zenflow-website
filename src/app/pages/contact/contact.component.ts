@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <div class="container page-content">
       <section class="contact-hero reveal-active">
         <div class="eyebrow">CONTACT US</div>
-        <h1 class="gradient-text">Let's Build the Future<br>of Your Retail Business.</h1>
+        <h1 class="gradient-text">Let's Build the <span class="text-highlight-pink">Future</span><br>of Your Retail Business.</h1>
         <p>Expert support, quick responses, and a team that understands retail scale.</p>
       </section>
 
@@ -47,91 +47,105 @@ import { Component } from '@angular/core';
     </div>
   `,
   styles: [`
-    .page-content { padding: 12rem 1.5rem 4rem; }
+    .page-content { padding: 6.5rem 1.5rem 4rem; }
     
-    .contact-hero { text-align: center; margin-bottom: 5rem; }
-    .contact-hero p { max-width: 600px; margin: 1.5rem auto 0; font-size: 1.2rem; color: var(--text-medium); line-height: 1.6; }
+    .contact-hero { text-align: center; margin-bottom: 2.5rem; }
+    .contact-hero h1 { font-size: 3rem; margin-bottom: 0.75rem; letter-spacing: -0.04em; }
+    .contact-hero p { max-width: 600px; margin: 0 auto; font-size: 1.1rem; color: var(--text-medium); line-height: 1.5; }
 
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-      max-width: var(--max-width);
+      max-width: 1000px;
       margin: 0 auto;
     }
 
     .contact-card {
       text-align: center;
-      padding: 3rem 2rem !important;
+      padding: 2.5rem 1.5rem !important;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.25rem;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       
       &.highlight {
         border-color: #25D366 !important;
-        background: rgba(37, 211, 102, 0.02);
+        background: rgba(37, 211, 102, 0.05);
       }
 
-      h3 { font-size: 1.5rem; font-weight: 850; color: var(--text-dark); }
-      p { font-size: 1rem; color: var(--text-medium); line-height: 1.5; }
+      &:hover {
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.1);
+      }
+
+      h3 { font-size: 1.25rem; font-weight: 850; color: #0f172a; margin: 0; }
+      p { font-size: 0.9rem; color: #475569; line-height: 1.4; margin: 0; height: 3rem; display: flex; align-items: center; justify-content: center; }
     }
 
     .card-icon {
-      width: 64px; height: 64px;
-      border-radius: 16px;
+      width: 56px; height: 56px;
+      border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
       
       &.whatsapp { background: #25D366; color: white; }
       &.email { background: #4f46e5; color: white; }
       &.sales { background: #f59e0b; color: white; }
       
-      .icon { width: 32px; height: 32px; }
+      .icon { width: 28px; height: 28px; }
     }
 
     .btn-whatsapp, .btn-email, .btn-sales {
       width: 100%;
-      padding: 1rem;
+      padding: 0.9rem;
       border-radius: 12px;
       font-weight: 700;
       text-decoration: none;
       transition: all 0.3s ease;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .btn-whatsapp {
       background: #25D366;
       color: white;
-      &:hover { background: #128C7E; transform: translateY(-2px); }
+      &:hover { background: #128C7E; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25); }
     }
 
     .btn-email {
-      border: 1px solid #e2e8f0;
-      color: var(--text-dark);
-      &:hover { border-color: #4f46e5; color: #4f46e5; }
+      border: 1.5px solid rgba(0,0,0,0.06);
+      color: #0f172a;
+      background: rgba(255,255,255,0.5);
+      &:hover { border-color: #4f46e5; color: #4f46e5; background: white; }
     }
 
     .btn-sales {
-      background: var(--text-dark);
+      background: #0f172a;
       color: white;
       border: none;
       cursor: pointer;
-      &:hover { background: #4f46e5; transform: translateY(-2px); }
+      &:hover { background: #4f46e5; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2); }
     }
 
     @media (max-width: 1024px) {
-      .page-content { padding-top: 100px; }
-      .contact-hero h1 { font-size: 3rem; }
-      .contact-grid { grid-template-columns: 1fr; max-width: 500px; padding: 0 1.5rem; }
+      .page-content { padding-top: 6rem; }
+      .contact-hero h1 { font-size: 2.5rem; }
+      .contact-grid { grid-template-columns: repeat(2, 1fr); max-width: 700px; }
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; max-width: 380px; }
     }
 
     @media (max-width: 640px) {
-      .contact-hero h1 { font-size: 2.25rem; }
-      .contact-hero p { font-size: 1.1rem; }
-      .contact-card { padding: 2.5rem 1.5rem !important; }
-      .card-icon { width: 56px; height: 56px; }
-      .card-icon .icon { width: 28px; height: 28px; }
+      .contact-hero h1 { font-size: 2rem; }
+      .contact-card { padding: 2rem 1.25rem !important; }
     }
   `]
 })
