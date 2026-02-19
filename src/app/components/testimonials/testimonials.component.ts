@@ -105,6 +105,7 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive'
           color: white;
         }
       }
+    }
  
     h4 { 
       margin: 0 0 0.5rem; 
