@@ -18,6 +18,7 @@
       </div>
 
       <!-- Capability-Driven Technical Metrics -->
+
       <div class="technical-grid-new">
         <div class="info-card neon-blue">
           <div class="ic-label">INTENT LATENCY</div>
@@ -113,6 +114,16 @@
         <div class="persona-card">
           <span class="icon">🎮</span>
           <h5>The Store Manager</h5>
+          <!-- Dropdown Suggestions -->
+          <div class="search-suggestions" *ngIf="isSearchFocused" (mousedown)="$event.preventDefault()">
+            <div class="suggestion-label">Try Asking:</div>
+            <div class="suggestion-item" (mousedown)="triggerAnalysis()">
+              <span class="icon">📈</span> Predict weekend revenue...
+            </div>
+            <div class="suggestion-item" (mousedown)="triggerAnalysis()">
+              <span class="icon">⚠️</span> Check low stock alerts...
+            </div>
+          </div>
           <ul>
             <li>Natural Language commands.</li>
             <li>Automated staff permissions.</li>
