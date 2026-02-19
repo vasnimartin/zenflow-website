@@ -195,6 +195,7 @@ import { Subscription } from 'rxjs';
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 1001;
       opacity: 0;
+      visibility: hidden; /* Prevent horizontal scroll when closed */
       pointer-events: none;
       padding: clamp(2rem, env(safe-area-inset-top), 5rem) 2rem clamp(2rem, env(safe-area-inset-bottom), 5rem);
       
@@ -238,6 +239,7 @@ import { Subscription } from 'rxjs';
       &.open {
         transform: translateX(0);
         opacity: 1;
+        visibility: visible;
         pointer-events: all;
 
         a {

@@ -278,14 +278,16 @@
   .hero-section { padding: 4rem 0 6rem; h1 { font-size: clamp(2.25rem, 8vw, 3.5rem); } }
   .fleet-container { height: 480px; max-width: 100%; }
   .terminal-card-v4 { width: clamp(300px, 80vw, 400px); padding: 1.5rem; }
-  .inner-bento-grid { grid-template-columns: 1fr 1fr; }
+  
+  .bento-section .inner-bento-grid { grid-template-columns: 1fr 1fr; }
+  
   .split-content-v4 { grid-template-columns: 1fr; gap: 4rem; margin-top: 4rem; }
   .outcome-section { padding: 8rem 0; .outcome-container h2 { font-size: 3rem; } }
 }
 
 @media (max-width: 768px) {
-  .inner-bento-grid { grid-template-columns: 1fr; }
-  .bento-card-inner.bento-large-inner { grid-column: span 1; }
+  .bento-section .inner-bento-grid { grid-template-columns: 1fr; }
+  .bento-section .bento-card-inner.bento-large-inner { grid-column: span 1; }
   .ops-walkthrough-v4 .section-title { font-size: 2.75rem; }
 }
 
