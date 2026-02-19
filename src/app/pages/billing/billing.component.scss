@@ -286,7 +286,7 @@
   
   .bento-section .inner-bento-grid { grid-template-columns: 1fr 1fr; }
   
-  .split-content-v4 { grid-template-columns: 1fr; gap: 4rem; margin-top: 4rem; }
+  .ops-walkthrough-v4 .split-content-v4 { grid-template-columns: 1fr; gap: 4rem; margin-top: 4rem; }
   .outcome-section { padding: 8rem 0; .outcome-container h2 { font-size: 3rem; } }
 }
 
@@ -312,7 +312,7 @@
     h3 { font-size: 1.25rem; } 
   }
   .ops-walkthrough-v4 { padding: 6rem 0; .ops-header { margin-bottom: 3rem; } .section-title { font-size: 2.25rem; } }
-  .split-content-v4 { margin-top: 2rem; gap: 3rem; }
+  .ops-walkthrough-v4 .split-content-v4 { margin-top: 2rem; gap: 3rem; }
   .ops-visual-v4 .dashboard-preview { padding: 1.5rem; .main-stat .val { font-size: 2.5rem; } .dash-search-mock { margin-bottom: 2rem; } }
   .outcome-section { padding: 6rem 0; }
   .outcome-container { h2 { font-size: 2.25rem; } .outcome-statement { font-size: 1.1rem; margin-bottom: 3rem; } .outcome-item { font-size: 1.1rem; gap: 1rem; text-align: left; } }
