@@ -1,19 +1,25 @@
 import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
-import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { RouterLink, RouterLinkActive, Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   template: `
     <header class="header" [class.scrolled]="isScrolled" [class.menu-open]="isMenuOpen">
       <div class="container header-content">
         <div class="header-left">
           <a routerLink="/" class="logo" (click)="colorsMenu()">
-            Zenflow<span class="highlight">.ai</span>
+            <span class="logo-text">Zenflow</span><span class="highlight">.ai</span>
           </a>
+          
+          <div class="page-context" [class.visible]="isScrolled && currentPageTitle">
+            <span class="separator">/</span>
+            <span class="title">{{ currentPageTitle }}</span>
+          </div>
         </div>
         
         <!-- Desktop Nav -->
@@ -99,8 +105,41 @@ import { Subscription } from 'rxjs';
       transition: all 0.3s ease;
       position: relative;
       z-index: 1002;
+      display: flex;
+      align-items: center;
       
       .highlight { color: var(--primary-color); }
+    }
+    
+    .page-context {
+      display: none; /* Hide on desktop by default */
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      white-space: nowrap;
+      
+      .separator {
+        opacity: 0.4;
+        font-weight: 300;
+        font-size: 1.1rem;
+        color: var(--text-dark);
+      }
+      
+      .title {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--text-dark);
+        opacity: 0.9;
+        letter-spacing: -0.01em;
+      }
+
+      &.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
     
     .header.scrolled .logo { font-size: 1.35rem; }
@@ -268,7 +307,12 @@ import { Subscription } from 'rxjs';
         margin: 0 1rem;
       }
 
-      .logo { font-size: 1.35rem; }
+      .logo-text { display: inline-block !important; }
+      .logo { font-size: 1.25rem; }
+      
+      .page-context {
+        display: flex; /* Show only on mobile */
+      }
     }
 
     @media (max-width: 640px) {
@@ -293,15 +337,27 @@ import { Subscription } from 'rxjs';
 export class HeaderComponent implements OnInit, OnDestroy {
   isScrolled = false;
   isMenuOpen = false;
+  currentPageTitle = '';
   private scrollTicking = false;
   private routerSub?: Subscription;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.routerSub = this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
+      filter(event => event instanceof NavigationEnd),
+      map(() => {
+        let route = this.activatedRoute.firstChild;
+        while (route?.firstChild) {
+          route = route.firstChild;
+        }
+        return route?.snapshot.data['breadcrumb'] || '';
+      })
+    ).subscribe(title => {
+      this.currentPageTitle = title;
       this.closeMenu();
     });
   }

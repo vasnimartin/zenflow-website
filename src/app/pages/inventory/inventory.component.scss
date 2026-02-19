@@ -302,10 +302,10 @@
     margin-top: 3rem; 
     perspective: 1000px;
     width: 100%;
-    overflow: hidden;
+    overflow: visible; /* Prevent cropping on mobile */
   }
   .fleet-container { 
-    height: auto; 
+    height: 420px; /* Room for content */
     display: flex; 
     flex-direction: column; 
     align-items: center; 
@@ -318,12 +318,18 @@
     top: auto !important; 
     left: auto !important; 
     transform: none !important; 
-    width: 100%; 
-    max-width: 100%;
-    margin-bottom: -180px; 
-    box-shadow: 0 20px 60px rgba(0,0,0,0.12); 
+    width: 95%; 
+    max-width: 380px; 
+    margin-bottom: -160px; 
+    box-shadow: 0 15px 45px rgba(0,0,0,0.1); 
     border: 1px solid rgba(0,0,0,0.06); 
     box-sizing: border-box;
+    padding: 1.5rem;
+    
+    .terminal-header { margin-bottom: 1.25rem; font-size: 0.75rem; }
+    .t-row { font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .t-total-row { font-size: 1.6rem; margin-top: 1rem; padding-top: 1rem; }
+    
     &:last-child { margin-bottom: 0; }
   }
   .terminal-back { 
