@@ -81,21 +81,21 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive'
     }
     
     .wide-container {
-      max-width: 1440px; /* Expand for 5-col row to prevent squishing */
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 clamp(1rem, 5vw, 2.5rem);
     }
 
     .mb-5 { margin-bottom: 4rem; }
     
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr); 
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
       gap: 1.5rem;
     }
     
     .power-card {
-      padding: 3rem 2rem; /* Restore premium spacious padding */
+      padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 3vw, 2rem);
       border-radius: 24px;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       background: rgba(255, 255, 255, 0.03);
@@ -109,7 +109,7 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive'
       height: 100%;
 
       h3 { 
-        font-size: 1.35rem; /* Restore bold size */
+        font-size: clamp(1.1rem, 2.5vw, 1.35rem); 
         margin-bottom: 1rem; 
         color: white; 
         display: flex; 
@@ -122,7 +122,7 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive'
       p { 
         color: rgba(255, 255, 255, 0.5); 
         margin: 0; 
-        font-size: 1rem; /* Restore readability */
+        font-size: clamp(0.9rem, 2vw, 1rem); 
         line-height: 1.6; 
         font-weight: 500; 
       }
@@ -170,14 +170,10 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive'
       transition: all 0.3s ease;
     }
     
-    @media (max-width: 1300px) {
-      .feature-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    }
-
     @media (max-width: 768px) {
       .power-section { padding: 6rem 0; }
-      .feature-grid { grid-template-columns: 1fr; }
-      .power-card { padding: 3rem 1.5rem; }
+      .feature-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .power-card { padding: 2.5rem 1.5rem; }
     }
   `]
 })
