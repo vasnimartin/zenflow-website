@@ -114,18 +114,10 @@ import { FinalCtaComponent } from '../../components/final-cta/final-cta.componen
   `,
   styles: [`
     /* Pricing Page Specifics */
-    .page-content { 
-      padding: 6rem 1.5rem 3rem; 
-      position: relative; 
-      z-index: 10; 
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
     .hero-section {
       text-align: center;
       margin-bottom: 2rem;
-      padding-top: 0.5rem;
+      padding: 2rem 0 10rem;
       
       h1 { 
         font-size: 2.8rem; 

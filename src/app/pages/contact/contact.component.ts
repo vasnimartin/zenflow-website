@@ -47,9 +47,13 @@ import { Component } from '@angular/core';
     </div>
   `,
   styles: [`
-    .page-content { padding: 6.5rem 1.5rem 4rem; }
+    /* .page-content inherited from global (12rem) */
     
-    .contact-hero { text-align: center; margin-bottom: 2.5rem; }
+    .contact-hero { 
+      text-align: center; 
+      margin-bottom: 2.5rem;
+      padding: 2rem 0 4rem;
+    }
     .contact-hero h1 { font-size: 3rem; margin-bottom: 0.75rem; letter-spacing: -0.04em; }
     .contact-hero p { max-width: 600px; margin: 0 auto; font-size: 1.1rem; color: var(--text-medium); line-height: 1.5; }
 
